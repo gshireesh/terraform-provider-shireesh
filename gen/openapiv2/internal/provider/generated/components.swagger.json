@@ -1,0 +1,1366 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "internal/provider/generated/components.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GrpcTerraformService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "componentComplexCreateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsCreateInput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsCreateInput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexCreateOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsCreateOutput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsCreateOutput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexCreateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentComplexCreateOutput"
+        }
+      }
+    },
+    "componentComplexDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "componentComplexGroupsCreateInput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsCreateOutput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsOpenInput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsOpenOutput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsReadOutput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsUpdateInput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexGroupsUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "groupName": {
+          "type": "string"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexOpenInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsOpenInput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsOpenInput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexOpenOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsOpenOutput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsOpenOutput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexOpenResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentComplexOpenOutput"
+        }
+      }
+    },
+    "componentComplexReadOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsReadOutput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsReadOutput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexReadResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentComplexReadOutput"
+        }
+      }
+    },
+    "componentComplexSettingsCreateInput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsCreateOutput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsOpenInput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsOpenOutput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsReadOutput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsUpdateInput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexSettingsUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "retries": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexUpdateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsUpdateInput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsUpdateInput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/definitions/componentComplexSettingsUpdateOutput"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentComplexGroupsUpdateOutput"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentComplexUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentComplexUpdateOutput"
+        }
+      }
+    },
+    "componentModesConfigCreateInput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigCreateOutput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "initialToken": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigOpenInput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigOpenOutput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "initialToken": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigReadOutput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigUpdateInput": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesConfigUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesCreateInput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "secretPayload": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigCreateInput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsCreateInput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningCreateInput"
+        }
+      }
+    },
+    "componentModesCreateOutput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigCreateOutput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsCreateOutput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningCreateOutput"
+        }
+      }
+    },
+    "componentModesCreateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentModesCreateOutput"
+        }
+      }
+    },
+    "componentModesDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "componentModesMetricsCreateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentModesMetricsCreateOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "computedHash": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesMetricsOpenInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentModesMetricsOpenOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "computedHash": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesMetricsReadOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "computedHash": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesMetricsUpdateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentModesMetricsUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "valueInt32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "valueInt64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "computedHash": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesOpenInput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "secretPayload": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigOpenInput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsOpenInput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningOpenInput"
+        }
+      }
+    },
+    "componentModesOpenOutput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigOpenOutput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsOpenOutput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningOpenOutput"
+        }
+      }
+    },
+    "componentModesOpenResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentModesOpenOutput"
+        }
+      }
+    },
+    "componentModesProvisioningCreateInput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningCreateOutput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "provisionedId": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningOpenInput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningOpenOutput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "provisionedId": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningReadOutput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningUpdateInput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesProvisioningUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        }
+      }
+    },
+    "componentModesReadOutput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigReadOutput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsReadOutput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningReadOutput"
+        }
+      }
+    },
+    "componentModesReadResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentModesReadOutput"
+        }
+      }
+    },
+    "componentModesUpdateInput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "secretPayload": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigUpdateInput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsUpdateInput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningUpdateInput"
+        }
+      }
+    },
+    "componentModesUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "count32": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count64": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ratio": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "flagsInt32": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "countersInt64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "config": {
+          "$ref": "#/definitions/componentModesConfigUpdateOutput"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentModesMetricsUpdateOutput"
+          }
+        },
+        "provisioning": {
+          "$ref": "#/definitions/componentModesProvisioningUpdateOutput"
+        }
+      }
+    },
+    "componentModesUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentModesUpdateOutput"
+        }
+      }
+    },
+    "componentSimpleCreateInput": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "score": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentSimpleCreateOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "score": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentSimpleCreateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentSimpleCreateOutput"
+        }
+      }
+    },
+    "componentSimpleDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "componentSimpleReadOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "score": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentSimpleReadResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentSimpleReadOutput"
+        }
+      }
+    },
+    "componentSimpleUpdateInput": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "score": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentSimpleUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "score": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "componentSimpleUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/componentSimpleUpdateOutput"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

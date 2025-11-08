@@ -1,0 +1,44 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+version: v2
+managed:
+  enabled: true
+#  override:
+#    - file_option: go_package_prefix
+#      value: shireesh.com/carbon/generated/
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: generated
+    opt: paths=source_relative
+
+  - remote: buf.build/grpc/go
+    out: generated
+    opt: paths=source_relative
+
+  - remote: buf.build/grpc-ecosystem/gateway
+    out: generated
+    opt:
+      - paths=source_relative
+      - allow_repeated_fields_in_body=true
+      - allow_delete_body=true
+
+  - remote: buf.build/grpc-ecosystem/openapiv2
+    out: gen/openapiv2
+    opt:
+      - ignore_comments=true
+      - allow_delete_body=true
+
+  - remote: buf.build/bufbuild/validate-go
+    out: generated
+    opt:
+      - paths=source_relative
+
+  - remote: buf.build/bufbuild/es
+    out: gen/es
+
+  - remote: buf.build/connectrpc/es
+    out: gen/es
+
+inputs:
+  - directory: .

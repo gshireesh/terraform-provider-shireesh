@@ -14,6 +14,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+
+	"github.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider/generated"
 )
 
 // Ensure ScaffoldingProvider satisfies various provider interfaces.
@@ -69,27 +71,20 @@ func (p *ScaffoldingProvider) Configure(ctx context.Context, req provider.Config
 }
 
 func (p *ScaffoldingProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewExampleResource,
-	}
+	// Generated components resources (from component specs)
+	return append([]func() resource.Resource{}, generated.Components.Resources...)
 }
 
 func (p *ScaffoldingProvider) EphemeralResources(ctx context.Context) []func() ephemeral.EphemeralResource {
-	return []func() ephemeral.EphemeralResource{
-		NewExampleEphemeralResource,
-	}
+	return append([]func() ephemeral.EphemeralResource{}, generated.Components.EphemeralResources...)
 }
 
 func (p *ScaffoldingProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewExampleDataSource,
-	}
+	return append([]func() datasource.DataSource{}, generated.Components.DataSources...)
 }
 
 func (p *ScaffoldingProvider) Functions(ctx context.Context) []func() function.Function {
-	return []func() function.Function{
-		NewExampleFunction,
-	}
+	return []func() function.Function{}
 }
 
 func New(version string) func() provider.Provider {

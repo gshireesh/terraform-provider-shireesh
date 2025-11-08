@@ -43,7 +43,8 @@ COMPONENTGEN=go run ./cmd/componentgen $(HTTP_FLAG) -service-name=$(SERVICE_NAME
 
 .PHONY: clean-generated
 clean-generated:
-	rm -f $(REGEN_OUT)/*.gen.go $(REGEN_OUT)/*.proto docs || true
+	rm -f $(REGEN_OUT)/*.gen.go $(REGEN_OUT)/*.proto || true
+	rm -rf docs generated gen || true
 
 .PHONY: docs
 docs: generate

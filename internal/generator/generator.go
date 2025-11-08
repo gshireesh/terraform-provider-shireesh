@@ -440,6 +440,12 @@ func buildProtoMessages(spec component.Spec) []ProtoMessage {
 		ProtoMessage{Name: pascalComp + "OpenRequest", Fields: []ProtoField{{Name: "item", Type: pascalComp + "OpenInput", Tag: 1}}},
 		ProtoMessage{Name: pascalComp + "OpenResponse", Fields: []ProtoField{{Name: "item", Type: pascalComp + "OpenOutput", Tag: 1}}},
 	)
+	if spec.HasRole("datasource") {
+		messages = append(messages,
+			ProtoMessage{Name: pascalComp + "DataSourceReadRequest", Fields: []ProtoField{{Name: "id", Type: "string", Tag: 1}}},
+			ProtoMessage{Name: pascalComp + "DataSourceReadResponse", Fields: []ProtoField{{Name: "item", Type: pascalComp + "ReadOutput", Tag: 1}}},
+		)
+	}
 
 	return messages
 }
@@ -524,6 +530,21 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	{{- if HasDefault .Spec }}
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"{{ end }}
+	{{- if or (HasReplaceString .Spec) (HasReplaceFloat64 .Spec) (HasReplaceBool .Spec) (HasReplaceInt64 .Spec) }}
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	{{- end }}
+	{{- if HasReplaceString .Spec }}
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
+	{{- end }}
+	{{- if HasReplaceInt64 .Spec }}
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
+	{{- end }}
+	{{- if HasReplaceFloat64 .Spec }}
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/float64planmodifier"
+	{{- end }}
+	{{- if HasReplaceBool .Spec }}
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/boolplanmodifier"
+	{{- end }}
 	{{- end }}
 	{{- if eq .Role "datasource" }}
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -632,7 +653,7 @@ service {{ .Service }} {
 		option (google.api.http) = { delete: "{{ HttpDelete .Spec.Name }}" };
 	}{{ else }};{{ end }}
 {{ end }}
-{{ if .HasDataSource }}	rpc {{ .Spec.Name | Pascal }}DataSourceRead({{ .Spec.Name | Pascal }}ReadRequest) returns ({{ .Spec.Name | Pascal }}ReadResponse) {{ if and $.HTTP .Spec.Gateway }}{
+{{ if .HasDataSource }}	rpc {{ .Spec.Name | Pascal }}DataSourceRead({{ .Spec.Name | Pascal }}DataSourceReadRequest) returns ({{ .Spec.Name | Pascal }}DataSourceReadResponse) {{ if and $.HTTP .Spec.Gateway }}{
 		option (google.api.http) = { get: "{{ HttpDsRead .Spec.Name }}" };
 	}{{ else }};{{ end }}
 {{ end }}
@@ -677,23 +698,27 @@ func init() {
 
 func funcMap() template.FuncMap {
 	return template.FuncMap{
-		"Title":        strings.Title,
-		"Pascal":       pascal,
-		"ProtoType":    protoType,
-		"Index":        func(i int) int { return i + 1 },
-		"Join":         strings.Join,
-		"Quote":        func(s string) string { return fmt.Sprintf("\"%s\"", s) },
-		"ModelType":    modelFieldType,
-		"HasDefault":   specHasDefault,
-		"HttpCreate":   httpCreatePath,
-		"HttpRead":     httpReadPath,
-		"HttpUpdate":   httpUpdatePath,
-		"HttpDelete":   httpDeletePath,
-		"HttpDsRead":   httpDsReadPath,
-		"HttpOpen":     httpOpenPath,
-		"ResourceAttr": resourceAttrCode,
-		"DSAttr":       dsAttrCode,
-		"EphAttr":      ephAttrCode,
+		"Title":             strings.Title,
+		"Pascal":            pascal,
+		"ProtoType":         protoType,
+		"Index":             func(i int) int { return i + 1 },
+		"Join":              strings.Join,
+		"Quote":             func(s string) string { return fmt.Sprintf("\"%s\"", s) },
+		"ModelType":         modelFieldType,
+		"HasDefault":        specHasDefault,
+		"HasReplaceString":  specHasReplaceString,
+		"HasReplaceFloat64": specHasReplaceFloat64,
+		"HasReplaceBool":    specHasReplaceBool,
+		"HasReplaceInt64":   specHasReplaceInt64,
+		"HttpCreate":        httpCreatePath,
+		"HttpRead":          httpReadPath,
+		"HttpUpdate":        httpUpdatePath,
+		"HttpDelete":        httpDeletePath,
+		"HttpDsRead":        httpDsReadPath,
+		"HttpOpen":          httpOpenPath,
+		"ResourceAttr":      resourceAttrCode,
+		"DSAttr":            dsAttrCode,
+		"EphAttr":           ephAttrCode,
 	}
 }
 
@@ -775,20 +800,59 @@ func elementTypeToken(elem string) string {
 }
 
 func resourceAttrCode(f component.Field) string {
+	replacement := func(typ string) string {
+		if !f.RequiresReplace {
+			return ""
+		}
+		// All attribute types support generic RequiresReplace plan modifier; for primitives use concrete helpers
+		switch typ {
+		case "string":
+			return "PlanModifiers: []planmodifier.String{ stringplanmodifier.RequiresReplace() }"
+		case "number":
+			return "PlanModifiers: []planmodifier.Float64{ float64planmodifier.RequiresReplace() }"
+		case "bool":
+			return "PlanModifiers: []planmodifier.Bool{ boolplanmodifier.RequiresReplace() }"
+		case "int64", "int32":
+			return "PlanModifiers: []planmodifier.Int64{ int64planmodifier.RequiresReplace() }"
+		default:
+			// Nested/dynamic/list: apply to container when possible
+			return "PlanModifiers: []planmodifier.Object{ }" // placeholder no-op for non-primitive
+		}
+	}
 	switch f.Type {
 	case "string":
 		flags := append(commonFlags(f), defaultPart(f))
+		if r := replacement("string"); r != "" {
+			flags = append(flags, r)
+		}
 		return fmt.Sprintf("schema.StringAttribute{ %s }", strings.Join(filterEmpty(flags), ", "))
 	case "number":
-		return fmt.Sprintf("schema.Float64Attribute{ %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		if r := replacement("number"); r != "" {
+			flags = append(flags, r)
+		}
+		return fmt.Sprintf("schema.Float64Attribute{ %s }", strings.Join(flags, ", "))
 	case "bool":
-		return fmt.Sprintf("schema.BoolAttribute{ %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		if r := replacement("bool"); r != "" {
+			flags = append(flags, r)
+		}
+		return fmt.Sprintf("schema.BoolAttribute{ %s }", strings.Join(flags, ", "))
 	case "int64":
-		return fmt.Sprintf("schema.Int64Attribute{ %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		if r := replacement("int64"); r != "" {
+			flags = append(flags, r)
+		}
+		return fmt.Sprintf("schema.Int64Attribute{ %s }", strings.Join(flags, ", "))
 	case "int32":
-		return fmt.Sprintf("schema.Int64Attribute{ %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		if r := replacement("int32"); r != "" {
+			flags = append(flags, r)
+		}
+		return fmt.Sprintf("schema.Int64Attribute{ %s }", strings.Join(flags, ", "))
 	case "dynamic":
-		return fmt.Sprintf("schema.DynamicAttribute{ %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		return fmt.Sprintf("schema.DynamicAttribute{ %s }", strings.Join(flags, ", "))
 	case "object":
 		var b strings.Builder
 		fmt.Fprintf(&b, "schema.SingleNestedAttribute{ ")
@@ -796,7 +860,8 @@ func resourceAttrCode(f component.Field) string {
 		for _, nf := range f.Fields {
 			fmt.Fprintf(&b, "\"%s\": %s, ", nf.Name, resourceAttrCode(nf))
 		}
-		fmt.Fprintf(&b, "}, %s }", strings.Join(commonFlags(f), ", "))
+		flags := commonFlags(f)
+		fmt.Fprintf(&b, "}, %s }", strings.Join(flags, ", "))
 		return b.String()
 	case "list":
 		if f.ElemType == "object" {
@@ -806,7 +871,8 @@ func resourceAttrCode(f component.Field) string {
 			for _, nf := range f.Fields {
 				fmt.Fprintf(&b, "\"%s\": %s, ", nf.Name, resourceAttrCode(nf))
 			}
-			fmt.Fprintf(&b, "}}, %s }", strings.Join(commonFlags(f), ", "))
+			flags := commonFlags(f)
+			fmt.Fprintf(&b, "}}, %s }", strings.Join(flags, ", "))
 			return b.String()
 		}
 		flags := commonFlags(f)
@@ -958,6 +1024,32 @@ func specHasDefault(s component.Spec) bool {
 	for _, f := range s.Fields {
 		if f.Default != "" {
 			return true
+		}
+	}
+	return false
+}
+
+func specHasReplaceString(s component.Spec) bool  { return hasReplaceOnType(s.Fields, "string") }
+func specHasReplaceFloat64(s component.Spec) bool { return hasReplaceOnType(s.Fields, "number") }
+func specHasReplaceBool(s component.Spec) bool    { return hasReplaceOnType(s.Fields, "bool") }
+func specHasReplaceInt64(s component.Spec) bool {
+	return hasReplaceOnType(s.Fields, "int64") || hasReplaceOnType(s.Fields, "int32")
+}
+
+func hasReplaceOnType(fields []component.Field, typ string) bool {
+	for _, f := range fields {
+		if f.Type == typ && f.RequiresReplace {
+			return true
+		}
+		if f.Type == "object" {
+			if hasReplaceOnType(f.Fields, typ) {
+				return true
+			}
+		}
+		if f.Type == "list" && f.ElemType == "object" {
+			if hasReplaceOnType(f.Fields, typ) {
+				return true
+			}
 		}
 	}
 	return false

@@ -18,9 +18,9 @@ func ModesSpec() component.Spec {
 			{Name: "id", Type: "string", Description: "Server assigned ID", Mode: component.IDAttributeMode},
 
 			// Primitive integers and number/bool
-			{Name: "count32", Type: "int32", Description: "32-bit counter", Optional: true},
+			{Name: "count32", Type: "int32", Description: "32-bit counter", Optional: true, RequiresReplace: true},
 			{Name: "count64", Type: "int64", Description: "64-bit counter", Optional: true},
-			{Name: "ratio", Type: "number", Description: "Floating ratio value", Optional: true},
+			{Name: "ratio", Type: "number", Description: "Floating ratio value", Optional: true, RequiresReplace: true},
 			{Name: "enabled", Type: "bool", Description: "Feature enabled flag", Optional: true},
 
 			// Lists of integers
@@ -31,7 +31,7 @@ func ModesSpec() component.Spec {
 			{Name: "secret_payload", Type: "dynamic", Description: "Opaque write-only secret payload", Mode: component.WriteOnlyAttributeMode, Optional: true},
 
 			// Nested configuration object demonstrating modes within nested structure
-			{Name: "config", Type: "object", Description: "Configuration block with various modes", Optional: true, Fields: []component.Field{
+			{Name: "config", Type: "object", Description: "Configuration block with various modes", Optional: true, RequiresReplace: true, Fields: []component.Field{
 				{Name: "version", Type: "string", Description: "Immutable version string", Mode: component.ImmutableAttributeMode, Optional: true},
 				{Name: "secret", Type: "string", Description: "Write-only nested secret", Mode: component.WriteOnlyAttributeMode, Optional: true},
 				{Name: "result", Type: "string", Description: "Read-only computed result", Mode: component.ReadOnlyAttributeMode},

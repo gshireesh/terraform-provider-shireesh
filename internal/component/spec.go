@@ -34,15 +34,16 @@ const (
 )
 
 type Field struct {
-	Name        string        `yaml:"name"`
-	Type        string        `yaml:"type"` // string, number, bool, object, list, map, dynamic
-	Description string        `yaml:"description"`
-	Optional    bool          `yaml:"optional"`
-	Computed    bool          `yaml:"computed"`
-	Default     string        `yaml:"default"`
-	Fields      []Field       `yaml:"fields"`    // for object
-	ElemType    string        `yaml:"elem_type"` // for list/map
-	Mode        AttributeMode `yaml:"mode"`      // semantic mode (optional)
+	Name            string        `yaml:"name"`
+	Type            string        `yaml:"type"` // string, number, bool, object, list, map, dynamic
+	Description     string        `yaml:"description"`
+	Optional        bool          `yaml:"optional"`
+	Computed        bool          `yaml:"computed"`
+	Default         string        `yaml:"default"`
+	Fields          []Field       `yaml:"fields"`           // for object
+	ElemType        string        `yaml:"elem_type"`        // for list/map
+	Mode            AttributeMode `yaml:"mode"`             // semantic mode (optional)
+	RequiresReplace bool          `yaml:"requires_replace"` // when true, changes force resource replacement
 }
 
 // Helpers

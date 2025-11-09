@@ -1,0 +1,6 @@
+complex:name=1,id=2,settings=3,groups=4,tags=5
+complex.settings:retries=1,enabled=2,labels=3
+modes:project=1,id=2,count32=3,count64=4,ratio=5,enabled=6,flags_int32=7,counters_int64=8,secret_payload=9,config=10,metrics=11,provisioning=12
+modes.config:version=1,secret=2,result=3,initial_token=4,note=5
+modes.provisioning:request_id=1,api_key=2,provisioned_id=3
+simple:id=1,value=2,flags=3,counts=4,score=5

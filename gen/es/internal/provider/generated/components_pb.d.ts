@@ -1444,7 +1444,7 @@ export declare type ModesConfigCreateInput = Message<"component.ModesConfigCreat
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 3;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1526,21 +1526,21 @@ export declare type ModesConfigCreateOutput = Message<"component.ModesConfigCrea
   /**
    * Read-only computed result [mode:read_only]
    *
-   * @generated from field: string result = 2;
+   * @generated from field: string result = 3;
    */
   result: string;
 
   /**
    * Token only returned at create [mode:read_only_once]
    *
-   * @generated from field: string initial_token = 3;
+   * @generated from field: string initial_token = 4;
    */
   initialToken: string;
 
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 4;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1604,7 +1604,7 @@ export declare type ModesProvisioningCreateOutput = Message<"component.ModesProv
   /**
    * ID after provisioning (read-only once) [mode:read_only_once]
    *
-   * @generated from field: string provisioned_id = 2;
+   * @generated from field: string provisioned_id = 3;
    */
   provisionedId: string;
 };
@@ -1629,14 +1629,14 @@ export declare type ModesConfigReadOutput = Message<"component.ModesConfigReadOu
   /**
    * Read-only computed result [mode:read_only]
    *
-   * @generated from field: string result = 2;
+   * @generated from field: string result = 3;
    */
   result: string;
 
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 3;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1711,14 +1711,14 @@ export declare type ModesConfigUpdateInput = Message<"component.ModesConfigUpdat
   /**
    * Write-only nested secret [mode:write_only]
    *
-   * @generated from field: string secret = 1;
+   * @generated from field: string secret = 2;
    */
   secret: string;
 
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 2;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1800,14 +1800,14 @@ export declare type ModesConfigUpdateOutput = Message<"component.ModesConfigUpda
   /**
    * Read-only computed result [mode:read_only]
    *
-   * @generated from field: string result = 2;
+   * @generated from field: string result = 3;
    */
   result: string;
 
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 3;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1896,7 +1896,7 @@ export declare type ModesConfigOpenInput = Message<"component.ModesConfigOpenInp
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 3;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -1978,21 +1978,21 @@ export declare type ModesConfigOpenOutput = Message<"component.ModesConfigOpenOu
   /**
    * Read-only computed result [mode:read_only]
    *
-   * @generated from field: string result = 2;
+   * @generated from field: string result = 3;
    */
   result: string;
 
   /**
    * Token only returned at create [mode:read_only_once]
    *
-   * @generated from field: string initial_token = 3;
+   * @generated from field: string initial_token = 4;
    */
   initialToken: string;
 
   /**
    * Editable note (default read/write)
    *
-   * @generated from field: string note = 4;
+   * @generated from field: string note = 5;
    */
   note: string;
 };
@@ -2056,7 +2056,7 @@ export declare type ModesProvisioningOpenOutput = Message<"component.ModesProvis
   /**
    * ID after provisioning (read-only once) [mode:read_only_once]
    *
-   * @generated from field: string provisioned_id = 2;
+   * @generated from field: string provisioned_id = 3;
    */
   provisionedId: string;
 };

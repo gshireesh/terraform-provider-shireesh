@@ -2811,7 +2811,7 @@ type ModesConfigCreateInput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // Immutable version string [mode:immutable]
 	Secret        string                 `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`   // Write-only nested secret [mode:write_only]
-	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2982,9 +2982,9 @@ func (x *ModesProvisioningCreateInput) GetApiKey() string {
 type ModesConfigCreateOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`                               // Immutable version string [mode:immutable]
-	Result        string                 `protobuf:"bytes,2,opt,name=result,proto3" json:"result,omitempty"`                                 // Read-only computed result [mode:read_only]
-	InitialToken  string                 `protobuf:"bytes,3,opt,name=initial_token,json=initialToken,proto3" json:"initial_token,omitempty"` // Token only returned at create [mode:read_only_once]
-	Note          string                 `protobuf:"bytes,4,opt,name=note,proto3" json:"note,omitempty"`                                     // Editable note (default read/write)
+	Result        string                 `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`                                 // Read-only computed result [mode:read_only]
+	InitialToken  string                 `protobuf:"bytes,4,opt,name=initial_token,json=initialToken,proto3" json:"initial_token,omitempty"` // Token only returned at create [mode:read_only_once]
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`                                     // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3118,7 +3118,7 @@ func (x *ModesMetricsCreateOutput) GetComputedHash() string {
 type ModesProvisioningCreateOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RequestId     string                 `protobuf:"bytes,1,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`             // Client supplied request ID (key) [mode:key]
-	ProvisionedId string                 `protobuf:"bytes,2,opt,name=provisioned_id,json=provisionedId,proto3" json:"provisioned_id,omitempty"` // ID after provisioning (read-only once) [mode:read_only_once]
+	ProvisionedId string                 `protobuf:"bytes,3,opt,name=provisioned_id,json=provisionedId,proto3" json:"provisioned_id,omitempty"` // ID after provisioning (read-only once) [mode:read_only_once]
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3170,8 +3170,8 @@ func (x *ModesProvisioningCreateOutput) GetProvisionedId() string {
 type ModesConfigReadOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // Immutable version string [mode:immutable]
-	Result        string                 `protobuf:"bytes,2,opt,name=result,proto3" json:"result,omitempty"`   // Read-only computed result [mode:read_only]
-	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
+	Result        string                 `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`   // Read-only computed result [mode:read_only]
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3341,8 +3341,8 @@ func (x *ModesProvisioningReadOutput) GetRequestId() string {
 
 type ModesConfigUpdateInput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Secret        string                 `protobuf:"bytes,1,opt,name=secret,proto3" json:"secret,omitempty"` // Write-only nested secret [mode:write_only]
-	Note          string                 `protobuf:"bytes,2,opt,name=note,proto3" json:"note,omitempty"`     // Editable note (default read/write)
+	Secret        string                 `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"` // Write-only nested secret [mode:write_only]
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`     // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3506,8 +3506,8 @@ func (x *ModesProvisioningUpdateInput) GetApiKey() string {
 type ModesConfigUpdateOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // Immutable version string [mode:immutable]
-	Result        string                 `protobuf:"bytes,2,opt,name=result,proto3" json:"result,omitempty"`   // Read-only computed result [mode:read_only]
-	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
+	Result        string                 `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`   // Read-only computed result [mode:read_only]
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3679,7 +3679,7 @@ type ModesConfigOpenInput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // Immutable version string [mode:immutable]
 	Secret        string                 `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`   // Write-only nested secret [mode:write_only]
-	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`       // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3850,9 +3850,9 @@ func (x *ModesProvisioningOpenInput) GetApiKey() string {
 type ModesConfigOpenOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Version       string                 `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`                               // Immutable version string [mode:immutable]
-	Result        string                 `protobuf:"bytes,2,opt,name=result,proto3" json:"result,omitempty"`                                 // Read-only computed result [mode:read_only]
-	InitialToken  string                 `protobuf:"bytes,3,opt,name=initial_token,json=initialToken,proto3" json:"initial_token,omitempty"` // Token only returned at create [mode:read_only_once]
-	Note          string                 `protobuf:"bytes,4,opt,name=note,proto3" json:"note,omitempty"`                                     // Editable note (default read/write)
+	Result        string                 `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`                                 // Read-only computed result [mode:read_only]
+	InitialToken  string                 `protobuf:"bytes,4,opt,name=initial_token,json=initialToken,proto3" json:"initial_token,omitempty"` // Token only returned at create [mode:read_only_once]
+	Note          string                 `protobuf:"bytes,5,opt,name=note,proto3" json:"note,omitempty"`                                     // Editable note (default read/write)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3986,7 +3986,7 @@ func (x *ModesMetricsOpenOutput) GetComputedHash() string {
 type ModesProvisioningOpenOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RequestId     string                 `protobuf:"bytes,1,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`             // Client supplied request ID (key) [mode:key]
-	ProvisionedId string                 `protobuf:"bytes,2,opt,name=provisioned_id,json=provisionedId,proto3" json:"provisioned_id,omitempty"` // ID after provisioning (read-only once) [mode:read_only_once]
+	ProvisionedId string                 `protobuf:"bytes,3,opt,name=provisioned_id,json=provisionedId,proto3" json:"provisioned_id,omitempty"` // ID after provisioning (read-only once) [mode:read_only_once]
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5627,7 +5627,7 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\x16ModesConfigCreateInput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
 	"\x06secret\x18\x02 \x01(\tR\x06secret\x12\x12\n" +
-	"\x04note\x18\x03 \x01(\tR\x04note\"o\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"o\n" +
 	"\x17ModesMetricsCreateInput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5640,9 +5640,9 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\aapi_key\x18\x02 \x01(\tR\x06apiKey\"\x84\x01\n" +
 	"\x17ModesConfigCreateOutput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
-	"\x06result\x18\x02 \x01(\tR\x06result\x12#\n" +
-	"\rinitial_token\x18\x03 \x01(\tR\finitialToken\x12\x12\n" +
-	"\x04note\x18\x04 \x01(\tR\x04note\"\x95\x01\n" +
+	"\x06result\x18\x03 \x01(\tR\x06result\x12#\n" +
+	"\rinitial_token\x18\x04 \x01(\tR\finitialToken\x12\x12\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"\x95\x01\n" +
 	"\x18ModesMetricsCreateOutput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5653,11 +5653,11 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\x1dModesProvisioningCreateOutput\x12\x1d\n" +
 	"\n" +
 	"request_id\x18\x01 \x01(\tR\trequestId\x12%\n" +
-	"\x0eprovisioned_id\x18\x02 \x01(\tR\rprovisionedId\"]\n" +
+	"\x0eprovisioned_id\x18\x03 \x01(\tR\rprovisionedId\"]\n" +
 	"\x15ModesConfigReadOutput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
-	"\x06result\x18\x02 \x01(\tR\x06result\x12\x12\n" +
-	"\x04note\x18\x03 \x01(\tR\x04note\"\x93\x01\n" +
+	"\x06result\x18\x03 \x01(\tR\x06result\x12\x12\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"\x93\x01\n" +
 	"\x16ModesMetricsReadOutput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5669,8 +5669,8 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\n" +
 	"request_id\x18\x01 \x01(\tR\trequestId\"D\n" +
 	"\x16ModesConfigUpdateInput\x12\x16\n" +
-	"\x06secret\x18\x01 \x01(\tR\x06secret\x12\x12\n" +
-	"\x04note\x18\x02 \x01(\tR\x04note\"o\n" +
+	"\x06secret\x18\x02 \x01(\tR\x06secret\x12\x12\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"o\n" +
 	"\x17ModesMetricsUpdateInput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5683,8 +5683,8 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\aapi_key\x18\x02 \x01(\tR\x06apiKey\"_\n" +
 	"\x17ModesConfigUpdateOutput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
-	"\x06result\x18\x02 \x01(\tR\x06result\x12\x12\n" +
-	"\x04note\x18\x03 \x01(\tR\x04note\"\x95\x01\n" +
+	"\x06result\x18\x03 \x01(\tR\x06result\x12\x12\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"\x95\x01\n" +
 	"\x18ModesMetricsUpdateOutput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5698,7 +5698,7 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\x14ModesConfigOpenInput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
 	"\x06secret\x18\x02 \x01(\tR\x06secret\x12\x12\n" +
-	"\x04note\x18\x03 \x01(\tR\x04note\"m\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"m\n" +
 	"\x15ModesMetricsOpenInput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5711,9 +5711,9 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\aapi_key\x18\x02 \x01(\tR\x06apiKey\"\x82\x01\n" +
 	"\x15ModesConfigOpenOutput\x12\x18\n" +
 	"\aversion\x18\x01 \x01(\tR\aversion\x12\x16\n" +
-	"\x06result\x18\x02 \x01(\tR\x06result\x12#\n" +
-	"\rinitial_token\x18\x03 \x01(\tR\finitialToken\x12\x12\n" +
-	"\x04note\x18\x04 \x01(\tR\x04note\"\x93\x01\n" +
+	"\x06result\x18\x03 \x01(\tR\x06result\x12#\n" +
+	"\rinitial_token\x18\x04 \x01(\tR\finitialToken\x12\x12\n" +
+	"\x04note\x18\x05 \x01(\tR\x04note\"\x93\x01\n" +
 	"\x16ModesMetricsOpenOutput\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
 	"\vvalue_int32\x18\x02 \x01(\x05R\n" +
@@ -5724,7 +5724,7 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\x1bModesProvisioningOpenOutput\x12\x1d\n" +
 	"\n" +
 	"request_id\x18\x01 \x01(\tR\trequestId\x12%\n" +
-	"\x0eprovisioned_id\x18\x02 \x01(\tR\rprovisionedId\"\xc5\x03\n" +
+	"\x0eprovisioned_id\x18\x03 \x01(\tR\rprovisionedId\"\xc5\x03\n" +
 	"\x10ModesCreateInput\x12\x18\n" +
 	"\aproject\x18\x01 \x01(\tR\aproject\x12\x18\n" +
 	"\acount32\x18\x03 \x01(\x05R\acount32\x12\x18\n" +

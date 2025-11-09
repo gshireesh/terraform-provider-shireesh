@@ -18,91 +18,39 @@ import (
 
 // GenerateAll now supports optional HTTP (grpc-gateway) annotations in combined proto.
 func GenerateAll(specs []component.Spec, outDir string, tagFile string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string) error {
-	// Tag tracking now supports nested messages. Format:
-	// message_name:field1,field2
-	prevTags := map[string][]string{}
+	// Tag tracking with numeric IDs. .tags format supports:
+	// message:field1=1,field2=2  (preferred)
+	// message:field1,field2      (legacy; assigns 1..N in listed order)
+	ts := newTagStore()
 	if b, err := os.ReadFile(tagFile); err == nil {
-		for _, line := range strings.Split(string(b), "\n") {
-			line = strings.TrimSpace(line)
-			if line == "" || strings.HasPrefix(line, "#") {
-				continue
-			}
-			parts := strings.Split(line, ":")
-			if len(parts) != 2 {
-				continue
-			}
-			name := parts[0]
-			fields := strings.Split(parts[1], ",")
-			prevTags[name] = fields
-		}
+		ts.load(string(b))
 	}
 
 	// Collect all message names before ordering (top-level + nested) so we can preserve ordering.
 	// We'll build a flat list of message specs to tag.
-	for i, spec := range specs {
-		// Order top-level component fields
-		old := prevTags[spec.Name]
-		var newOrder []string
-		seen := map[string]bool{}
-		for _, f := range old { // keep prior order for existing fields
-			if hasField(spec, f) {
-				newOrder = append(newOrder, f)
-				seen[f] = true
+	for _, spec := range specs {
+		// Ensure tags exist for current fields; assign if missing. Leave removed fields reserved.
+		for _, f := range spec.Fields {
+			_ = ts.ensure(spec.Name, f.Name)
+			if f.Type == "object" {
+				nestedKey := nestedMessageName(spec.Name, f.Name)
+				for _, nf := range f.Fields {
+					_ = ts.ensure(nestedKey, nf.Name)
+				}
 			}
 		}
-		for _, f := range spec.Fields { // append new
-			if !seen[f.Name] {
-				newOrder = append(newOrder, f.Name)
-			}
-		}
-		specs[i].Fields = orderedFields(spec, newOrder)
-		prevTags[spec.Name] = newOrder
 
-		// Nested messages tag ordering
+		// Also preserve nested ordering/assignment for object children in spec
 		for _, f := range spec.Fields {
 			if f.Type == "object" {
-				name := nestedMessageName(spec.Name, f.Name)
-				oldNested := prevTags[name]
-				var nestedOrder []string
-				seenNested := map[string]bool{}
-				for _, nf := range oldNested {
-					if hasNestedField(f, nf) {
-						nestedOrder = append(nestedOrder, nf)
-						seenNested[nf] = true
-					}
-				}
-				for _, nf := range f.Fields {
-					if !seenNested[nf.Name] {
-						nestedOrder = append(nestedOrder, nf.Name)
-					}
-				}
-				f.Fields = orderedNestedFields(f, nestedOrder)
-				// Update back in spec
-				for idx := range specs[i].Fields {
-					if specs[i].Fields[idx].Name == f.Name {
-						specs[i].Fields[idx].Fields = f.Fields
-					}
-				}
-				prevTags[name] = nestedOrder
+				// Update back in spec not needed for tag assignment; we keep original spec order
 			}
 		}
 	}
 
 	// Persist tags
 	var tagBuf bytes.Buffer
-	for _, spec := range specs {
-		// top-level
-		tagBuf.WriteString(fmt.Sprintf("%s:%s\n", spec.Name, strings.Join(prevTags[spec.Name], ",")))
-		// nested
-		for _, f := range spec.Fields {
-			if f.Type == "object" {
-				name := nestedMessageName(spec.Name, f.Name)
-				if order, ok := prevTags[name]; ok {
-					tagBuf.WriteString(fmt.Sprintf("%s:%s\n", name, strings.Join(order, ",")))
-				}
-			}
-		}
-	}
+	tagBuf.WriteString(ts.String())
 	if err := os.WriteFile(tagFile, tagBuf.Bytes(), 0o644); err != nil {
 		return fmt.Errorf("write tags: %w", err)
 	}
@@ -122,7 +70,7 @@ func GenerateAll(specs []component.Spec, outDir string, tagFile string, includeH
 		}
 	}
 
-	if err := generateCombinedProto(specs, outDir, includeHTTP, serviceName, protoPackage, goPackagePrefix); err != nil {
+	if err := generateCombinedProto(specs, outDir, includeHTTP, serviceName, protoPackage, goPackagePrefix, ts); err != nil {
 		return err
 	}
 	if err := generateRegistry(specs, outDir); err != nil {
@@ -134,53 +82,137 @@ func GenerateAll(specs []component.Spec, outDir string, tagFile string, includeH
 	return nil
 }
 
-func hasField(spec component.Spec, name string) bool {
-	for _, f := range spec.Fields {
-		if f.Name == name {
-			return true
-		}
-	}
-	return false
+// tagStore keeps stable numeric tags per message.
+type tagStore struct {
+	tags map[string]map[string]int // message -> field -> tag
 }
 
-func hasNestedField(obj component.Field, name string) bool {
-	for _, f := range obj.Fields {
-		if f.Name == name {
-			return true
+func newTagStore() *tagStore { return &tagStore{tags: map[string]map[string]int{}} }
+
+func (s *tagStore) load(content string) {
+	for _, line := range strings.Split(content, "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") || strings.HasPrefix(line, "//") {
+			continue
+		}
+		parts := strings.SplitN(line, ":", 2)
+		if len(parts) != 2 {
+			continue
+		}
+		msg := strings.TrimSpace(parts[0])
+		fields := strings.Split(parts[1], ",")
+		if _, ok := s.tags[msg]; !ok {
+			s.tags[msg] = map[string]int{}
+		}
+		next := s.max(msg) + 1
+		for _, f := range fields {
+			f = strings.TrimSpace(f)
+			if f == "" {
+				continue
+			}
+			name := f
+			tag := 0
+			if eq := strings.Index(f, "="); eq >= 0 {
+				name = strings.TrimSpace(f[:eq])
+				if v := strings.TrimSpace(f[eq+1:]); v != "" {
+					if n, err := atoiSafe(v); err == nil && n > 0 {
+						tag = n
+					}
+				}
+			}
+			if tag == 0 {
+				// legacy: assign next sequential but do not override if already present
+				if _, exists := s.tags[msg][name]; !exists {
+					s.tags[msg][name] = next
+					next++
+				}
+			} else {
+				s.tags[msg][name] = tag
+				if tag >= next {
+					next = tag + 1
+				}
+			}
 		}
 	}
-	return false
 }
 
-func orderedFields(spec component.Spec, order []string) []component.Field {
-	m := map[string]component.Field{}
-	for _, f := range spec.Fields {
-		m[f.Name] = f
+func atoiSafe(s string) (int, error) {
+	var n int
+	for _, ch := range s {
+		if ch < '0' || ch > '9' {
+			return 0, fmt.Errorf("nan")
+		}
+		n = n*10 + int(ch-'0')
 	}
-	var res []component.Field
-	for _, name := range order {
-		if f, ok := m[name]; ok {
-			res = append(res, f)
+	return n, nil
+}
+
+func (s *tagStore) max(msg string) int {
+	m := 0
+	for _, v := range s.tags[msg] {
+		if v > m {
+			m = v
 		}
 	}
-	return res
+	return m
 }
 
-func orderedNestedFields(obj component.Field, order []string) []component.Field {
-	m := map[string]component.Field{}
-	for _, f := range obj.Fields {
-		m[f.Name] = f
+func (s *tagStore) ensure(msg, field string) int {
+	if _, ok := s.tags[msg]; !ok {
+		s.tags[msg] = map[string]int{}
 	}
-	var res []component.Field
-	for _, name := range order {
-		if f, ok := m[name]; ok {
-			res = append(res, f)
+	if t, ok := s.tags[msg][field]; ok {
+		return t
+	}
+	t := s.max(msg) + 1
+	s.tags[msg][field] = t
+	return t
+}
+
+func (s *tagStore) tag(msg, field string) int {
+	if m, ok := s.tags[msg]; ok {
+		if t, ok := m[field]; ok {
+			return t
 		}
 	}
-	return res
+	return s.ensure(msg, field)
 }
 
-// generateRoleFiles creates separate files per role instead of one combined file.
+func (s *tagStore) String() string {
+	// Deterministic ordering by message then tag
+	var msgs []string
+	for k := range s.tags {
+		msgs = append(msgs, k)
+	}
+	sort.Strings(msgs)
+	var b strings.Builder
+	for _, msg := range msgs {
+		// sort fields by tag
+		type ft struct {
+			name string
+			tag  int
+		}
+		var arr []ft
+		for name, tag := range s.tags[msg] {
+			arr = append(arr, ft{name, tag})
+		}
+		sort.Slice(arr, func(i, j int) bool { return arr[i].tag < arr[j].tag })
+		b.WriteString(msg)
+		b.WriteString(":")
+		for i, f := range arr {
+			if i > 0 {
+				b.WriteString(",")
+			}
+			b.WriteString(f.name)
+			b.WriteString("=")
+			b.WriteString(fmt.Sprintf("%d", f.tag))
+		}
+		b.WriteString("\n")
+	}
+	return b.String()
+}
+
+// Generate role & model files
 func generateRoleFiles(spec component.Spec, outDir string) error {
 	// Generate shared model first
 	if err := generateModelFile(spec, outDir); err != nil {
@@ -220,13 +252,13 @@ func generateModelFile(spec component.Spec, outDir string) error {
 	return os.WriteFile(file, buf.Bytes(), 0o644)
 }
 
-func generateCombinedProto(specs []component.Spec, outDir string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string) error { // includeHTTP retained for global override
+func generateCombinedProto(specs []component.Spec, outDir string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string, ts *tagStore) error { // includeHTTP retained for global override
 	file := filepath.Join(outDir, "components.proto")
 	var buf bytes.Buffer
 	var all []CombinedProtoSpec
 	anyGateway := false
 	for _, s := range specs {
-		msgs := buildProtoMessages(s)
+		msgs := buildProtoMessages(s, ts)
 		all = append(all, CombinedProtoSpec{Spec: s, Messages: msgs, HasResource: s.HasRole("resource"), HasDataSource: s.HasRole("datasource"), HasEphemeral: s.HasRole("ephemeral")})
 		if s.Gateway {
 			anyGateway = true
@@ -321,7 +353,54 @@ func nestedMessageName(componentName, fieldName string) string {
 	return componentName + "." + fieldName
 }
 
-func buildProtoMessages(spec component.Spec) []ProtoMessage {
+// fieldToProto translates a component.Field to a ProtoField with provided numeric tag.
+func fieldToProto(componentName string, f component.Field, tag int) ProtoField {
+	comment := strings.TrimSpace(f.Description)
+	if f.Mode != "" {
+		if comment != "" {
+			comment += " "
+		}
+		comment += fmt.Sprintf("[mode:%s]", string(f.Mode))
+	}
+	pf := ProtoField{Name: f.Name, Tag: tag, Comment: comment}
+	switch f.Type {
+	case "string":
+		pf.Type = "string"
+	case "number":
+		pf.Type = "double"
+	case "bool":
+		pf.Type = "bool"
+	case "int64":
+		pf.Type = "int64"
+	case "int32":
+		pf.Type = "int32"
+	case "object":
+		pf.Type = pascal(componentName) + pascal(f.Name)
+	case "list":
+		switch f.ElemType {
+		case "string":
+			pf.Type = "string"
+		case "number":
+			pf.Type = "double"
+		case "bool":
+			pf.Type = "bool"
+		case "int64":
+			pf.Type = "int64"
+		case "int32":
+			pf.Type = "int32"
+		case "object":
+			pf.Type = pascal(componentName) + pascal(f.Name)
+		default:
+			pf.Type = "string"
+		}
+		pf.Repeated = true
+	default:
+		pf.Type = "string"
+	}
+	return pf
+}
+
+func buildProtoMessages(spec component.Spec, tags *tagStore) []ProtoMessage {
 	// Variant filtering helpers
 	isWriteOnly := func(f component.Field) bool { return f.Mode == component.WriteOnlyAttributeMode }
 	isReadOnly := func(f component.Field) bool { return f.Mode == component.ReadOnlyAttributeMode }
@@ -360,8 +439,9 @@ func buildProtoMessages(spec component.Spec) []ProtoMessage {
 		// For object/list-of-object produce a message with filtered inner fields
 		filtered := filterNested(f.Fields, pred)
 		var pf []ProtoField
-		for i, nf := range filtered {
-			pf = append(pf, fieldToProto(componentName, nf, i+1))
+		baseKey := nestedMessageName(componentName, f.Name)
+		for _, nf := range filtered {
+			pf = append(pf, fieldToProto(componentName, nf, tags.tag(baseKey, nf.Name)))
 		}
 		name := variantNestedName(componentName, f.Name, variant)
 		return []ProtoMessage{{Name: name, Fields: pf}}
@@ -374,9 +454,9 @@ func buildProtoMessages(spec component.Spec) []ProtoMessage {
 	// Collect top-level variant field sets
 	collectVariantFields := func(pred func(component.Field) bool) []ProtoField {
 		var out []ProtoField
-		for i, f := range spec.Fields {
+		for _, f := range spec.Fields {
 			if pred(f) {
-				out = append(out, fieldToProto(componentName, f, i+1))
+				out = append(out, fieldToProto(componentName, f, tags.tag(componentName, f.Name)))
 			}
 		}
 		return out
@@ -440,7 +520,18 @@ func buildProtoMessages(spec component.Spec) []ProtoMessage {
 	openInputFields = adjustVariantFieldTypes(openInputFields, "OpenInput")
 	openOutputFields = adjustVariantFieldTypes(openOutputFields, "OpenOutput")
 
-	// Top-level item wrapper messages
+	// Top-level item wrapper messages (fields sorted by tag for readability)
+	sortFieldsByTag := func(fs []ProtoField) []ProtoField {
+		sort.Slice(fs, func(i, j int) bool { return fs[i].Tag < fs[j].Tag })
+		return fs
+	}
+	createInputFields = sortFieldsByTag(createInputFields)
+	createOutputFields = sortFieldsByTag(createOutputFields)
+	readOutputFields = sortFieldsByTag(readOutputFields)
+	updateInputFields = sortFieldsByTag(updateInputFields)
+	updateOutputFields = sortFieldsByTag(updateOutputFields)
+	openInputFields = sortFieldsByTag(openInputFields)
+	openOutputFields = sortFieldsByTag(openOutputFields)
 	messages = append(messages,
 		ProtoMessage{Name: pascalComp + "CreateInput", Fields: createInputFields},
 		ProtoMessage{Name: pascalComp + "CreateOutput", Fields: createOutputFields},
@@ -474,63 +565,6 @@ func buildProtoMessages(spec component.Spec) []ProtoMessage {
 	return messages
 }
 
-func buildNestedMessage(componentName string, f component.Field) ProtoMessage {
-	var fields []ProtoField
-	for i, nf := range f.Fields {
-		fields = append(fields, fieldToProto(componentName, nf, i+1))
-	}
-	name := pascal(componentName) + pascal(f.Name)
-	return ProtoMessage{Name: name, Fields: fields}
-}
-
-func fieldToProto(componentName string, f component.Field, tag int) ProtoField {
-	// Build descriptive comment and append mode when present
-	comment := strings.TrimSpace(f.Description)
-	if f.Mode != "" {
-		if comment != "" {
-			comment += " "
-		}
-		comment += fmt.Sprintf("[mode:%s]", string(f.Mode))
-	}
-	pf := ProtoField{Name: f.Name, Tag: tag, Comment: comment}
-	switch f.Type {
-	case "string":
-		pf.Type = "string"
-	case "number":
-		pf.Type = "double"
-	case "bool":
-		pf.Type = "bool"
-	case "int64":
-		pf.Type = "int64"
-	case "int32":
-		pf.Type = "int32"
-	case "object":
-		pf.Type = pascal(componentName) + pascal(f.Name)
-	case "list":
-		switch f.ElemType {
-		case "string":
-			pf.Type = "string"
-		case "number":
-			pf.Type = "double"
-		case "bool":
-			pf.Type = "bool"
-		case "int64":
-			pf.Type = "int64"
-		case "int32":
-			pf.Type = "int32"
-		case "object":
-			pf.Type = pascal(componentName) + pascal(f.Name)
-		default:
-			pf.Type = "string"
-		}
-		pf.Repeated = true
-	default:
-		pf.Type = "string"
-	}
-	return pf
-}
-
-// generateRegistry rewrites registry based on role files
 func generateRegistry(specs []component.Spec, outDir string) error {
 	file := filepath.Join(outDir, "registry.gen.go")
 	var buf bytes.Buffer
@@ -826,7 +860,8 @@ func pascal(s string) string {
 		if p == "" {
 			continue
 		}
-		parts[i] = strings.Title(p)
+		// Title deprecated; implement simple Pascal casing
+		parts[i] = strings.ToUpper(p[:1]) + strings.ToLower(p[1:])
 	}
 	return strings.Join(parts, "")
 }

@@ -59,13 +59,17 @@ docs: gen-examples
 gen-examples:
 	go run ./cmd/examplergen
 
-.PHONY: regen
+# Unified generate pipeline (previously 'regen').
+.PHONY: generate regen
 generate: clean
 	$(COMPONENTGEN)
 	buf generate
-	make proto-fmt
+	$(MAKE) proto-fmt
 	go mod tidy
 	$(MAKE) gen-examples
 	$(MAKE) docs
 
-.PHONY: fmt lint test testacc build install generate
+# Backwards-compatible alias
+regen: generate
+
+.PHONY: fmt lint test testacc build install generate regen clean docs gen-examples proto proto-fmt

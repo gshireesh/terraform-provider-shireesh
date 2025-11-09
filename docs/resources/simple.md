@@ -23,14 +23,11 @@ resource "scaffolding_simple" "example" {
 
 ### Required
 
-- `score` (Number) Numeric counts
-
-### Optional
-
-- `counts` (List of Number) Numeric counts
-- `flags` (List of Boolean) Boolean flags
-- `value` (String) Simple value
+- `counts` (String)
+- `flags` (String)
+- `score` (String)
+- `value` (String)
 
 ### Read-Only
 
-- `id` (String) Simple ID
+- `id` (String) The ID of this resource.

@@ -4,14 +4,16 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        (unknown)
-// source: internal/provider/generated/components.proto
+// source: internal/provider/generated/api/components.proto
 
-package generated
+package v1
 
 import (
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	_ "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -36,7 +38,7 @@ type SimpleCreateInput struct {
 
 func (x *SimpleCreateInput) Reset() {
 	*x = SimpleCreateInput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[0]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +50,7 @@ func (x *SimpleCreateInput) String() string {
 func (*SimpleCreateInput) ProtoMessage() {}
 
 func (x *SimpleCreateInput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[0]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +63,7 @@ func (x *SimpleCreateInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateInput.ProtoReflect.Descriptor instead.
 func (*SimpleCreateInput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{0}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SimpleCreateInput) GetValue() string {
@@ -105,7 +107,7 @@ type SimpleCreateOutput struct {
 
 func (x *SimpleCreateOutput) Reset() {
 	*x = SimpleCreateOutput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[1]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117,7 +119,7 @@ func (x *SimpleCreateOutput) String() string {
 func (*SimpleCreateOutput) ProtoMessage() {}
 
 func (x *SimpleCreateOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[1]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +132,7 @@ func (x *SimpleCreateOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateOutput.ProtoReflect.Descriptor instead.
 func (*SimpleCreateOutput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{1}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SimpleCreateOutput) GetId() string {
@@ -181,7 +183,7 @@ type SimpleReadOutput struct {
 
 func (x *SimpleReadOutput) Reset() {
 	*x = SimpleReadOutput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[2]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -193,7 +195,7 @@ func (x *SimpleReadOutput) String() string {
 func (*SimpleReadOutput) ProtoMessage() {}
 
 func (x *SimpleReadOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[2]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -206,7 +208,7 @@ func (x *SimpleReadOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadOutput.ProtoReflect.Descriptor instead.
 func (*SimpleReadOutput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{2}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *SimpleReadOutput) GetId() string {
@@ -256,7 +258,7 @@ type SimpleUpdateInput struct {
 
 func (x *SimpleUpdateInput) Reset() {
 	*x = SimpleUpdateInput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[3]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -268,7 +270,7 @@ func (x *SimpleUpdateInput) String() string {
 func (*SimpleUpdateInput) ProtoMessage() {}
 
 func (x *SimpleUpdateInput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[3]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -281,7 +283,7 @@ func (x *SimpleUpdateInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateInput.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateInput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{3}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SimpleUpdateInput) GetValue() string {
@@ -325,7 +327,7 @@ type SimpleUpdateOutput struct {
 
 func (x *SimpleUpdateOutput) Reset() {
 	*x = SimpleUpdateOutput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[4]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -337,7 +339,7 @@ func (x *SimpleUpdateOutput) String() string {
 func (*SimpleUpdateOutput) ProtoMessage() {}
 
 func (x *SimpleUpdateOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[4]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -350,7 +352,7 @@ func (x *SimpleUpdateOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateOutput.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateOutput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{4}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SimpleUpdateOutput) GetId() string {
@@ -400,7 +402,7 @@ type SimpleOpenInput struct {
 
 func (x *SimpleOpenInput) Reset() {
 	*x = SimpleOpenInput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[5]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -412,7 +414,7 @@ func (x *SimpleOpenInput) String() string {
 func (*SimpleOpenInput) ProtoMessage() {}
 
 func (x *SimpleOpenInput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[5]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -425,7 +427,7 @@ func (x *SimpleOpenInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenInput.ProtoReflect.Descriptor instead.
 func (*SimpleOpenInput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{5}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SimpleOpenInput) GetValue() string {
@@ -469,7 +471,7 @@ type SimpleOpenOutput struct {
 
 func (x *SimpleOpenOutput) Reset() {
 	*x = SimpleOpenOutput{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[6]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -481,7 +483,7 @@ func (x *SimpleOpenOutput) String() string {
 func (*SimpleOpenOutput) ProtoMessage() {}
 
 func (x *SimpleOpenOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[6]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,7 +496,7 @@ func (x *SimpleOpenOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenOutput.ProtoReflect.Descriptor instead.
 func (*SimpleOpenOutput) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{6}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SimpleOpenOutput) GetId() string {
@@ -541,7 +543,7 @@ type SimpleCreateRequest struct {
 
 func (x *SimpleCreateRequest) Reset() {
 	*x = SimpleCreateRequest{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[7]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -553,7 +555,7 @@ func (x *SimpleCreateRequest) String() string {
 func (*SimpleCreateRequest) ProtoMessage() {}
 
 func (x *SimpleCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[7]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -566,7 +568,7 @@ func (x *SimpleCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateRequest.ProtoReflect.Descriptor instead.
 func (*SimpleCreateRequest) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{7}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SimpleCreateRequest) GetItem() *SimpleCreateInput {
@@ -585,7 +587,7 @@ type SimpleCreateResponse struct {
 
 func (x *SimpleCreateResponse) Reset() {
 	*x = SimpleCreateResponse{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[8]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +599,7 @@ func (x *SimpleCreateResponse) String() string {
 func (*SimpleCreateResponse) ProtoMessage() {}
 
 func (x *SimpleCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[8]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +612,7 @@ func (x *SimpleCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateResponse.ProtoReflect.Descriptor instead.
 func (*SimpleCreateResponse) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{8}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SimpleCreateResponse) GetItem() *SimpleCreateOutput {
@@ -629,7 +631,7 @@ type SimpleReadRequest struct {
 
 func (x *SimpleReadRequest) Reset() {
 	*x = SimpleReadRequest{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[9]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -641,7 +643,7 @@ func (x *SimpleReadRequest) String() string {
 func (*SimpleReadRequest) ProtoMessage() {}
 
 func (x *SimpleReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[9]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -654,7 +656,7 @@ func (x *SimpleReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadRequest.ProtoReflect.Descriptor instead.
 func (*SimpleReadRequest) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{9}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SimpleReadRequest) GetId() string {
@@ -673,7 +675,7 @@ type SimpleReadResponse struct {
 
 func (x *SimpleReadResponse) Reset() {
 	*x = SimpleReadResponse{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[10]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -685,7 +687,7 @@ func (x *SimpleReadResponse) String() string {
 func (*SimpleReadResponse) ProtoMessage() {}
 
 func (x *SimpleReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[10]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -698,7 +700,7 @@ func (x *SimpleReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadResponse.ProtoReflect.Descriptor instead.
 func (*SimpleReadResponse) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{10}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SimpleReadResponse) GetItem() *SimpleReadOutput {
@@ -718,7 +720,7 @@ type SimpleUpdateRequest struct {
 
 func (x *SimpleUpdateRequest) Reset() {
 	*x = SimpleUpdateRequest{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[11]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -730,7 +732,7 @@ func (x *SimpleUpdateRequest) String() string {
 func (*SimpleUpdateRequest) ProtoMessage() {}
 
 func (x *SimpleUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[11]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -743,7 +745,7 @@ func (x *SimpleUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateRequest.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{11}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SimpleUpdateRequest) GetId() string {
@@ -769,7 +771,7 @@ type SimpleUpdateResponse struct {
 
 func (x *SimpleUpdateResponse) Reset() {
 	*x = SimpleUpdateResponse{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[12]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -781,7 +783,7 @@ func (x *SimpleUpdateResponse) String() string {
 func (*SimpleUpdateResponse) ProtoMessage() {}
 
 func (x *SimpleUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[12]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -794,7 +796,7 @@ func (x *SimpleUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateResponse.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{12}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SimpleUpdateResponse) GetItem() *SimpleUpdateOutput {
@@ -813,7 +815,7 @@ type SimpleDeleteRequest struct {
 
 func (x *SimpleDeleteRequest) Reset() {
 	*x = SimpleDeleteRequest{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[13]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -825,7 +827,7 @@ func (x *SimpleDeleteRequest) String() string {
 func (*SimpleDeleteRequest) ProtoMessage() {}
 
 func (x *SimpleDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[13]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -838,7 +840,7 @@ func (x *SimpleDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleDeleteRequest.ProtoReflect.Descriptor instead.
 func (*SimpleDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{13}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SimpleDeleteRequest) GetId() string {
@@ -857,7 +859,7 @@ type SimpleDeleteResponse struct {
 
 func (x *SimpleDeleteResponse) Reset() {
 	*x = SimpleDeleteResponse{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[14]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -869,7 +871,7 @@ func (x *SimpleDeleteResponse) String() string {
 func (*SimpleDeleteResponse) ProtoMessage() {}
 
 func (x *SimpleDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[14]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +884,7 @@ func (x *SimpleDeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleDeleteResponse.ProtoReflect.Descriptor instead.
 func (*SimpleDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{14}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SimpleDeleteResponse) GetSuccess() bool {
@@ -901,7 +903,7 @@ type SimpleOpenRequest struct {
 
 func (x *SimpleOpenRequest) Reset() {
 	*x = SimpleOpenRequest{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[15]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -913,7 +915,7 @@ func (x *SimpleOpenRequest) String() string {
 func (*SimpleOpenRequest) ProtoMessage() {}
 
 func (x *SimpleOpenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[15]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -926,7 +928,7 @@ func (x *SimpleOpenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenRequest.ProtoReflect.Descriptor instead.
 func (*SimpleOpenRequest) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{15}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SimpleOpenRequest) GetItem() *SimpleOpenInput {
@@ -945,7 +947,7 @@ type SimpleOpenResponse struct {
 
 func (x *SimpleOpenResponse) Reset() {
 	*x = SimpleOpenResponse{}
-	mi := &file_internal_provider_generated_components_proto_msgTypes[16]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -957,7 +959,7 @@ func (x *SimpleOpenResponse) String() string {
 func (*SimpleOpenResponse) ProtoMessage() {}
 
 func (x *SimpleOpenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_provider_generated_components_proto_msgTypes[16]
+	mi := &file_internal_provider_generated_api_components_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +972,7 @@ func (x *SimpleOpenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenResponse.ProtoReflect.Descriptor instead.
 func (*SimpleOpenResponse) Descriptor() ([]byte, []int) {
-	return file_internal_provider_generated_components_proto_rawDescGZIP(), []int{16}
+	return file_internal_provider_generated_api_components_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SimpleOpenResponse) GetItem() *SimpleOpenOutput {
@@ -980,11 +982,11 @@ func (x *SimpleOpenResponse) GetItem() *SimpleOpenOutput {
 	return nil
 }
 
-var File_internal_provider_generated_components_proto protoreflect.FileDescriptor
+var File_internal_provider_generated_api_components_proto protoreflect.FileDescriptor
 
-const file_internal_provider_generated_components_proto_rawDesc = "" +
+const file_internal_provider_generated_api_components_proto_rawDesc = "" +
 	"\n" +
-	",internal/provider/generated/components.proto\x12\tcomponent\x1a\x1cgoogle/api/annotations.proto\"m\n" +
+	"0internal/provider/generated/api/components.proto\x12\x1ashireesh.com.api.carbon.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"m\n" +
 	"\x11SimpleCreateInput\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value\x12\x14\n" +
 	"\x05flags\x18\x03 \x03(\bR\x05flags\x12\x16\n" +
@@ -1023,85 +1025,103 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value\x12\x14\n" +
 	"\x05flags\x18\x03 \x03(\bR\x05flags\x12\x16\n" +
 	"\x06counts\x18\x04 \x03(\x01R\x06counts\x12\x14\n" +
-	"\x05score\x18\x05 \x01(\x03R\x05score\"G\n" +
-	"\x13SimpleCreateRequest\x120\n" +
-	"\x04item\x18\x01 \x01(\v2\x1c.component.SimpleCreateInputR\x04item\"I\n" +
-	"\x14SimpleCreateResponse\x121\n" +
-	"\x04item\x18\x01 \x01(\v2\x1d.component.SimpleCreateOutputR\x04item\"#\n" +
+	"\x05score\x18\x05 \x01(\x03R\x05score\"X\n" +
+	"\x13SimpleCreateRequest\x12A\n" +
+	"\x04item\x18\x01 \x01(\v2-.shireesh.com.api.carbon.v1.SimpleCreateInputR\x04item\"Z\n" +
+	"\x14SimpleCreateResponse\x12B\n" +
+	"\x04item\x18\x01 \x01(\v2..shireesh.com.api.carbon.v1.SimpleCreateOutputR\x04item\"#\n" +
 	"\x11SimpleReadRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"E\n" +
-	"\x12SimpleReadResponse\x12/\n" +
-	"\x04item\x18\x01 \x01(\v2\x1b.component.SimpleReadOutputR\x04item\"W\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"V\n" +
+	"\x12SimpleReadResponse\x12@\n" +
+	"\x04item\x18\x01 \x01(\v2,.shireesh.com.api.carbon.v1.SimpleReadOutputR\x04item\"h\n" +
 	"\x13SimpleUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
-	"\x04item\x18\x02 \x01(\v2\x1c.component.SimpleUpdateInputR\x04item\"I\n" +
-	"\x14SimpleUpdateResponse\x121\n" +
-	"\x04item\x18\x01 \x01(\v2\x1d.component.SimpleUpdateOutputR\x04item\"%\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12A\n" +
+	"\x04item\x18\x02 \x01(\v2-.shireesh.com.api.carbon.v1.SimpleUpdateInputR\x04item\"Z\n" +
+	"\x14SimpleUpdateResponse\x12B\n" +
+	"\x04item\x18\x01 \x01(\v2..shireesh.com.api.carbon.v1.SimpleUpdateOutputR\x04item\"%\n" +
 	"\x13SimpleDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
 	"\x14SimpleDeleteResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"C\n" +
-	"\x11SimpleOpenRequest\x12.\n" +
-	"\x04item\x18\x01 \x01(\v2\x1a.component.SimpleOpenInputR\x04item\"E\n" +
-	"\x12SimpleOpenResponse\x12/\n" +
-	"\x04item\x18\x01 \x01(\v2\x1b.component.SimpleOpenOutputR\x04item2\xbf\x03\n" +
-	"\x14GrpcTerraformService\x12i\n" +
-	"\fSimpleCreate\x12\x1e.component.SimpleCreateRequest\x1a\x1f.component.SimpleCreateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x04item\"\n" +
-	"/v1/simple\x12b\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"T\n" +
+	"\x11SimpleOpenRequest\x12?\n" +
+	"\x04item\x18\x01 \x01(\v2+.shireesh.com.api.carbon.v1.SimpleOpenInputR\x04item\"V\n" +
+	"\x12SimpleOpenResponse\x12@\n" +
+	"\x04item\x18\x01 \x01(\v2,.shireesh.com.api.carbon.v1.SimpleOpenOutputR\x04item2\xcb\x04\n" +
+	"\x14GrpcTerraformService\x12\x8b\x01\n" +
+	"\fSimpleCreate\x12/.shireesh.com.api.carbon.v1.SimpleCreateRequest\x1a0.shireesh.com.api.carbon.v1.SimpleCreateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x04item\"\n" +
+	"/v1/simple\x12\x84\x01\n" +
 	"\n" +
-	"SimpleRead\x12\x1c.component.SimpleReadRequest\x1a\x1d.component.SimpleReadResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/simple/{id}\x12n\n" +
-	"\fSimpleUpdate\x12\x1e.component.SimpleUpdateRequest\x1a\x1f.component.SimpleUpdateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x04item\x1a\x0f/v1/simple/{id}\x12h\n" +
-	"\fSimpleDelete\x12\x1e.component.SimpleDeleteRequest\x1a\x1f.component.SimpleDeleteResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/simple/{id}B\xb2\x01\n" +
-	"\rcom.componentB\x0fComponentsProtoP\x01ZLgithub.com/gshireesh/terraform-provider-shireesh/internal/provider/generated\xa2\x02\x03CXX\xaa\x02\tComponent\xca\x02\tComponent\xe2\x02\x15Component\\GPBMetadata\xea\x02\tComponentb\x06proto3"
+	"SimpleRead\x12-.shireesh.com.api.carbon.v1.SimpleReadRequest\x1a..shireesh.com.api.carbon.v1.SimpleReadResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/simple/{id}\x12\x90\x01\n" +
+	"\fSimpleUpdate\x12/.shireesh.com.api.carbon.v1.SimpleUpdateRequest\x1a0.shireesh.com.api.carbon.v1.SimpleUpdateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x04item\x1a\x0f/v1/simple/{id}\x12\x8a\x01\n" +
+	"\fSimpleDelete\x12/.shireesh.com.api.carbon.v1.SimpleDeleteRequest\x1a0.shireesh.com.api.carbon.v1.SimpleDeleteResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/simple/{id}B\xc1\x03\x92A\xe3\x01\x12\x13\n" +
+	"\n" +
+	"Carbon API2\x051.0.0\x1a\x13carbon.shireesh.comZ\x8b\x01\n" +
+	"!\n" +
+	"\n" +
+	"bearerAuth\x12\x13\b\x02\x1a\rAuthorization \x02\n" +
+	"f\n" +
+	"\x06oauth2\x12\\\b\x03(\x03:(https://auth.shireesh.com/v1/oauth/tokenB,\n" +
+	"\x13\n" +
+	"\x04read\x12\vRead access\n" +
+	"\x15\n" +
+	"\x05write\x12\fwrite accessb)\n" +
+	"\x0e\n" +
+	"\n" +
+	"bearerAuth\x12\x00\n" +
+	"\x17\n" +
+	"\x06oauth2\x12\r\n" +
+	"\x04read\n" +
+	"\x05write\n" +
+	"\x1ecom.shireesh.com.api.carbon.v1B\x0fComponentsProtoP\x01Z\x1ashireesh.com/api/carbon/v1\xa2\x02\x04SCAC\xaa\x02\x1aShireesh.Com.Api.Carbon.V1\xca\x02\x1aShireesh\\Com\\Api\\Carbon\\V1\xe2\x02&Shireesh\\Com\\Api\\Carbon\\V1\\GPBMetadata\xea\x02\x1eShireesh::Com::Api::Carbon::V1b\x06proto3"
 
 var (
-	file_internal_provider_generated_components_proto_rawDescOnce sync.Once
-	file_internal_provider_generated_components_proto_rawDescData []byte
+	file_internal_provider_generated_api_components_proto_rawDescOnce sync.Once
+	file_internal_provider_generated_api_components_proto_rawDescData []byte
 )
 
-func file_internal_provider_generated_components_proto_rawDescGZIP() []byte {
-	file_internal_provider_generated_components_proto_rawDescOnce.Do(func() {
-		file_internal_provider_generated_components_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_provider_generated_components_proto_rawDesc), len(file_internal_provider_generated_components_proto_rawDesc)))
+func file_internal_provider_generated_api_components_proto_rawDescGZIP() []byte {
+	file_internal_provider_generated_api_components_proto_rawDescOnce.Do(func() {
+		file_internal_provider_generated_api_components_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_provider_generated_api_components_proto_rawDesc), len(file_internal_provider_generated_api_components_proto_rawDesc)))
 	})
-	return file_internal_provider_generated_components_proto_rawDescData
+	return file_internal_provider_generated_api_components_proto_rawDescData
 }
 
-var file_internal_provider_generated_components_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
-var file_internal_provider_generated_components_proto_goTypes = []any{
-	(*SimpleCreateInput)(nil),    // 0: component.SimpleCreateInput
-	(*SimpleCreateOutput)(nil),   // 1: component.SimpleCreateOutput
-	(*SimpleReadOutput)(nil),     // 2: component.SimpleReadOutput
-	(*SimpleUpdateInput)(nil),    // 3: component.SimpleUpdateInput
-	(*SimpleUpdateOutput)(nil),   // 4: component.SimpleUpdateOutput
-	(*SimpleOpenInput)(nil),      // 5: component.SimpleOpenInput
-	(*SimpleOpenOutput)(nil),     // 6: component.SimpleOpenOutput
-	(*SimpleCreateRequest)(nil),  // 7: component.SimpleCreateRequest
-	(*SimpleCreateResponse)(nil), // 8: component.SimpleCreateResponse
-	(*SimpleReadRequest)(nil),    // 9: component.SimpleReadRequest
-	(*SimpleReadResponse)(nil),   // 10: component.SimpleReadResponse
-	(*SimpleUpdateRequest)(nil),  // 11: component.SimpleUpdateRequest
-	(*SimpleUpdateResponse)(nil), // 12: component.SimpleUpdateResponse
-	(*SimpleDeleteRequest)(nil),  // 13: component.SimpleDeleteRequest
-	(*SimpleDeleteResponse)(nil), // 14: component.SimpleDeleteResponse
-	(*SimpleOpenRequest)(nil),    // 15: component.SimpleOpenRequest
-	(*SimpleOpenResponse)(nil),   // 16: component.SimpleOpenResponse
+var file_internal_provider_generated_api_components_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_internal_provider_generated_api_components_proto_goTypes = []any{
+	(*SimpleCreateInput)(nil),    // 0: shireesh.com.api.carbon.v1.SimpleCreateInput
+	(*SimpleCreateOutput)(nil),   // 1: shireesh.com.api.carbon.v1.SimpleCreateOutput
+	(*SimpleReadOutput)(nil),     // 2: shireesh.com.api.carbon.v1.SimpleReadOutput
+	(*SimpleUpdateInput)(nil),    // 3: shireesh.com.api.carbon.v1.SimpleUpdateInput
+	(*SimpleUpdateOutput)(nil),   // 4: shireesh.com.api.carbon.v1.SimpleUpdateOutput
+	(*SimpleOpenInput)(nil),      // 5: shireesh.com.api.carbon.v1.SimpleOpenInput
+	(*SimpleOpenOutput)(nil),     // 6: shireesh.com.api.carbon.v1.SimpleOpenOutput
+	(*SimpleCreateRequest)(nil),  // 7: shireesh.com.api.carbon.v1.SimpleCreateRequest
+	(*SimpleCreateResponse)(nil), // 8: shireesh.com.api.carbon.v1.SimpleCreateResponse
+	(*SimpleReadRequest)(nil),    // 9: shireesh.com.api.carbon.v1.SimpleReadRequest
+	(*SimpleReadResponse)(nil),   // 10: shireesh.com.api.carbon.v1.SimpleReadResponse
+	(*SimpleUpdateRequest)(nil),  // 11: shireesh.com.api.carbon.v1.SimpleUpdateRequest
+	(*SimpleUpdateResponse)(nil), // 12: shireesh.com.api.carbon.v1.SimpleUpdateResponse
+	(*SimpleDeleteRequest)(nil),  // 13: shireesh.com.api.carbon.v1.SimpleDeleteRequest
+	(*SimpleDeleteResponse)(nil), // 14: shireesh.com.api.carbon.v1.SimpleDeleteResponse
+	(*SimpleOpenRequest)(nil),    // 15: shireesh.com.api.carbon.v1.SimpleOpenRequest
+	(*SimpleOpenResponse)(nil),   // 16: shireesh.com.api.carbon.v1.SimpleOpenResponse
 }
-var file_internal_provider_generated_components_proto_depIdxs = []int32{
-	0,  // 0: component.SimpleCreateRequest.item:type_name -> component.SimpleCreateInput
-	1,  // 1: component.SimpleCreateResponse.item:type_name -> component.SimpleCreateOutput
-	2,  // 2: component.SimpleReadResponse.item:type_name -> component.SimpleReadOutput
-	3,  // 3: component.SimpleUpdateRequest.item:type_name -> component.SimpleUpdateInput
-	4,  // 4: component.SimpleUpdateResponse.item:type_name -> component.SimpleUpdateOutput
-	5,  // 5: component.SimpleOpenRequest.item:type_name -> component.SimpleOpenInput
-	6,  // 6: component.SimpleOpenResponse.item:type_name -> component.SimpleOpenOutput
-	7,  // 7: component.GrpcTerraformService.SimpleCreate:input_type -> component.SimpleCreateRequest
-	9,  // 8: component.GrpcTerraformService.SimpleRead:input_type -> component.SimpleReadRequest
-	11, // 9: component.GrpcTerraformService.SimpleUpdate:input_type -> component.SimpleUpdateRequest
-	13, // 10: component.GrpcTerraformService.SimpleDelete:input_type -> component.SimpleDeleteRequest
-	8,  // 11: component.GrpcTerraformService.SimpleCreate:output_type -> component.SimpleCreateResponse
-	10, // 12: component.GrpcTerraformService.SimpleRead:output_type -> component.SimpleReadResponse
-	12, // 13: component.GrpcTerraformService.SimpleUpdate:output_type -> component.SimpleUpdateResponse
-	14, // 14: component.GrpcTerraformService.SimpleDelete:output_type -> component.SimpleDeleteResponse
+var file_internal_provider_generated_api_components_proto_depIdxs = []int32{
+	0,  // 0: shireesh.com.api.carbon.v1.SimpleCreateRequest.item:type_name -> shireesh.com.api.carbon.v1.SimpleCreateInput
+	1,  // 1: shireesh.com.api.carbon.v1.SimpleCreateResponse.item:type_name -> shireesh.com.api.carbon.v1.SimpleCreateOutput
+	2,  // 2: shireesh.com.api.carbon.v1.SimpleReadResponse.item:type_name -> shireesh.com.api.carbon.v1.SimpleReadOutput
+	3,  // 3: shireesh.com.api.carbon.v1.SimpleUpdateRequest.item:type_name -> shireesh.com.api.carbon.v1.SimpleUpdateInput
+	4,  // 4: shireesh.com.api.carbon.v1.SimpleUpdateResponse.item:type_name -> shireesh.com.api.carbon.v1.SimpleUpdateOutput
+	5,  // 5: shireesh.com.api.carbon.v1.SimpleOpenRequest.item:type_name -> shireesh.com.api.carbon.v1.SimpleOpenInput
+	6,  // 6: shireesh.com.api.carbon.v1.SimpleOpenResponse.item:type_name -> shireesh.com.api.carbon.v1.SimpleOpenOutput
+	7,  // 7: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleCreate:input_type -> shireesh.com.api.carbon.v1.SimpleCreateRequest
+	9,  // 8: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleRead:input_type -> shireesh.com.api.carbon.v1.SimpleReadRequest
+	11, // 9: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleUpdate:input_type -> shireesh.com.api.carbon.v1.SimpleUpdateRequest
+	13, // 10: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleDelete:input_type -> shireesh.com.api.carbon.v1.SimpleDeleteRequest
+	8,  // 11: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleCreate:output_type -> shireesh.com.api.carbon.v1.SimpleCreateResponse
+	10, // 12: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleRead:output_type -> shireesh.com.api.carbon.v1.SimpleReadResponse
+	12, // 13: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleUpdate:output_type -> shireesh.com.api.carbon.v1.SimpleUpdateResponse
+	14, // 14: shireesh.com.api.carbon.v1.GrpcTerraformService.SimpleDelete:output_type -> shireesh.com.api.carbon.v1.SimpleDeleteResponse
 	11, // [11:15] is the sub-list for method output_type
 	7,  // [7:11] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -1109,26 +1129,26 @@ var file_internal_provider_generated_components_proto_depIdxs = []int32{
 	0,  // [0:7] is the sub-list for field type_name
 }
 
-func init() { file_internal_provider_generated_components_proto_init() }
-func file_internal_provider_generated_components_proto_init() {
-	if File_internal_provider_generated_components_proto != nil {
+func init() { file_internal_provider_generated_api_components_proto_init() }
+func file_internal_provider_generated_api_components_proto_init() {
+	if File_internal_provider_generated_api_components_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_provider_generated_components_proto_rawDesc), len(file_internal_provider_generated_components_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_provider_generated_api_components_proto_rawDesc), len(file_internal_provider_generated_api_components_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_internal_provider_generated_components_proto_goTypes,
-		DependencyIndexes: file_internal_provider_generated_components_proto_depIdxs,
-		MessageInfos:      file_internal_provider_generated_components_proto_msgTypes,
+		GoTypes:           file_internal_provider_generated_api_components_proto_goTypes,
+		DependencyIndexes: file_internal_provider_generated_api_components_proto_depIdxs,
+		MessageInfos:      file_internal_provider_generated_api_components_proto_msgTypes,
 	}.Build()
-	File_internal_provider_generated_components_proto = out.File
-	file_internal_provider_generated_components_proto_goTypes = nil
-	file_internal_provider_generated_components_proto_depIdxs = nil
+	File_internal_provider_generated_api_components_proto = out.File
+	file_internal_provider_generated_api_components_proto_goTypes = nil
+	file_internal_provider_generated_api_components_proto_depIdxs = nil
 }

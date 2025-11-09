@@ -84,6 +84,12 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
       - run: go mod download
+      - name: Set up Buf
+        uses: bufbuild/buf-setup-action@v1
+      # Ensure GNU make is available (ubuntu-latest has it) and run full generation pipeline so
+      # releases always contain up-to-date generated proto/code, examples, and docs.
+      - name: Generate code, examples, and docs
+        run: make generate
       - env:
           TF_ACC: "1"
         run: go test -v -cover ./internal/provider/

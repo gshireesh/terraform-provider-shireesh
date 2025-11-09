@@ -36,3 +36,5 @@ internal/provider/generated/*.proto
 # Keep windows files with windows line endings
 *.winfile eol=crlf
 gen
+internal/provider/generated
+docs

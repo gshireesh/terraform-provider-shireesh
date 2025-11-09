@@ -10,6 +10,7 @@ func ComplexSpec() component.Spec {
 		Name:    "complex",
 		Roles:   []string{"resource", "datasource", "ephemeral"},
 		Gateway: true,
+		Section: "core",
 		Fields: []component.Field{
 			{Name: "name", Type: "string", Description: "Component name", Optional: true},
 			{Name: "id", Type: "string", Description: "Unique identifier", Mode: component.IDAttributeMode},

@@ -47,13 +47,19 @@ clean-generated:
 	rm -rf docs generated gen || true
 
 .PHONY: docs
-docs: generate
+docs: generate gen-examples
 	cd tools; go generate ./...
+	go run ./cmd/docsectioner
+
+.PHONY: gen-examples
+gen-examples:
+	go run ./cmd/examplergen
 
 .PHONY: regen
 regen: clean-generated
 	$(COMPONENTGEN)
 	buf generate
+	$(MAKE) gen-examples
 	$(MAKE) docs
 
 .PHONY: fmt lint test testacc build install generate

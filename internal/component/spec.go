@@ -10,6 +10,7 @@ type Spec struct {
 	Roles   []string `yaml:"roles"` // values: resource, datasource, ephemeral
 	Fields  []Field  `yaml:"fields"`
 	Gateway bool     `yaml:"gateway"` // expose via grpc-gateway HTTP annotations
+	Section string   `yaml:"section"` // logical grouping for docs/navigation
 }
 
 // AttributeMode defines semantic behavior of a field across operations.

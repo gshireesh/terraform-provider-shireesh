@@ -10,6 +10,7 @@ func SimpleSpec() component.Spec {
 		Name:    "simple",
 		Roles:   []string{"resource"},
 		Gateway: true,
+		Section: "core",
 		Fields: []component.Field{
 			{Name: "id", Type: "string", Description: "Simple ID", Mode: component.IDAttributeMode},
 			{Name: "value", Type: "string", Description: "Simple value", Optional: true},

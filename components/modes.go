@@ -12,6 +12,7 @@ func ModesSpec() component.Spec {
 		Name:    "modes",
 		Roles:   []string{"resource", "datasource", "ephemeral"},
 		Gateway: true,
+		Section: "experiments",
 		Fields: []component.Field{
 			// Top-level identity and key fields
 			{Name: "project", Type: "string", Description: "Project identifier (key)", Mode: component.KeyAttributeMode},

@@ -7,6 +7,9 @@ set -euo pipefail
 ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT_DIR"
 
+echo "#[generate] running generate before commit..."
+make generate >/dev/null
+
 echo "[pre-commit] Formatting (gofmt)..."
 make fmt >/dev/null
 

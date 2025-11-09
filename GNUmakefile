@@ -9,8 +9,8 @@ install: build
 lint:
 	golangci-lint run
 
-generate:
-	cd tools; go generate ./...
+#generate:
+#	cd tools; go generate ./...
 
 fmt:
 	gofmt -s -w -e .
@@ -28,6 +28,7 @@ proto:
 	buf generate
 
 REGEN_OUT=internal/provider/generated
+COMPONENT_PROTO=internal/provider/generated/components.proto
 SERVICE_NAME?=GrpcTerraformService
 PROTO_PKG?=component
 GO_PKG_PREFIX?=github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated
@@ -41,13 +42,16 @@ endif
 
 COMPONENTGEN=go run ./cmd/componentgen $(HTTP_FLAG) -service-name=$(SERVICE_NAME) -proto-package=$(PROTO_PKG) -go-package-prefix=$(GO_PKG_PREFIX)
 
-.PHONY: clean-generated
-clean-generated:
-	rm -f $(REGEN_OUT)/*.gen.go $(REGEN_OUT)/*.proto || true
-	rm -rf docs generated gen || true
+.PHONY: clean
+clean:
+	rm -rf docs generated gen $(REGEN_OUT) || true
+
+.PHONY: proto-fmt
+proto-fmt:
+	buf format -w $(COMPONENT_PROTO)
 
 .PHONY: docs
-docs: generate gen-examples
+docs: gen-examples
 	cd tools; go generate ./...
 	go run ./cmd/docsectioner
 
@@ -56,9 +60,11 @@ gen-examples:
 	go run ./cmd/examplergen
 
 .PHONY: regen
-regen: clean-generated
+generate: clean
 	$(COMPONENTGEN)
 	buf generate
+	make proto-fmt
+	go mod tidy
 	$(MAKE) gen-examples
 	$(MAKE) docs
 

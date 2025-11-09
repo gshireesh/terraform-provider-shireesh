@@ -25,6 +25,7 @@ plugins:
     opt:
       - ignore_comments=true
       - allow_delete_body=true
+      - generate_unbound_methods=false
 
   - remote: buf.build/bufbuild/validate-go
     out: .

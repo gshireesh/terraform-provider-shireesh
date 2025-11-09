@@ -21,22 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GrpcTerraformService_SimpleCreate_FullMethodName          = "/component.GrpcTerraformService/SimpleCreate"
-	GrpcTerraformService_SimpleRead_FullMethodName            = "/component.GrpcTerraformService/SimpleRead"
-	GrpcTerraformService_SimpleUpdate_FullMethodName          = "/component.GrpcTerraformService/SimpleUpdate"
-	GrpcTerraformService_SimpleDelete_FullMethodName          = "/component.GrpcTerraformService/SimpleDelete"
-	GrpcTerraformService_ComplexCreate_FullMethodName         = "/component.GrpcTerraformService/ComplexCreate"
-	GrpcTerraformService_ComplexRead_FullMethodName           = "/component.GrpcTerraformService/ComplexRead"
-	GrpcTerraformService_ComplexUpdate_FullMethodName         = "/component.GrpcTerraformService/ComplexUpdate"
-	GrpcTerraformService_ComplexDelete_FullMethodName         = "/component.GrpcTerraformService/ComplexDelete"
-	GrpcTerraformService_ComplexDataSourceRead_FullMethodName = "/component.GrpcTerraformService/ComplexDataSourceRead"
-	GrpcTerraformService_ComplexOpen_FullMethodName           = "/component.GrpcTerraformService/ComplexOpen"
-	GrpcTerraformService_ModesCreate_FullMethodName           = "/component.GrpcTerraformService/ModesCreate"
-	GrpcTerraformService_ModesRead_FullMethodName             = "/component.GrpcTerraformService/ModesRead"
-	GrpcTerraformService_ModesUpdate_FullMethodName           = "/component.GrpcTerraformService/ModesUpdate"
-	GrpcTerraformService_ModesDelete_FullMethodName           = "/component.GrpcTerraformService/ModesDelete"
-	GrpcTerraformService_ModesDataSourceRead_FullMethodName   = "/component.GrpcTerraformService/ModesDataSourceRead"
-	GrpcTerraformService_ModesOpen_FullMethodName             = "/component.GrpcTerraformService/ModesOpen"
+	GrpcTerraformService_SimpleCreate_FullMethodName = "/component.GrpcTerraformService/SimpleCreate"
+	GrpcTerraformService_SimpleRead_FullMethodName   = "/component.GrpcTerraformService/SimpleRead"
+	GrpcTerraformService_SimpleUpdate_FullMethodName = "/component.GrpcTerraformService/SimpleUpdate"
+	GrpcTerraformService_SimpleDelete_FullMethodName = "/component.GrpcTerraformService/SimpleDelete"
 )
 
 // GrpcTerraformServiceClient is the client API for GrpcTerraformService service.
@@ -49,18 +37,6 @@ type GrpcTerraformServiceClient interface {
 	SimpleRead(ctx context.Context, in *SimpleReadRequest, opts ...grpc.CallOption) (*SimpleReadResponse, error)
 	SimpleUpdate(ctx context.Context, in *SimpleUpdateRequest, opts ...grpc.CallOption) (*SimpleUpdateResponse, error)
 	SimpleDelete(ctx context.Context, in *SimpleDeleteRequest, opts ...grpc.CallOption) (*SimpleDeleteResponse, error)
-	ComplexCreate(ctx context.Context, in *ComplexCreateRequest, opts ...grpc.CallOption) (*ComplexCreateResponse, error)
-	ComplexRead(ctx context.Context, in *ComplexReadRequest, opts ...grpc.CallOption) (*ComplexReadResponse, error)
-	ComplexUpdate(ctx context.Context, in *ComplexUpdateRequest, opts ...grpc.CallOption) (*ComplexUpdateResponse, error)
-	ComplexDelete(ctx context.Context, in *ComplexDeleteRequest, opts ...grpc.CallOption) (*ComplexDeleteResponse, error)
-	ComplexDataSourceRead(ctx context.Context, in *ComplexDataSourceReadRequest, opts ...grpc.CallOption) (*ComplexDataSourceReadResponse, error)
-	ComplexOpen(ctx context.Context, in *ComplexOpenRequest, opts ...grpc.CallOption) (*ComplexOpenResponse, error)
-	ModesCreate(ctx context.Context, in *ModesCreateRequest, opts ...grpc.CallOption) (*ModesCreateResponse, error)
-	ModesRead(ctx context.Context, in *ModesReadRequest, opts ...grpc.CallOption) (*ModesReadResponse, error)
-	ModesUpdate(ctx context.Context, in *ModesUpdateRequest, opts ...grpc.CallOption) (*ModesUpdateResponse, error)
-	ModesDelete(ctx context.Context, in *ModesDeleteRequest, opts ...grpc.CallOption) (*ModesDeleteResponse, error)
-	ModesDataSourceRead(ctx context.Context, in *ModesDataSourceReadRequest, opts ...grpc.CallOption) (*ModesDataSourceReadResponse, error)
-	ModesOpen(ctx context.Context, in *ModesOpenRequest, opts ...grpc.CallOption) (*ModesOpenResponse, error)
 }
 
 type grpcTerraformServiceClient struct {
@@ -111,126 +87,6 @@ func (c *grpcTerraformServiceClient) SimpleDelete(ctx context.Context, in *Simpl
 	return out, nil
 }
 
-func (c *grpcTerraformServiceClient) ComplexCreate(ctx context.Context, in *ComplexCreateRequest, opts ...grpc.CallOption) (*ComplexCreateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexCreateResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexCreate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ComplexRead(ctx context.Context, in *ComplexReadRequest, opts ...grpc.CallOption) (*ComplexReadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexReadResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexRead_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ComplexUpdate(ctx context.Context, in *ComplexUpdateRequest, opts ...grpc.CallOption) (*ComplexUpdateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexUpdateResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexUpdate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ComplexDelete(ctx context.Context, in *ComplexDeleteRequest, opts ...grpc.CallOption) (*ComplexDeleteResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexDeleteResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexDelete_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ComplexDataSourceRead(ctx context.Context, in *ComplexDataSourceReadRequest, opts ...grpc.CallOption) (*ComplexDataSourceReadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexDataSourceReadResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexDataSourceRead_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ComplexOpen(ctx context.Context, in *ComplexOpenRequest, opts ...grpc.CallOption) (*ComplexOpenResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ComplexOpenResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ComplexOpen_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesCreate(ctx context.Context, in *ModesCreateRequest, opts ...grpc.CallOption) (*ModesCreateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesCreateResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesCreate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesRead(ctx context.Context, in *ModesReadRequest, opts ...grpc.CallOption) (*ModesReadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesReadResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesRead_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesUpdate(ctx context.Context, in *ModesUpdateRequest, opts ...grpc.CallOption) (*ModesUpdateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesUpdateResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesUpdate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesDelete(ctx context.Context, in *ModesDeleteRequest, opts ...grpc.CallOption) (*ModesDeleteResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesDeleteResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesDelete_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesDataSourceRead(ctx context.Context, in *ModesDataSourceReadRequest, opts ...grpc.CallOption) (*ModesDataSourceReadResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesDataSourceReadResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesDataSourceRead_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *grpcTerraformServiceClient) ModesOpen(ctx context.Context, in *ModesOpenRequest, opts ...grpc.CallOption) (*ModesOpenResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ModesOpenResponse)
-	err := c.cc.Invoke(ctx, GrpcTerraformService_ModesOpen_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GrpcTerraformServiceServer is the server API for GrpcTerraformService service.
 // All implementations must embed UnimplementedGrpcTerraformServiceServer
 // for forward compatibility.
@@ -241,18 +97,6 @@ type GrpcTerraformServiceServer interface {
 	SimpleRead(context.Context, *SimpleReadRequest) (*SimpleReadResponse, error)
 	SimpleUpdate(context.Context, *SimpleUpdateRequest) (*SimpleUpdateResponse, error)
 	SimpleDelete(context.Context, *SimpleDeleteRequest) (*SimpleDeleteResponse, error)
-	ComplexCreate(context.Context, *ComplexCreateRequest) (*ComplexCreateResponse, error)
-	ComplexRead(context.Context, *ComplexReadRequest) (*ComplexReadResponse, error)
-	ComplexUpdate(context.Context, *ComplexUpdateRequest) (*ComplexUpdateResponse, error)
-	ComplexDelete(context.Context, *ComplexDeleteRequest) (*ComplexDeleteResponse, error)
-	ComplexDataSourceRead(context.Context, *ComplexDataSourceReadRequest) (*ComplexDataSourceReadResponse, error)
-	ComplexOpen(context.Context, *ComplexOpenRequest) (*ComplexOpenResponse, error)
-	ModesCreate(context.Context, *ModesCreateRequest) (*ModesCreateResponse, error)
-	ModesRead(context.Context, *ModesReadRequest) (*ModesReadResponse, error)
-	ModesUpdate(context.Context, *ModesUpdateRequest) (*ModesUpdateResponse, error)
-	ModesDelete(context.Context, *ModesDeleteRequest) (*ModesDeleteResponse, error)
-	ModesDataSourceRead(context.Context, *ModesDataSourceReadRequest) (*ModesDataSourceReadResponse, error)
-	ModesOpen(context.Context, *ModesOpenRequest) (*ModesOpenResponse, error)
 	mustEmbedUnimplementedGrpcTerraformServiceServer()
 }
 
@@ -274,42 +118,6 @@ func (UnimplementedGrpcTerraformServiceServer) SimpleUpdate(context.Context, *Si
 }
 func (UnimplementedGrpcTerraformServiceServer) SimpleDelete(context.Context, *SimpleDeleteRequest) (*SimpleDeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimpleDelete not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexCreate(context.Context, *ComplexCreateRequest) (*ComplexCreateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexCreate not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexRead(context.Context, *ComplexReadRequest) (*ComplexReadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexRead not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexUpdate(context.Context, *ComplexUpdateRequest) (*ComplexUpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexUpdate not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexDelete(context.Context, *ComplexDeleteRequest) (*ComplexDeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexDelete not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexDataSourceRead(context.Context, *ComplexDataSourceReadRequest) (*ComplexDataSourceReadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexDataSourceRead not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ComplexOpen(context.Context, *ComplexOpenRequest) (*ComplexOpenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ComplexOpen not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesCreate(context.Context, *ModesCreateRequest) (*ModesCreateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesCreate not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesRead(context.Context, *ModesReadRequest) (*ModesReadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesRead not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesUpdate(context.Context, *ModesUpdateRequest) (*ModesUpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesUpdate not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesDelete(context.Context, *ModesDeleteRequest) (*ModesDeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesDelete not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesDataSourceRead(context.Context, *ModesDataSourceReadRequest) (*ModesDataSourceReadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesDataSourceRead not implemented")
-}
-func (UnimplementedGrpcTerraformServiceServer) ModesOpen(context.Context, *ModesOpenRequest) (*ModesOpenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ModesOpen not implemented")
 }
 func (UnimplementedGrpcTerraformServiceServer) mustEmbedUnimplementedGrpcTerraformServiceServer() {}
 func (UnimplementedGrpcTerraformServiceServer) testEmbeddedByValue()                              {}
@@ -404,222 +212,6 @@ func _GrpcTerraformService_SimpleDelete_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GrpcTerraformService_ComplexCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexCreateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexCreate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexCreate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexCreate(ctx, req.(*ComplexCreateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ComplexRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexReadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexRead(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexRead_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexRead(ctx, req.(*ComplexReadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ComplexUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexUpdateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexUpdate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexUpdate(ctx, req.(*ComplexUpdateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ComplexDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexDeleteRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexDelete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexDelete_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexDelete(ctx, req.(*ComplexDeleteRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ComplexDataSourceRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexDataSourceReadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexDataSourceRead(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexDataSourceRead_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexDataSourceRead(ctx, req.(*ComplexDataSourceReadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ComplexOpen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ComplexOpenRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ComplexOpen(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ComplexOpen_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ComplexOpen(ctx, req.(*ComplexOpenRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesCreateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesCreate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesCreate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesCreate(ctx, req.(*ModesCreateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesReadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesRead(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesRead_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesRead(ctx, req.(*ModesReadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesUpdateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesUpdate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesUpdate(ctx, req.(*ModesUpdateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesDeleteRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesDelete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesDelete_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesDelete(ctx, req.(*ModesDeleteRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesDataSourceRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesDataSourceReadRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesDataSourceRead(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesDataSourceRead_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesDataSourceRead(ctx, req.(*ModesDataSourceReadRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GrpcTerraformService_ModesOpen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ModesOpenRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrpcTerraformServiceServer).ModesOpen(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrpcTerraformService_ModesOpen_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrpcTerraformServiceServer).ModesOpen(ctx, req.(*ModesOpenRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GrpcTerraformService_ServiceDesc is the grpc.ServiceDesc for GrpcTerraformService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -642,54 +234,6 @@ var GrpcTerraformService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SimpleDelete",
 			Handler:    _GrpcTerraformService_SimpleDelete_Handler,
-		},
-		{
-			MethodName: "ComplexCreate",
-			Handler:    _GrpcTerraformService_ComplexCreate_Handler,
-		},
-		{
-			MethodName: "ComplexRead",
-			Handler:    _GrpcTerraformService_ComplexRead_Handler,
-		},
-		{
-			MethodName: "ComplexUpdate",
-			Handler:    _GrpcTerraformService_ComplexUpdate_Handler,
-		},
-		{
-			MethodName: "ComplexDelete",
-			Handler:    _GrpcTerraformService_ComplexDelete_Handler,
-		},
-		{
-			MethodName: "ComplexDataSourceRead",
-			Handler:    _GrpcTerraformService_ComplexDataSourceRead_Handler,
-		},
-		{
-			MethodName: "ComplexOpen",
-			Handler:    _GrpcTerraformService_ComplexOpen_Handler,
-		},
-		{
-			MethodName: "ModesCreate",
-			Handler:    _GrpcTerraformService_ModesCreate_Handler,
-		},
-		{
-			MethodName: "ModesRead",
-			Handler:    _GrpcTerraformService_ModesRead_Handler,
-		},
-		{
-			MethodName: "ModesUpdate",
-			Handler:    _GrpcTerraformService_ModesUpdate_Handler,
-		},
-		{
-			MethodName: "ModesDelete",
-			Handler:    _GrpcTerraformService_ModesDelete_Handler,
-		},
-		{
-			MethodName: "ModesDataSourceRead",
-			Handler:    _GrpcTerraformService_ModesDataSourceRead_Handler,
-		},
-		{
-			MethodName: "ModesOpen",
-			Handler:    _GrpcTerraformService_ModesOpen_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

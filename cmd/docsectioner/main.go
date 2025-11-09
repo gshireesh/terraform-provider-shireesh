@@ -20,9 +20,9 @@ import (
 // Build map of type name -> section
 func sections() map[string]string {
 	return map[string]string{
-		"scaffolding_simple":  components.SimpleSpec().Section,
-		"scaffolding_complex": components.ComplexSpec().Section,
-		"scaffolding_modes":   components.ModesSpec().Section,
+		"scaffolding_simple": components.SimpleSpec().Section,
+		//"scaffolding_complex": components.ComplexSpec().Section,
+		//"scaffolding_modes":   components.ModesSpec().Section,
 	}
 }
 

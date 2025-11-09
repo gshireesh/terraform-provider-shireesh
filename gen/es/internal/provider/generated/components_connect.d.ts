@@ -5,7 +5,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ComplexCreateRequest, ComplexCreateResponse, ComplexDataSourceReadRequest, ComplexDataSourceReadResponse, ComplexDeleteRequest, ComplexDeleteResponse, ComplexOpenRequest, ComplexOpenResponse, ComplexReadRequest, ComplexReadResponse, ComplexUpdateRequest, ComplexUpdateResponse, ModesCreateRequest, ModesCreateResponse, ModesDataSourceReadRequest, ModesDataSourceReadResponse, ModesDeleteRequest, ModesDeleteResponse, ModesOpenRequest, ModesOpenResponse, ModesReadRequest, ModesReadResponse, ModesUpdateRequest, ModesUpdateResponse, SimpleCreateRequest, SimpleCreateResponse, SimpleDeleteRequest, SimpleDeleteResponse, SimpleReadRequest, SimpleReadResponse, SimpleUpdateRequest, SimpleUpdateResponse } from "./components_pb.js";
+import { SimpleCreateRequest, SimpleCreateResponse, SimpleDeleteRequest, SimpleDeleteResponse, SimpleReadRequest, SimpleReadResponse, SimpleUpdateRequest, SimpleUpdateResponse } from "./components_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -50,114 +50,6 @@ export declare const GrpcTerraformService: {
       readonly name: "SimpleDelete",
       readonly I: typeof SimpleDeleteRequest,
       readonly O: typeof SimpleDeleteResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexCreate
-     */
-    readonly complexCreate: {
-      readonly name: "ComplexCreate",
-      readonly I: typeof ComplexCreateRequest,
-      readonly O: typeof ComplexCreateResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexRead
-     */
-    readonly complexRead: {
-      readonly name: "ComplexRead",
-      readonly I: typeof ComplexReadRequest,
-      readonly O: typeof ComplexReadResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexUpdate
-     */
-    readonly complexUpdate: {
-      readonly name: "ComplexUpdate",
-      readonly I: typeof ComplexUpdateRequest,
-      readonly O: typeof ComplexUpdateResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexDelete
-     */
-    readonly complexDelete: {
-      readonly name: "ComplexDelete",
-      readonly I: typeof ComplexDeleteRequest,
-      readonly O: typeof ComplexDeleteResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexDataSourceRead
-     */
-    readonly complexDataSourceRead: {
-      readonly name: "ComplexDataSourceRead",
-      readonly I: typeof ComplexDataSourceReadRequest,
-      readonly O: typeof ComplexDataSourceReadResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ComplexOpen
-     */
-    readonly complexOpen: {
-      readonly name: "ComplexOpen",
-      readonly I: typeof ComplexOpenRequest,
-      readonly O: typeof ComplexOpenResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesCreate
-     */
-    readonly modesCreate: {
-      readonly name: "ModesCreate",
-      readonly I: typeof ModesCreateRequest,
-      readonly O: typeof ModesCreateResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesRead
-     */
-    readonly modesRead: {
-      readonly name: "ModesRead",
-      readonly I: typeof ModesReadRequest,
-      readonly O: typeof ModesReadResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesUpdate
-     */
-    readonly modesUpdate: {
-      readonly name: "ModesUpdate",
-      readonly I: typeof ModesUpdateRequest,
-      readonly O: typeof ModesUpdateResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesDelete
-     */
-    readonly modesDelete: {
-      readonly name: "ModesDelete",
-      readonly I: typeof ModesDeleteRequest,
-      readonly O: typeof ModesDeleteResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesDataSourceRead
-     */
-    readonly modesDataSourceRead: {
-      readonly name: "ModesDataSourceRead",
-      readonly I: typeof ModesDataSourceReadRequest,
-      readonly O: typeof ModesDataSourceReadResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc component.GrpcTerraformService.ModesOpen
-     */
-    readonly modesOpen: {
-      readonly name: "ModesOpen",
-      readonly I: typeof ModesOpenRequest,
-      readonly O: typeof ModesOpenResponse,
       readonly kind: MethodKind.Unary,
     },
   }

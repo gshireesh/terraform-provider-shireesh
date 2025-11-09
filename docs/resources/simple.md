@@ -23,10 +23,13 @@ resource "scaffolding_simple" "example" {
 
 ### Required
 
-- `counts` (String)
-- `flags` (String)
-- `score` (String)
-- `value` (String)
+- `score` (Number) Numeric counts
+
+### Optional
+
+- `counts` (List of Number) Numeric counts
+- `flags` (List of Boolean) Boolean flags
+- `value` (String) Simple value
 
 ### Read-Only
 

@@ -96,7 +96,7 @@ func (x *SimpleCreateInput) GetScore() int64 {
 
 type SimpleCreateOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // Simple ID [mode:id]
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // The ID of this resource. [mode:id]
 	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`            // Simple value
 	Flags         []bool                 `protobuf:"varint,3,rep,packed,name=flags,proto3" json:"flags,omitempty"`    // Boolean flags
 	Counts        []float64              `protobuf:"fixed64,4,rep,packed,name=counts,proto3" json:"counts,omitempty"` // Numeric counts
@@ -172,7 +172,7 @@ func (x *SimpleCreateOutput) GetScore() int64 {
 
 type SimpleReadOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // Simple ID [mode:id]
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // The ID of this resource. [mode:id]
 	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`            // Simple value
 	Flags         []bool                 `protobuf:"varint,3,rep,packed,name=flags,proto3" json:"flags,omitempty"`    // Boolean flags
 	Counts        []float64              `protobuf:"fixed64,4,rep,packed,name=counts,proto3" json:"counts,omitempty"` // Numeric counts
@@ -316,7 +316,7 @@ func (x *SimpleUpdateInput) GetScore() int64 {
 
 type SimpleUpdateOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // Simple ID [mode:id]
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // The ID of this resource. [mode:id]
 	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`            // Simple value
 	Flags         []bool                 `protobuf:"varint,3,rep,packed,name=flags,proto3" json:"flags,omitempty"`    // Boolean flags
 	Counts        []float64              `protobuf:"fixed64,4,rep,packed,name=counts,proto3" json:"counts,omitempty"` // Numeric counts
@@ -460,7 +460,7 @@ func (x *SimpleOpenInput) GetScore() int64 {
 
 type SimpleOpenOutput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // Simple ID [mode:id]
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                  // The ID of this resource. [mode:id]
 	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`            // Simple value
 	Flags         []bool                 `protobuf:"varint,3,rep,packed,name=flags,proto3" json:"flags,omitempty"`    // Boolean flags
 	Counts        []float64              `protobuf:"fixed64,4,rep,packed,name=counts,proto3" json:"counts,omitempty"` // Numeric counts

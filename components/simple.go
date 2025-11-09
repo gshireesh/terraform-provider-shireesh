@@ -12,7 +12,7 @@ func SimpleSpec() component.Spec {
 		Gateway: true,
 		Section: "core",
 		Fields: []component.Field{
-			{Name: "id", Type: "string", Description: "Simple ID", Mode: component.IDAttributeMode},
+			{Name: "id", Type: "string", Description: "The ID of this resource.", Mode: component.IDAttributeMode},
 			{Name: "value", Type: "string", Description: "Simple value", Optional: true},
 			{Name: "flags", Type: "list", ElemType: "bool", Description: "Boolean flags", Optional: true},
 			{Name: "counts", Type: "list", ElemType: "number", Description: "Numeric counts", Optional: true},

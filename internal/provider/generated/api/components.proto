@@ -30,7 +30,7 @@ message SimpleCreateInput {
 }
 
 message SimpleCreateOutput {
-	string id = 1; // Simple ID [mode:id]
+	string id = 1; // The ID of this resource. [mode:id]
 	string value = 2; // Simple value
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
@@ -39,7 +39,7 @@ message SimpleCreateOutput {
 }
 
 message SimpleReadOutput {
-	string id = 1; // Simple ID [mode:id]
+	string id = 1; // The ID of this resource. [mode:id]
 	string value = 2; // Simple value
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
@@ -56,7 +56,7 @@ message SimpleUpdateInput {
 }
 
 message SimpleUpdateOutput {
-	string id = 1; // Simple ID [mode:id]
+	string id = 1; // The ID of this resource. [mode:id]
 	string value = 2; // Simple value
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
@@ -73,7 +73,7 @@ message SimpleOpenInput {
 }
 
 message SimpleOpenOutput {
-	string id = 1; // Simple ID [mode:id]
+	string id = 1; // The ID of this resource. [mode:id]
 	string value = 2; // Simple value
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts

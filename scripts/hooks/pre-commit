@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+set -euo pipefail
+
+ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+cd "$ROOT_DIR"
+
+echo "[pre-commit] Formatting (gofmt)..."
+make fmt >/dev/null
+
+# Re-stage any formatting changes so they are included in the commit
+if ! git diff --quiet; then
+  echo "[pre-commit] Formatting made changes; re-staging..."
+  git add -A
+fi
+
+# Ensure linter available
+if ! command -v golangci-lint >/dev/null 2>&1; then
+  echo "[pre-commit] golangci-lint not found. Run ./scripts/dev-setup.sh or make tools to install." >&2
+  exit 1
+fi
+
+echo "[pre-commit] Running golangci-lint..."
+# Use repo config (.golangci.yml)
+GOGC=off golangci-lint run
+
+echo "[pre-commit] OK"
+

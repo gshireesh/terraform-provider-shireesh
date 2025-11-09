@@ -256,7 +256,7 @@ func funcMap() template.FuncMap {
 	}
 }
 
-// Attribute helpers ---------------------------------------------------------
+// baseAttrFlags Attribute helpers.
 func baseAttrFlags(f component.Field, isDataSource bool) (required, optional, computed bool) {
 	// Modes override some behaviors
 	switch f.Mode {
@@ -361,7 +361,7 @@ func EphAttr(f interface{}) string {
 	return buildAttr(cf, "ephschema.", false)
 }
 
-// Model field type mapping --------------------------------------------------
+// ModelFieldType Model field type mapping.
 func ModelFieldType(f interface{}) string {
 	cf, _ := f.(component.Field)
 	switch cf.Type {

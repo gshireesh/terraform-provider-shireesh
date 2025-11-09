@@ -26,8 +26,6 @@ website/node_modules
 *.iml
 
 website/vendor
-internal/provider/generated/*.gen.go
-internal/provider/generated/*.proto
 
 # Test exclusions
 !command/test-fixtures/**/*.tfstate

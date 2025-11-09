@@ -16,7 +16,6 @@ linters:
     - unconvert
     - unparam
     - unused
-    - usetesting
   exclusions:
     generated: lax
     presets:

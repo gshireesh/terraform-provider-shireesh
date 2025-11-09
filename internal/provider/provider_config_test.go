@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 package provider
 
 import (
@@ -8,29 +11,32 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 )
 
-// Basic unit test to ensure New() returns a Provider implementing expected interfaces
-func TestNewProviderImplementsInterfaces(t *testing.T) {
+// Unit test ensuring New returns a non-nil provider instance.
+func TestNewProviderCreated(t *testing.T) {
 	p := New("test")()
-	if _, ok := p.(provider.Provider); !ok {
-		t.Fatalf("provider does not implement provider.Provider")
+	if p == nil {
+		t.Fatalf("expected non-nil provider")
 	}
 }
 
-// Verify Configure does not error when optional config omitted
+// Verify Configure does not error when optional config omitted.
 func TestConfigureWithoutConfig(t *testing.T) {
-	p := New("test")().(*ScaffoldingProvider)
+	prov, ok := New("test")().(*ScaffoldingProvider)
+	if !ok {
+		t.Fatalf("expected *ScaffoldingProvider type")
+	}
 	ctx := context.Background()
-	// Initialize schema so Config.Get doesn't panic
+	// Initialize schema so Config.Get doesn't panic.
 	var schemaResp provider.SchemaResponse
-	p.Schema(ctx, provider.SchemaRequest{}, &schemaResp)
+	prov.Schema(ctx, provider.SchemaRequest{}, &schemaResp)
 	if schemaResp.Schema.Attributes == nil {
 		t.Fatalf("expected schema attributes to be initialized")
 	}
 	var req provider.ConfigureRequest
-	// Provide an empty config matching schema
-	req.Config = tfsdk.Config{} // zero value is acceptable for empty config
+	// Provide an empty config matching schema.
+	req.Config = tfsdk.Config{}
 	var resp provider.ConfigureResponse
-	p.Configure(ctx, req, &resp)
+	prov.Configure(ctx, req, &resp)
 	if resp.Diagnostics.HasError() {
 		for _, d := range resp.Diagnostics {
 			t.Logf("diagnostic: %#v", d)

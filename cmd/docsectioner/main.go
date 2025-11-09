@@ -17,7 +17,7 @@ import (
 	"github.com/gshireesh/terraform-provider-shireesh/components"
 )
 
-// Build map of type name -> section
+// Build map of type name -> section.
 func sections() map[string]string {
 	return map[string]string{
 		"scaffolding_simple": components.SimpleSpec().Section,
@@ -32,13 +32,17 @@ func main() {
 	secMap := sections()
 	root := "docs"
 	_ = filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
-		if err != nil || d.IsDir() {
+		if err != nil { // nilerr fix: propagate error from WalkDir instead of swallowing
+			return err
+		}
+		if d.IsDir() {
 			return nil
 		}
 		if !strings.HasSuffix(path, ".md") {
 			return nil
 		}
-		if !(strings.Contains(path, "/resources/") || strings.Contains(path, "/data-sources/") || strings.Contains(path, "/ephemeral-resources/")) {
+		// Apply De Morgan simplification
+		if !strings.Contains(path, "/resources/") && !strings.Contains(path, "/data-sources/") && !strings.Contains(path, "/ephemeral-resources/") {
 			return nil
 		}
 		return rewriteFile(path, secMap)
@@ -54,11 +58,11 @@ func rewriteFile(path string, secMap map[string]string) error {
 	if len(lines) < 3 {
 		return nil
 	}
-	// Determine type from file name
+	// Determine type from file name.
 	name := strings.TrimSuffix(filepath.Base(path), ".md")
 	full := "scaffolding_" + name
 	section := secMap[full]
-	// Locate YAML front matter start/end anywhere in the first 50 lines
+	// Locate YAML front matter start/end anywhere in the first 50 lines.
 	start, end := -1, -1
 	for i := 0; i < len(lines) && i < 50; i++ {
 		if fmLine.Match(lines[i]) {
@@ -79,7 +83,7 @@ func rewriteFile(path string, secMap map[string]string) error {
 		return nil
 	}
 	mutated := false
-	// Inject subcategory if available and missing
+	// Inject subcategory if available and missing.
 	if section != "" {
 		present := false
 		for i := start + 1; i < end; i++ {
@@ -99,11 +103,11 @@ func rewriteFile(path string, secMap map[string]string) error {
 			mutated = true
 		}
 	}
-	// Rewrite page_title to drop provider prefix once
+	// Rewrite page_title to drop provider prefix once.
 	for i := start + 1; i < end; i++ {
 		trim := bytes.TrimSpace(lines[i])
 		if bytes.HasPrefix(trim, []byte("page_title:")) {
-			// Replace first occurrence of full with name inside quotes
+			// Replace first occurrence of full with name inside quotes.
 			repl := bytes.Replace(lines[i], []byte(full+" "), []byte(name+" "), 1)
 			if !bytes.Equal(repl, lines[i]) {
 				lines[i] = repl
@@ -112,7 +116,7 @@ func rewriteFile(path string, secMap map[string]string) error {
 			break
 		}
 	}
-	// Rewrite first H1 heading after front matter
+	// Rewrite first H1 heading after front matter.
 	for i := end + 1; i < len(lines); i++ {
 		trim := bytes.TrimSpace(lines[i])
 		if bytes.HasPrefix(trim, []byte("# ")) {
@@ -127,19 +131,27 @@ func rewriteFile(path string, secMap map[string]string) error {
 	if !mutated {
 		return nil
 	}
-	// Write back
+	// Write back.
 	f, err := os.Create(path)
 	if err != nil {
 		return err
 	}
 	w := bufio.NewWriter(f)
 	for i, l := range lines {
-		w.Write(l)
+		if _, err := w.Write(l); err != nil { // errcheck
+			f.Close()
+			return err
+		}
 		if i < len(lines)-1 {
-			w.WriteByte('\n')
+			if err := w.WriteByte('\n'); err != nil { // errcheck
+				f.Close()
+				return err
+			}
 		}
 	}
-	w.Flush()
-	f.Close()
-	return nil
+	if err := w.Flush(); err != nil { // errcheck
+		f.Close()
+		return err
+	}
+	return f.Close()
 }

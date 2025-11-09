@@ -226,7 +226,7 @@ func (e *{{ .Spec.Name | Pascal }}Ephemeral) Open(ctx context.Context, req ephem
 {{- end }}
 `
 
-// small utilities used across files
+// small utilities used across files.
 func funcMap() template.FuncMap {
 	return template.FuncMap{"Pascal": pascal, "HttpCreate": httpCreatePath, "HttpRead": httpReadPath, "HttpUpdate": httpUpdatePath, "HttpDelete": httpDeletePath, "HttpDsRead": httpDsReadPath, "HttpOpen": httpOpenPath, "ResourceAttr": ResourceAttr, "DSAttr": DSAttr, "EphAttr": EphAttr}
 }

@@ -92,11 +92,13 @@ func (p *ScaffoldingProvider) Configure(ctx context.Context, req provider.Config
 	var data ScaffoldingProviderModel
 
 	// Some tests may invoke Configure with a zero-value req.Config which can cause a panic
-	// inside framework internals. Recover and treat it as empty configuration.
+	// inside framework internals. Recover and treat it as empty configuration. The recover branch
+	// intentionally does nothing besides preventing the panic (diagnostics already nil).
 	func() {
 		defer func() {
 			if r := recover(); r != nil {
-				// Treat as empty config; no diagnostics added.
+				// Treat as empty config by leaving 'data' as zero value.
+				data = ScaffoldingProviderModel{}
 			}
 		}()
 		resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)

@@ -47,7 +47,7 @@ type Field struct {
 	RequiresReplace bool          `yaml:"requires_replace"` // when true, changes force resource replacement
 }
 
-// Helpers
+// Helpers.
 func (s Spec) HasRole(role string) bool {
 	for _, r := range s.Roles {
 		if r == role {

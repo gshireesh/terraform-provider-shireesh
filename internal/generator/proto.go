@@ -112,16 +112,16 @@ type CombinedProtoSpec struct {
 // ...existing code...
 
 type ProtoField struct {
-	Name, stringType string
-	Tag              int
-	Comment          string
-	Repeated         bool
+	Name     string
+	Tag      int
+	Comment  string
+	Repeated bool
 }
 
-// buildProtoMessages minimal wrapper referencing tag store
+// buildProtoMessages minimal wrapper referencing tag store.
 func buildProtoMessages(spec component.Spec, ts *TagStore) []ProtoMessage {
 	// simplified passthrough - reuse previous logic by delegating (could move full logic if needed)
 	return buildProtoMessagesLegacy(spec, ts)
 }
 
-// Legacy full logic moved to legacy_build.go for clarity
+// Legacy full logic moved to legacy_build.go for clarity.

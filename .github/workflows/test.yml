@@ -49,9 +49,9 @@ jobs:
       - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
         with:
           terraform_wrapper: false
-      - name: Set up Buf
-        uses: bufbuild/buf-setup-action@v1
-      - run: make generate
+#      - name: Set up Buf
+#        uses: bufbuild/buf-setup-action@v1
+#      - run: make generate
       - name: git diff
         run: |
           git diff --compact-summary --exit-code || \
@@ -84,12 +84,12 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
       - run: go mod download
-      - name: Set up Buf
-        uses: bufbuild/buf-setup-action@v1
-      # Ensure GNU make is available (ubuntu-latest has it) and run full generation pipeline so
-      # releases always contain up-to-date generated proto/code, examples, and docs.
-      - name: Generate code, examples, and docs
-        run: make generate
+#      - name: Set up Buf
+#        uses: bufbuild/buf-setup-action@v1
+#      # Ensure GNU make is available (ubuntu-latest has it) and run full generation pipeline so
+#      # releases always contain up-to-date generated proto/code, examples, and docs.
+#      - name: Generate code, examples, and docs
+#        run: make generate
       - env:
           TF_ACC: "1"
         run: go test -v -cover ./internal/provider/

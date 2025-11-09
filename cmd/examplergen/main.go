@@ -19,7 +19,7 @@ import (
 	"github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated"
 )
 
-const providerType = "scaffolding"
+const providerType = "shireesh"
 
 func main() {
 	if err := run(); err != nil {

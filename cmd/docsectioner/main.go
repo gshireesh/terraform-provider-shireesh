@@ -20,9 +20,9 @@ import (
 // Build map of type name -> section.
 func sections() map[string]string {
 	return map[string]string{
-		"scaffolding_simple": components.SimpleSpec().Section,
-		//"scaffolding_complex": components.ComplexSpec().Section,
-		//"scaffolding_modes":   components.ModesSpec().Section,
+		"shireesh_simple": components.SimpleSpec().Section,
+		//"shireesh_complex": components.ComplexSpec().Section,
+		//"shireesh_modes":   components.ModesSpec().Section,
 	}
 }
 
@@ -60,7 +60,7 @@ func rewriteFile(path string, secMap map[string]string) error {
 	}
 	// Determine type from file name.
 	name := strings.TrimSuffix(filepath.Base(path), ".md")
-	full := "scaffolding_" + name
+	full := "shireesh_" + name
 	section := secMap[full]
 	// Locate YAML front matter start/end anywhere in the first 50 lines.
 	start, end := -1, -1

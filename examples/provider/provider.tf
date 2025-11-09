@@ -1,3 +1,3 @@
-provider "scaffolding" {
+provider "shireesh" {
   # example configuration here
 }

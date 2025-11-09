@@ -46,7 +46,7 @@ type ScaffoldingProviderModel struct {
 }
 
 func (p *ScaffoldingProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "scaffolding"
+	resp.TypeName = generated.ProviderName
 	resp.Version = p.version
 }
 
@@ -107,17 +107,17 @@ func (p *ScaffoldingProvider) Configure(ctx context.Context, req provider.Config
 		return
 	}
 
-	apiBase := firstNonEmpty(ts(data.APIBaseURL), os.Getenv("SCAFFOLDING_API_BASE_URL"))
+	apiBase := firstNonEmpty(ts(data.APIBaseURL), os.Getenv(generated.EnvAPIBaseURL))
 	if apiBase == "" {
 		apiBase = generated.DefaultConfig.APIBaseURL
 	}
-	tokenURL := firstNonEmpty(ts(data.OAuth2TokenURL), os.Getenv("SCAFFOLDING_OAUTH2_TOKEN_URL"))
-	clientID := firstNonEmpty(ts(data.ClientID), os.Getenv("SCAFFOLDING_CLIENT_ID"))
-	clientSecret := firstNonEmpty(ts(data.ClientSecret), os.Getenv("SCAFFOLDING_CLIENT_SECRET"))
+	tokenURL := firstNonEmpty(ts(data.OAuth2TokenURL), os.Getenv(generated.EnvOAuth2TokenURL))
+	clientID := firstNonEmpty(ts(data.ClientID), os.Getenv(generated.EnvClientID))
+	clientSecret := firstNonEmpty(ts(data.ClientSecret), os.Getenv(generated.EnvClientSecret))
 	insecure := tb(data.Insecure, generated.DefaultConfig.Insecure)
 	scopes := listStrings(ctx, data.Scopes)
 	if len(scopes) == 0 {
-		if env := os.Getenv("SCAFFOLDING_SCOPES"); env != "" {
+		if env := os.Getenv(generated.EnvScopes); env != "" {
 			scopes = strings.Split(env, ",")
 		}
 	}

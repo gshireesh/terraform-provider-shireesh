@@ -8,7 +8,7 @@ require (
 	github.com/hashicorp/terraform-plugin-testing v1.13.3
 	golang.org/x/oauth2 v0.30.0
 	google.golang.org/grpc v1.75.1
-	google.golang.org/protobuf v1.36.9
+	google.golang.org/protobuf v1.36.10
 )
 
 require (

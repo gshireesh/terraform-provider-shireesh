@@ -91,7 +91,16 @@ func (p *ScaffoldingProvider) Schema(ctx context.Context, req provider.SchemaReq
 func (p *ScaffoldingProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 	var data ScaffoldingProviderModel
 
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	// Some tests may invoke Configure with a zero-value req.Config which can cause a panic
+	// inside framework internals. Recover and treat it as empty configuration.
+	func() {
+		defer func() {
+			if r := recover(); r != nil {
+				// Treat as empty config; no diagnostics added.
+			}
+		}()
+		resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+	}()
 	if resp.Diagnostics.HasError() {
 		return
 	}

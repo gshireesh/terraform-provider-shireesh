@@ -25,6 +25,13 @@ jobs:
         with:
           go-version-file: 'go.mod'
           cache: true
+      # Install buf so that `make generate` (which runs `buf generate`) works in CI.
+      - name: Set up Buf
+        uses: bufbuild/buf-setup-action@v1
+      # Ensure GNU make is available (ubuntu-latest has it) and run full generation pipeline so
+      # releases always contain up-to-date generated proto/code, examples, and docs.
+      - name: Generate code, examples, and docs
+        run: make generate
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
         id: import_gpg

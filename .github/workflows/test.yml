@@ -28,6 +28,8 @@ jobs:
           go-version-file: 'go.mod'
           cache: true
       - run: go mod download
+      - name: Set up Buf
+        uses: bufbuild/buf-setup-action@v1
       - run: make generate
       - run: go build -v .
       - name: Run linters
@@ -47,6 +49,8 @@ jobs:
       - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
         with:
           terraform_wrapper: false
+      - name: Set up Buf
+        uses: bufbuild/buf-setup-action@v1
       - run: make generate
       - name: git diff
         run: |

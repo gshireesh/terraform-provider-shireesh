@@ -30,7 +30,7 @@ proto:
 REGEN_OUT=internal/provider/generated
 SERVICE_NAME?=GrpcTerraformService
 PROTO_PKG?=component
-GO_PKG_PREFIX?=github.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider/generated
+GO_PKG_PREFIX?=github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated
 HTTP?=false
 
 ifeq ($(HTTP),true)

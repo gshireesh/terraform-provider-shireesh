@@ -2,8 +2,9 @@
 schema_version = 1
 
 project {
+  name  = "shireesh.com"
   license        = "MPL-2.0"
-  copyright_year = 2021
+  copyright_year = 2025
 
   header_ignore = [
     # internal catalog metadata (prose)

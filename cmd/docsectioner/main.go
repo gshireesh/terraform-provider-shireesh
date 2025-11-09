@@ -14,7 +14,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/components"
+	"github.com/gshireesh/terraform-provider-shireesh/components"
 )
 
 // Build map of type name -> section

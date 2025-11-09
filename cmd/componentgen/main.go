@@ -10,9 +10,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/components"
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/internal/component"
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/internal/generator"
+	"github.com/gshireesh/terraform-provider-shireesh/components"
+	"github.com/gshireesh/terraform-provider-shireesh/internal/component"
+	"github.com/gshireesh/terraform-provider-shireesh/internal/generator"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	flag.BoolVar(&includeHTTP, "http", false, "include grpc-gateway HTTP annotations in proto")
 	flag.StringVar(&serviceName, "service-name", "GrpcTerraformService", "service name to use in combined proto")
 	flag.StringVar(&protoPackage, "proto-package", "component", "protobuf package name")
-	flag.StringVar(&goPackagePrefix, "go-package-prefix", "github.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider/generated", "go package prefix for option go_package")
+	flag.StringVar(&goPackagePrefix, "go-package-prefix", "github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated", "go package prefix for option go_package")
 	flag.Parse()
 
 	// Typed specs only

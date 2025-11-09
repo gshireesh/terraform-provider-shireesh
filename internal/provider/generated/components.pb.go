@@ -5866,8 +5866,8 @@ const file_internal_provider_generated_components_proto_rawDesc = "" +
 	"\vModesUpdate\x12\x1d.component.ModesUpdateRequest\x1a\x1e.component.ModesUpdateResponse\x12L\n" +
 	"\vModesDelete\x12\x1d.component.ModesDeleteRequest\x1a\x1e.component.ModesDeleteResponse\x12d\n" +
 	"\x13ModesDataSourceRead\x12%.component.ModesDataSourceReadRequest\x1a&.component.ModesDataSourceReadResponse\x12F\n" +
-	"\tModesOpen\x12\x1b.component.ModesOpenRequest\x1a\x1c.component.ModesOpenResponseB\xbf\x01\n" +
-	"\rcom.componentB\x0fComponentsProtoP\x01ZYgithub.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider/generated\xa2\x02\x03CXX\xaa\x02\tComponent\xca\x02\tComponent\xe2\x02\x15Component\\GPBMetadata\xea\x02\tComponentb\x06proto3"
+	"\tModesOpen\x12\x1b.component.ModesOpenRequest\x1a\x1c.component.ModesOpenResponseB\xb2\x01\n" +
+	"\rcom.componentB\x0fComponentsProtoP\x01ZLgithub.com/gshireesh/terraform-provider-shireesh/internal/provider/generated\xa2\x02\x03CXX\xaa\x02\tComponent\xca\x02\tComponent\xe2\x02\x15Component\\GPBMetadata\xea\x02\tComponentb\x06proto3"
 
 var (
 	file_internal_provider_generated_components_proto_rawDescOnce sync.Once

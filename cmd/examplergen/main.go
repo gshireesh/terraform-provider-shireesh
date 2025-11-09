@@ -16,7 +16,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/ephemeral"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider/generated"
+	"github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated"
 )
 
 const providerType = "scaffolding"

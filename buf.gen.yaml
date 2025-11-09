@@ -4,20 +4,17 @@
 version: v2
 managed:
   enabled: true
-#  override:
-#    - file_option: go_package_prefix
-#      value: shireesh.com/carbon/generated/
 plugins:
   - remote: buf.build/protocolbuffers/go
-    out: generated
+    out: .
     opt: paths=source_relative
 
   - remote: buf.build/grpc/go
-    out: generated
+    out: .
     opt: paths=source_relative
 
   - remote: buf.build/grpc-ecosystem/gateway
-    out: generated
+    out: .
     opt:
       - paths=source_relative
       - allow_repeated_fields_in_body=true
@@ -30,7 +27,7 @@ plugins:
       - allow_delete_body=true
 
   - remote: buf.build/bufbuild/validate-go
-    out: generated
+    out: .
     opt:
       - paths=source_relative
 

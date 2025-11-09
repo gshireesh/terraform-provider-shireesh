@@ -3,7 +3,7 @@
 
 package components
 
-import "github.com/hashicorp/terraform-provider-scaffolding-framework/internal/component"
+import "github.com/gshireesh/terraform-provider-shireesh/internal/component"
 
 // ModesSpec exercises various integer sizes and attribute modes including nested objects and lists.
 // It is intended purely for generation/testing purposes.

@@ -22,4 +22,10 @@ provider "scaffolding" {
 
 ### Optional
 
-- `endpoint` (String) Example provider attribute
+- `api_base_url` (String) Base URL for the proxy API (overridable for dev/stage).
+- `client_id` (String, Sensitive) OAuth2 client ID.
+- `client_secret` (String, Sensitive) OAuth2 client secret.
+- `environment` (String) Environment name (dev, stage, prod).
+- `insecure` (Boolean) Allow insecure connections to proxy (dev only).
+- `oauth2_token_url` (String) OAuth2 token endpoint URL for client credentials flow.
+- `scopes` (List of String) Optional OAuth2 scopes.

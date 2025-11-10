@@ -54,7 +54,7 @@ func main() {
 	flag.StringVar(&authGoPackage, "auth-go-package", "github.com/gshireesh/terraform-provider-shireesh/api", "auth go_package override (module import path for generated pb)")
 	flag.StringVar(&authTitle, "auth-title", "Carbon API", "auth swagger title")
 	flag.StringVar(&authVersion, "auth-version", "1.0.0", "auth swagger version")
-	flag.StringVar(&authHost, "auth-host", "carbon.shireesh.com", "auth swagger host")
+	flag.StringVar(&authHost, "auth-host", "config.shireesh.com", "auth swagger host")
 	flag.StringVar(&authTokenURL, "auth-token-url", "https://auth.shireesh.com/v1/oauth/token", "oauth2 token url")
 	flag.StringVar(&authReadScope, "auth-read-scope", "read", "oauth2 read scope")
 	flag.StringVar(&authWriteScope, "auth-write-scope", "write", "oauth2 write scope")

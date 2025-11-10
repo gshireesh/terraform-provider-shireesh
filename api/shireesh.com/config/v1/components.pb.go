@@ -1055,7 +1055,7 @@ const file_shireesh_com_config_v1_components_proto_rawDesc = "" +
 	"\fSimpleUpdate\x12+.shireesh.com.config.v1.SimpleUpdateRequest\x1a,.shireesh.com.config.v1.SimpleUpdateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x04item\x1a\x0f/v1/simple/{id}\x12\x82\x01\n" +
 	"\fSimpleDelete\x12+.shireesh.com.config.v1.SimpleDeleteRequest\x1a,.shireesh.com.config.v1.SimpleDeleteResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/simple/{id}B\xc5\x03\x92A\xe3\x01\x12\x13\n" +
 	"\n" +
-	"Carbon API2\x051.0.0\x1a\x13carbon.shireesh.comZ\x8b\x01\n" +
+	"Carbon API2\x051.0.0\x1a\x13config.shireesh.comZ\x8b\x01\n" +
 	"!\n" +
 	"\n" +
 	"bearerAuth\x12\x13\b\x02\x1a\rAuthorization \x02\n" +

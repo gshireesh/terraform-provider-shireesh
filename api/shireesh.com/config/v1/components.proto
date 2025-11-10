@@ -8,7 +8,7 @@ option go_package = "github.com/gshireesh/terraform-provider-shireesh/api";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: { title: "Carbon API"; version: "1.0.0"; }
-  host: "carbon.shireesh.com";
+  host: "config.shireesh.com";
   security_definitions: {
     security: { key: "oauth2", value: { type: TYPE_OAUTH2; flow: FLOW_APPLICATION; token_url: "https://auth.shireesh.com/v1/oauth/token"; scopes: { scope: { key: "read"; value: "Read access"; }; scope: { key: "write"; value: "write access"; }; } } }
     security: { key: "bearerAuth", value: { type: TYPE_API_KEY; name: "Authorization"; in: IN_HEADER; } }

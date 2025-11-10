@@ -35,12 +35,21 @@ func (r *SimpleResource) Configure(ctx context.Context, req resource.ConfigureRe
 		return
 	}
 	c, ok := req.ProviderData.(*APIClient)
+	if !ok {
+		resp.Diagnostics.AddError("Invalid provider data", "Unable to configure resource: unexpected provider data type.")
+		return
+	}
+	if c == nil {
+		resp.Diagnostics.AddError("Client not configured", "Unable to configure resource: nil API client.")
+		return
+	}
 	if ok {
 		r.client = c
 	}
 }
 func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	if r.client == nil {
+		resp.Diagnostics.AddError("Client not configured", "The provider's API client is not configured.")
 		return
 	}
 	// Read plan
@@ -63,6 +72,7 @@ func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest,
 	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
+		resp.Diagnostics.AddError("Connection failed", err.Error())
 		return
 	}
 	defer conn.Close()
@@ -72,17 +82,25 @@ func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest,
 	}
 	res, err := cli.SimpleCreate(ctx, &api.SimpleCreateRequest{Item: in})
 	if err != nil {
-		resp.Diagnostics.AddError("create failed", err.Error())
+		resp.Diagnostics.AddError("Create failed", err.Error())
 		return
 	}
 	if res == nil || res.Item == nil {
-		resp.Diagnostics.AddError("create failed", "empty response")
+		resp.Diagnostics.AddError("Create failed", "empty response")
 		return
 	}
 	// Set state
 	var state SimpleModel
 	state.Id = types.StringValue(res.Item.Id)
-	state.Value = types.StringValue(res.Item.Value)
+	if plan.Value.IsNull() || plan.Value.IsUnknown() {
+		if res.Item.Value == "" {
+			state.Value = types.StringNull()
+		} else {
+			state.Value = types.StringValue(res.Item.Value)
+		}
+	} else {
+		state.Value = types.StringValue(res.Item.Value)
+	}
 	if plan.Flags.IsNull() || plan.Flags.IsUnknown() {
 		if len(res.Item.Flags) == 0 {
 			state.Flags = types.ListNull(types.BoolType)
@@ -106,6 +124,7 @@ func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest,
 }
 func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	if r.client == nil {
+		resp.Diagnostics.AddError("Client not configured", "The provider's API client is not configured.")
 		return
 	}
 	var state SimpleModel
@@ -118,6 +137,7 @@ func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
+		resp.Diagnostics.AddError("Connection failed", err.Error())
 		return
 	}
 	defer conn.Close()
@@ -127,7 +147,7 @@ func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 	res, err := cli.SimpleRead(ctx, &api.SimpleReadRequest{Id: state.Id.ValueString()})
 	if err != nil {
-		resp.Diagnostics.AddError("read failed", err.Error())
+		resp.Diagnostics.AddError("Read failed", err.Error())
 		return
 	}
 	if res == nil || res.Item == nil || res.Item.Id == "" {
@@ -135,7 +155,11 @@ func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 	state.Id = types.StringValue(res.Item.Id)
-	state.Value = types.StringValue(res.Item.Value)
+	if res.Item.Value == "" && (state.Value.IsNull() || state.Value.IsUnknown()) {
+		// keep null for absent strings when state was null
+	} else {
+		state.Value = types.StringValue(res.Item.Value)
+	}
 	if len(res.Item.Flags) == 0 && (state.Flags.IsNull() || state.Flags.IsUnknown()) {
 		// keep null for absent lists
 	} else {
@@ -151,6 +175,7 @@ func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, res
 }
 func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	if r.client == nil {
+		resp.Diagnostics.AddError("Client not configured", "The provider's API client is not configured.")
 		return
 	}
 	var plan SimpleModel
@@ -162,6 +187,7 @@ func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest,
 	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
+		resp.Diagnostics.AddError("Connection failed", err.Error())
 		return
 	}
 	defer conn.Close()
@@ -180,15 +206,19 @@ func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest,
 	}
 	res, err := cli.SimpleUpdate(ctx, &api.SimpleUpdateRequest{Id: state.Id.ValueString(), Item: in})
 	if err != nil {
-		resp.Diagnostics.AddError("update failed", err.Error())
+		resp.Diagnostics.AddError("Update failed", err.Error())
 		return
 	}
 	if res == nil || res.Item == nil {
-		resp.Diagnostics.AddError("update failed", "empty response")
+		resp.Diagnostics.AddError("Update failed", "empty response")
 		return
 	}
 	state.Id = types.StringValue(res.Item.Id)
-	state.Value = types.StringValue(res.Item.Value)
+	if plan.Value.IsNull() || plan.Value.IsUnknown() {
+		// retain previous state if attribute was not specified in plan
+	} else {
+		state.Value = types.StringValue(res.Item.Value)
+	}
 	if plan.Flags.IsNull() || plan.Flags.IsUnknown() {
 		// retain previous state if attribute was not specified in plan
 	} else {
@@ -204,6 +234,7 @@ func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest,
 }
 func (r *SimpleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	if r.client == nil {
+		resp.Diagnostics.AddError("Client not configured", "The provider's API client is not configured.")
 		return
 	}
 	var state SimpleModel
@@ -213,6 +244,7 @@ func (r *SimpleResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
+		resp.Diagnostics.AddError("Connection failed", err.Error())
 		return
 	}
 	defer conn.Close()
@@ -220,7 +252,11 @@ func (r *SimpleResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	if r.client.Bearer != "" {
 		ctx = metadata.AppendToOutgoingContext(ctx, "authorization", "Bearer "+r.client.Bearer)
 	}
-	_, _ = cli.SimpleDelete(ctx, &api.SimpleDeleteRequest{Id: state.Id.ValueString()})
+	_, err = cli.SimpleDelete(ctx, &api.SimpleDeleteRequest{Id: state.Id.ValueString()})
+	if err != nil {
+		resp.Diagnostics.AddError("Delete failed", err.Error())
+		return
+	}
 }
 
 // Helper conversions for list types

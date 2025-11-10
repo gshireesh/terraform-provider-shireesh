@@ -74,3 +74,26 @@ generate: clean
 regen: generate
 
 .PHONY: fmt lint test testacc build install generate regen clean docs gen-examples proto proto-fmt tools
+
+
+
+BINARY_NAME=terraform-provider-shireesh
+VERSION=0.0.1-pre
+PLUGIN_DIR=~/.terraform.d/plugins/registry.terraform.io/gshireesh/shireesh
+OS ?= $(shell uname -s | tr '[:upper:]' '[:lower:]')
+ARCH ?= $(shell uname -m)
+ifeq ($(ARCH),x86_64)
+    ARCH=amd64
+else ifeq ($(ARCH),arm64)
+    ARCH=arm64
+else ifeq ($(ARCH),aarch64)
+    ARCH=arm64
+endif
+TF_PLUGIN_DIR = $(OS)_$(ARCH)
+
+.PHONY: build-local
+build-local:
+	# Create the appropriate directory and copy the built binary
+	mkdir -p $(PLUGIN_DIR)/$(VERSION)/$(TF_PLUGIN_DIR)
+	# Build the Go project
+	go build -o $(PLUGIN_DIR)/$(VERSION)/$(TF_PLUGIN_DIR)/$(BINARY_NAME)

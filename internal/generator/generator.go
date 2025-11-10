@@ -79,5 +79,9 @@ func GenerateAllWithAuthProto(specs []component.Spec, outDir string, tagFile str
 	if err := GenerateDefaults(outDir); err != nil {
 		return err
 	}
+	// NEW: generate test server for in-memory CRUD over components
+	if err := GenerateTestServer(specs, "fakeserver", "github.com/gshireesh/terraform-provider-shireesh/api/shireesh.com/config/v1"); err != nil {
+		return err
+	}
 	return nil
 }

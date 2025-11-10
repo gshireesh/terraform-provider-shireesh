@@ -5,6 +5,7 @@ import (
 	"context"
 	// grpc client imports
 	api "github.com/gshireesh/terraform-provider-shireesh/api/shireesh.com/config/v1"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -42,6 +43,24 @@ func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest,
 	if r.client == nil {
 		return
 	}
+	// Read plan
+	var plan SimpleModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	// Build request
+	in := &api.SimpleCreateInput{}
+	if !plan.Value.IsNull() && !plan.Value.IsUnknown() {
+		in.Value = plan.Value.ValueString()
+	}
+	// list of bool
+	in.Flags = tfListBools(ctx, plan.Flags)
+	// list of number
+	in.Counts = tfListFloat64s(ctx, plan.Counts)
+	if !plan.Score.IsNull() && !plan.Score.IsUnknown() {
+		in.Score = plan.Score.ValueInt64()
+	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return
@@ -51,12 +70,52 @@ func (r *SimpleResource) Create(ctx context.Context, req resource.CreateRequest,
 	if r.client.Bearer != "" {
 		ctx = metadata.AppendToOutgoingContext(ctx, "authorization", "Bearer "+r.client.Bearer)
 	}
-	_, _ = cli.SimpleCreate(ctx, &api.SimpleCreateRequest{})
+	res, err := cli.SimpleCreate(ctx, &api.SimpleCreateRequest{Item: in})
+	if err != nil {
+		resp.Diagnostics.AddError("create failed", err.Error())
+		return
+	}
+	if res == nil || res.Item == nil {
+		resp.Diagnostics.AddError("create failed", "empty response")
+		return
+	}
+	// Set state
+	var state SimpleModel
+	state.Id = types.StringValue(res.Item.Id)
+	state.Value = types.StringValue(res.Item.Value)
+	if plan.Flags.IsNull() || plan.Flags.IsUnknown() {
+		if len(res.Item.Flags) == 0 {
+			state.Flags = types.ListNull(types.BoolType)
+		} else {
+			state.Flags = listBoolsToTF(ctx, res.Item.Flags)
+		}
+	} else {
+		state.Flags = listBoolsToTF(ctx, res.Item.Flags)
+	}
+	if plan.Counts.IsNull() || plan.Counts.IsUnknown() {
+		if len(res.Item.Counts) == 0 {
+			state.Counts = types.ListNull(types.Float64Type)
+		} else {
+			state.Counts = listFloat64sToTF(ctx, res.Item.Counts)
+		}
+	} else {
+		state.Counts = listFloat64sToTF(ctx, res.Item.Counts)
+	}
+	state.Score = types.Int64Value(res.Item.Score)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	if r.client == nil {
 		return
 	}
+	var state SimpleModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	if state.Id.IsNull() || state.Id.IsUnknown() {
+		return
+	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return
@@ -66,12 +125,41 @@ func (r *SimpleResource) Read(ctx context.Context, req resource.ReadRequest, res
 	if r.client.Bearer != "" {
 		ctx = metadata.AppendToOutgoingContext(ctx, "authorization", "Bearer "+r.client.Bearer)
 	}
-	_, _ = cli.SimpleRead(ctx, &api.SimpleReadRequest{})
+	res, err := cli.SimpleRead(ctx, &api.SimpleReadRequest{Id: state.Id.ValueString()})
+	if err != nil {
+		resp.Diagnostics.AddError("read failed", err.Error())
+		return
+	}
+	if res == nil || res.Item == nil || res.Item.Id == "" {
+		resp.State.RemoveResource(ctx)
+		return
+	}
+	state.Id = types.StringValue(res.Item.Id)
+	state.Value = types.StringValue(res.Item.Value)
+	if len(res.Item.Flags) == 0 && (state.Flags.IsNull() || state.Flags.IsUnknown()) {
+		// keep null for absent lists
+	} else {
+		state.Flags = listBoolsToTF(ctx, res.Item.Flags)
+	}
+	if len(res.Item.Counts) == 0 && (state.Counts.IsNull() || state.Counts.IsUnknown()) {
+		// keep null for absent lists
+	} else {
+		state.Counts = listFloat64sToTF(ctx, res.Item.Counts)
+	}
+	state.Score = types.Int64Value(res.Item.Score)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	if r.client == nil {
 		return
 	}
+	var plan SimpleModel
+	var state SimpleModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return
@@ -81,12 +169,48 @@ func (r *SimpleResource) Update(ctx context.Context, req resource.UpdateRequest,
 	if r.client.Bearer != "" {
 		ctx = metadata.AppendToOutgoingContext(ctx, "authorization", "Bearer "+r.client.Bearer)
 	}
-	_, _ = cli.SimpleUpdate(ctx, &api.SimpleUpdateRequest{})
+	in := &api.SimpleUpdateInput{}
+	if !plan.Value.IsNull() && !plan.Value.IsUnknown() {
+		in.Value = plan.Value.ValueString()
+	}
+	in.Flags = tfListBools(ctx, plan.Flags)
+	in.Counts = tfListFloat64s(ctx, plan.Counts)
+	if !plan.Score.IsNull() && !plan.Score.IsUnknown() {
+		in.Score = plan.Score.ValueInt64()
+	}
+	res, err := cli.SimpleUpdate(ctx, &api.SimpleUpdateRequest{Id: state.Id.ValueString(), Item: in})
+	if err != nil {
+		resp.Diagnostics.AddError("update failed", err.Error())
+		return
+	}
+	if res == nil || res.Item == nil {
+		resp.Diagnostics.AddError("update failed", "empty response")
+		return
+	}
+	state.Id = types.StringValue(res.Item.Id)
+	state.Value = types.StringValue(res.Item.Value)
+	if plan.Flags.IsNull() || plan.Flags.IsUnknown() {
+		// retain previous state if attribute was not specified in plan
+	} else {
+		state.Flags = listBoolsToTF(ctx, res.Item.Flags)
+	}
+	if plan.Counts.IsNull() || plan.Counts.IsUnknown() {
+		// retain previous state if attribute was not specified in plan
+	} else {
+		state.Counts = listFloat64sToTF(ctx, res.Item.Counts)
+	}
+	state.Score = types.Int64Value(res.Item.Score)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &state)...)
 }
 func (r *SimpleResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	if r.client == nil {
 		return
 	}
+	var state SimpleModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 	conn, err := grpc.Dial(r.client.GRPCTarget(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return
@@ -96,5 +220,51 @@ func (r *SimpleResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	if r.client.Bearer != "" {
 		ctx = metadata.AppendToOutgoingContext(ctx, "authorization", "Bearer "+r.client.Bearer)
 	}
-	_, _ = cli.SimpleDelete(ctx, &api.SimpleDeleteRequest{})
+	_, _ = cli.SimpleDelete(ctx, &api.SimpleDeleteRequest{Id: state.Id.ValueString()})
+}
+
+// Helper conversions for list types
+func tfListBools(ctx context.Context, l types.List) []bool {
+	if l.IsNull() || l.IsUnknown() {
+		return nil
+	}
+	var vals []types.Bool
+	if diags := l.ElementsAs(ctx, &vals, false); diags.HasError() {
+		return nil
+	}
+	out := make([]bool, 0, len(vals))
+	for _, v := range vals {
+		out = append(out, v.ValueBool())
+	}
+	return out
+}
+func listBoolsToTF(ctx context.Context, xs []bool) types.List {
+	vals := make([]attr.Value, 0, len(xs))
+	for _, v := range xs {
+		vals = append(vals, types.BoolValue(v))
+	}
+	l, _ := types.ListValue(types.BoolType, vals)
+	return l
+}
+func tfListFloat64s(ctx context.Context, l types.List) []float64 {
+	if l.IsNull() || l.IsUnknown() {
+		return nil
+	}
+	var vals []types.Float64
+	if diags := l.ElementsAs(ctx, &vals, false); diags.HasError() {
+		return nil
+	}
+	out := make([]float64, 0, len(vals))
+	for _, v := range vals {
+		out = append(out, v.ValueFloat64())
+	}
+	return out
+}
+func listFloat64sToTF(ctx context.Context, xs []float64) types.List {
+	vals := make([]attr.Value, 0, len(xs))
+	for _, v := range xs {
+		vals = append(vals, types.Float64Value(v))
+	}
+	l, _ := types.ListValue(types.Float64Type, vals)
+	return l
 }

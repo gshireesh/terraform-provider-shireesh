@@ -4,7 +4,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: shireesh.com/api/config/v1/components.proto
+// source: shireesh.com/config/v1/components.proto
 
 package api
 
@@ -237,5 +237,5 @@ var GrpcTerraformService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "shireesh.com/api/config/v1/components.proto",
+	Metadata: "shireesh.com/config/v1/components.proto",
 }

@@ -4,7 +4,7 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        (unknown)
-// source: shireesh.com/api/config/v1/components.proto
+// source: shireesh.com/config/v1/components.proto
 
 package api
 
@@ -38,7 +38,7 @@ type SimpleCreateInput struct {
 
 func (x *SimpleCreateInput) Reset() {
 	*x = SimpleCreateInput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[0]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -50,7 +50,7 @@ func (x *SimpleCreateInput) String() string {
 func (*SimpleCreateInput) ProtoMessage() {}
 
 func (x *SimpleCreateInput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[0]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -63,7 +63,7 @@ func (x *SimpleCreateInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateInput.ProtoReflect.Descriptor instead.
 func (*SimpleCreateInput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{0}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SimpleCreateInput) GetValue() string {
@@ -107,7 +107,7 @@ type SimpleCreateOutput struct {
 
 func (x *SimpleCreateOutput) Reset() {
 	*x = SimpleCreateOutput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[1]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -119,7 +119,7 @@ func (x *SimpleCreateOutput) String() string {
 func (*SimpleCreateOutput) ProtoMessage() {}
 
 func (x *SimpleCreateOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[1]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -132,7 +132,7 @@ func (x *SimpleCreateOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateOutput.ProtoReflect.Descriptor instead.
 func (*SimpleCreateOutput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{1}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SimpleCreateOutput) GetId() string {
@@ -183,7 +183,7 @@ type SimpleReadOutput struct {
 
 func (x *SimpleReadOutput) Reset() {
 	*x = SimpleReadOutput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[2]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -195,7 +195,7 @@ func (x *SimpleReadOutput) String() string {
 func (*SimpleReadOutput) ProtoMessage() {}
 
 func (x *SimpleReadOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[2]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -208,7 +208,7 @@ func (x *SimpleReadOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadOutput.ProtoReflect.Descriptor instead.
 func (*SimpleReadOutput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{2}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *SimpleReadOutput) GetId() string {
@@ -258,7 +258,7 @@ type SimpleUpdateInput struct {
 
 func (x *SimpleUpdateInput) Reset() {
 	*x = SimpleUpdateInput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[3]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -270,7 +270,7 @@ func (x *SimpleUpdateInput) String() string {
 func (*SimpleUpdateInput) ProtoMessage() {}
 
 func (x *SimpleUpdateInput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[3]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -283,7 +283,7 @@ func (x *SimpleUpdateInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateInput.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateInput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{3}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SimpleUpdateInput) GetValue() string {
@@ -327,7 +327,7 @@ type SimpleUpdateOutput struct {
 
 func (x *SimpleUpdateOutput) Reset() {
 	*x = SimpleUpdateOutput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[4]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -339,7 +339,7 @@ func (x *SimpleUpdateOutput) String() string {
 func (*SimpleUpdateOutput) ProtoMessage() {}
 
 func (x *SimpleUpdateOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[4]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -352,7 +352,7 @@ func (x *SimpleUpdateOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateOutput.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateOutput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{4}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SimpleUpdateOutput) GetId() string {
@@ -402,7 +402,7 @@ type SimpleOpenInput struct {
 
 func (x *SimpleOpenInput) Reset() {
 	*x = SimpleOpenInput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[5]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -414,7 +414,7 @@ func (x *SimpleOpenInput) String() string {
 func (*SimpleOpenInput) ProtoMessage() {}
 
 func (x *SimpleOpenInput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[5]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -427,7 +427,7 @@ func (x *SimpleOpenInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenInput.ProtoReflect.Descriptor instead.
 func (*SimpleOpenInput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{5}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SimpleOpenInput) GetValue() string {
@@ -471,7 +471,7 @@ type SimpleOpenOutput struct {
 
 func (x *SimpleOpenOutput) Reset() {
 	*x = SimpleOpenOutput{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[6]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -483,7 +483,7 @@ func (x *SimpleOpenOutput) String() string {
 func (*SimpleOpenOutput) ProtoMessage() {}
 
 func (x *SimpleOpenOutput) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[6]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -496,7 +496,7 @@ func (x *SimpleOpenOutput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenOutput.ProtoReflect.Descriptor instead.
 func (*SimpleOpenOutput) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{6}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SimpleOpenOutput) GetId() string {
@@ -543,7 +543,7 @@ type SimpleCreateRequest struct {
 
 func (x *SimpleCreateRequest) Reset() {
 	*x = SimpleCreateRequest{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[7]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -555,7 +555,7 @@ func (x *SimpleCreateRequest) String() string {
 func (*SimpleCreateRequest) ProtoMessage() {}
 
 func (x *SimpleCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[7]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,7 +568,7 @@ func (x *SimpleCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateRequest.ProtoReflect.Descriptor instead.
 func (*SimpleCreateRequest) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{7}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SimpleCreateRequest) GetItem() *SimpleCreateInput {
@@ -587,7 +587,7 @@ type SimpleCreateResponse struct {
 
 func (x *SimpleCreateResponse) Reset() {
 	*x = SimpleCreateResponse{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[8]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -599,7 +599,7 @@ func (x *SimpleCreateResponse) String() string {
 func (*SimpleCreateResponse) ProtoMessage() {}
 
 func (x *SimpleCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[8]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -612,7 +612,7 @@ func (x *SimpleCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleCreateResponse.ProtoReflect.Descriptor instead.
 func (*SimpleCreateResponse) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{8}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SimpleCreateResponse) GetItem() *SimpleCreateOutput {
@@ -631,7 +631,7 @@ type SimpleReadRequest struct {
 
 func (x *SimpleReadRequest) Reset() {
 	*x = SimpleReadRequest{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[9]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +643,7 @@ func (x *SimpleReadRequest) String() string {
 func (*SimpleReadRequest) ProtoMessage() {}
 
 func (x *SimpleReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[9]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +656,7 @@ func (x *SimpleReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadRequest.ProtoReflect.Descriptor instead.
 func (*SimpleReadRequest) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{9}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SimpleReadRequest) GetId() string {
@@ -675,7 +675,7 @@ type SimpleReadResponse struct {
 
 func (x *SimpleReadResponse) Reset() {
 	*x = SimpleReadResponse{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[10]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -687,7 +687,7 @@ func (x *SimpleReadResponse) String() string {
 func (*SimpleReadResponse) ProtoMessage() {}
 
 func (x *SimpleReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[10]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -700,7 +700,7 @@ func (x *SimpleReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleReadResponse.ProtoReflect.Descriptor instead.
 func (*SimpleReadResponse) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{10}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SimpleReadResponse) GetItem() *SimpleReadOutput {
@@ -720,7 +720,7 @@ type SimpleUpdateRequest struct {
 
 func (x *SimpleUpdateRequest) Reset() {
 	*x = SimpleUpdateRequest{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[11]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -732,7 +732,7 @@ func (x *SimpleUpdateRequest) String() string {
 func (*SimpleUpdateRequest) ProtoMessage() {}
 
 func (x *SimpleUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[11]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -745,7 +745,7 @@ func (x *SimpleUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateRequest.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{11}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SimpleUpdateRequest) GetId() string {
@@ -771,7 +771,7 @@ type SimpleUpdateResponse struct {
 
 func (x *SimpleUpdateResponse) Reset() {
 	*x = SimpleUpdateResponse{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[12]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -783,7 +783,7 @@ func (x *SimpleUpdateResponse) String() string {
 func (*SimpleUpdateResponse) ProtoMessage() {}
 
 func (x *SimpleUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[12]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -796,7 +796,7 @@ func (x *SimpleUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleUpdateResponse.ProtoReflect.Descriptor instead.
 func (*SimpleUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{12}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SimpleUpdateResponse) GetItem() *SimpleUpdateOutput {
@@ -815,7 +815,7 @@ type SimpleDeleteRequest struct {
 
 func (x *SimpleDeleteRequest) Reset() {
 	*x = SimpleDeleteRequest{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[13]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -827,7 +827,7 @@ func (x *SimpleDeleteRequest) String() string {
 func (*SimpleDeleteRequest) ProtoMessage() {}
 
 func (x *SimpleDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[13]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -840,7 +840,7 @@ func (x *SimpleDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleDeleteRequest.ProtoReflect.Descriptor instead.
 func (*SimpleDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{13}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SimpleDeleteRequest) GetId() string {
@@ -859,7 +859,7 @@ type SimpleDeleteResponse struct {
 
 func (x *SimpleDeleteResponse) Reset() {
 	*x = SimpleDeleteResponse{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[14]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -871,7 +871,7 @@ func (x *SimpleDeleteResponse) String() string {
 func (*SimpleDeleteResponse) ProtoMessage() {}
 
 func (x *SimpleDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[14]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -884,7 +884,7 @@ func (x *SimpleDeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleDeleteResponse.ProtoReflect.Descriptor instead.
 func (*SimpleDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{14}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SimpleDeleteResponse) GetSuccess() bool {
@@ -903,7 +903,7 @@ type SimpleOpenRequest struct {
 
 func (x *SimpleOpenRequest) Reset() {
 	*x = SimpleOpenRequest{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[15]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -915,7 +915,7 @@ func (x *SimpleOpenRequest) String() string {
 func (*SimpleOpenRequest) ProtoMessage() {}
 
 func (x *SimpleOpenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[15]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +928,7 @@ func (x *SimpleOpenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenRequest.ProtoReflect.Descriptor instead.
 func (*SimpleOpenRequest) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{15}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SimpleOpenRequest) GetItem() *SimpleOpenInput {
@@ -947,7 +947,7 @@ type SimpleOpenResponse struct {
 
 func (x *SimpleOpenResponse) Reset() {
 	*x = SimpleOpenResponse{}
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[16]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -959,7 +959,7 @@ func (x *SimpleOpenResponse) String() string {
 func (*SimpleOpenResponse) ProtoMessage() {}
 
 func (x *SimpleOpenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_shireesh_com_api_config_v1_components_proto_msgTypes[16]
+	mi := &file_shireesh_com_config_v1_components_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -972,7 +972,7 @@ func (x *SimpleOpenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleOpenResponse.ProtoReflect.Descriptor instead.
 func (*SimpleOpenResponse) Descriptor() ([]byte, []int) {
-	return file_shireesh_com_api_config_v1_components_proto_rawDescGZIP(), []int{16}
+	return file_shireesh_com_config_v1_components_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SimpleOpenResponse) GetItem() *SimpleOpenOutput {
@@ -982,11 +982,11 @@ func (x *SimpleOpenResponse) GetItem() *SimpleOpenOutput {
 	return nil
 }
 
-var File_shireesh_com_api_config_v1_components_proto protoreflect.FileDescriptor
+var File_shireesh_com_config_v1_components_proto protoreflect.FileDescriptor
 
-const file_shireesh_com_api_config_v1_components_proto_rawDesc = "" +
+const file_shireesh_com_config_v1_components_proto_rawDesc = "" +
 	"\n" +
-	"+shireesh.com/api/config/v1/components.proto\x12\x1ashireesh.com.api.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"m\n" +
+	"'shireesh.com/config/v1/components.proto\x12\x1ashireesh.com.api.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"m\n" +
 	"\x11SimpleCreateInput\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value\x12\x14\n" +
 	"\x05flags\x18\x03 \x03(\bR\x05flags\x12\x16\n" +
@@ -1075,19 +1075,19 @@ const file_shireesh_com_api_config_v1_components_proto_rawDesc = "" +
 	"\x1ecom.shireesh.com.api.config.v1B\x0fComponentsProtoP\x01Z4github.com/gshireesh/terraform-provider-shireesh/api\xa2\x02\x04SCAC\xaa\x02\x1aShireesh.Com.Api.Config.V1\xca\x02\x1aShireesh\\Com\\Api\\Config\\V1\xe2\x02&Shireesh\\Com\\Api\\Config\\V1\\GPBMetadata\xea\x02\x1eShireesh::Com::Api::Config::V1b\x06proto3"
 
 var (
-	file_shireesh_com_api_config_v1_components_proto_rawDescOnce sync.Once
-	file_shireesh_com_api_config_v1_components_proto_rawDescData []byte
+	file_shireesh_com_config_v1_components_proto_rawDescOnce sync.Once
+	file_shireesh_com_config_v1_components_proto_rawDescData []byte
 )
 
-func file_shireesh_com_api_config_v1_components_proto_rawDescGZIP() []byte {
-	file_shireesh_com_api_config_v1_components_proto_rawDescOnce.Do(func() {
-		file_shireesh_com_api_config_v1_components_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_shireesh_com_api_config_v1_components_proto_rawDesc), len(file_shireesh_com_api_config_v1_components_proto_rawDesc)))
+func file_shireesh_com_config_v1_components_proto_rawDescGZIP() []byte {
+	file_shireesh_com_config_v1_components_proto_rawDescOnce.Do(func() {
+		file_shireesh_com_config_v1_components_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_shireesh_com_config_v1_components_proto_rawDesc), len(file_shireesh_com_config_v1_components_proto_rawDesc)))
 	})
-	return file_shireesh_com_api_config_v1_components_proto_rawDescData
+	return file_shireesh_com_config_v1_components_proto_rawDescData
 }
 
-var file_shireesh_com_api_config_v1_components_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
-var file_shireesh_com_api_config_v1_components_proto_goTypes = []any{
+var file_shireesh_com_config_v1_components_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_shireesh_com_config_v1_components_proto_goTypes = []any{
 	(*SimpleCreateInput)(nil),    // 0: shireesh.com.api.config.v1.SimpleCreateInput
 	(*SimpleCreateOutput)(nil),   // 1: shireesh.com.api.config.v1.SimpleCreateOutput
 	(*SimpleReadOutput)(nil),     // 2: shireesh.com.api.config.v1.SimpleReadOutput
@@ -1106,7 +1106,7 @@ var file_shireesh_com_api_config_v1_components_proto_goTypes = []any{
 	(*SimpleOpenRequest)(nil),    // 15: shireesh.com.api.config.v1.SimpleOpenRequest
 	(*SimpleOpenResponse)(nil),   // 16: shireesh.com.api.config.v1.SimpleOpenResponse
 }
-var file_shireesh_com_api_config_v1_components_proto_depIdxs = []int32{
+var file_shireesh_com_config_v1_components_proto_depIdxs = []int32{
 	0,  // 0: shireesh.com.api.config.v1.SimpleCreateRequest.item:type_name -> shireesh.com.api.config.v1.SimpleCreateInput
 	1,  // 1: shireesh.com.api.config.v1.SimpleCreateResponse.item:type_name -> shireesh.com.api.config.v1.SimpleCreateOutput
 	2,  // 2: shireesh.com.api.config.v1.SimpleReadResponse.item:type_name -> shireesh.com.api.config.v1.SimpleReadOutput
@@ -1129,26 +1129,26 @@ var file_shireesh_com_api_config_v1_components_proto_depIdxs = []int32{
 	0,  // [0:7] is the sub-list for field type_name
 }
 
-func init() { file_shireesh_com_api_config_v1_components_proto_init() }
-func file_shireesh_com_api_config_v1_components_proto_init() {
-	if File_shireesh_com_api_config_v1_components_proto != nil {
+func init() { file_shireesh_com_config_v1_components_proto_init() }
+func file_shireesh_com_config_v1_components_proto_init() {
+	if File_shireesh_com_config_v1_components_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_shireesh_com_api_config_v1_components_proto_rawDesc), len(file_shireesh_com_api_config_v1_components_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_shireesh_com_config_v1_components_proto_rawDesc), len(file_shireesh_com_config_v1_components_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_shireesh_com_api_config_v1_components_proto_goTypes,
-		DependencyIndexes: file_shireesh_com_api_config_v1_components_proto_depIdxs,
-		MessageInfos:      file_shireesh_com_api_config_v1_components_proto_msgTypes,
+		GoTypes:           file_shireesh_com_config_v1_components_proto_goTypes,
+		DependencyIndexes: file_shireesh_com_config_v1_components_proto_depIdxs,
+		MessageInfos:      file_shireesh_com_config_v1_components_proto_msgTypes,
 	}.Build()
-	File_shireesh_com_api_config_v1_components_proto = out.File
-	file_shireesh_com_api_config_v1_components_proto_goTypes = nil
-	file_shireesh_com_api_config_v1_components_proto_depIdxs = nil
+	File_shireesh_com_config_v1_components_proto = out.File
+	file_shireesh_com_config_v1_components_proto_goTypes = nil
+	file_shireesh_com_config_v1_components_proto_depIdxs = nil
 }

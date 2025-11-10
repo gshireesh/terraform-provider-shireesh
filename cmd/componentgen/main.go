@@ -47,7 +47,7 @@ func main() {
 	flag.StringVar(&serviceName, "service-name", "GrpcTerraformService", "service name to use in combined proto")
 	flag.StringVar(&protoPackage, "proto-package", "component", "protobuf package name (used when auth disabled)")
 	flag.StringVar(&goPackagePrefix, "go-package-prefix", "github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated", "go package prefix for option go_package (when auth disabled)")
-	flag.StringVar(&protoOut, "proto-out", "api/shireesh.com/api/config/v1", "output directory for protobuf schema + generated pb code (root-level for external import)")
+	flag.StringVar(&protoOut, "proto-out", "api/shireesh.com/config/v1", "output directory for protobuf schema + generated pb code (root-level for external import)")
 	flag.BoolVar(&authEnable, "auth", true, "enable carbon style auth swagger header override")
 	flag.StringVar(&authPackage, "auth-package", "shireesh.com.api.config.v1", "auth proto package")
 	// Updated default to module path so external repos can import github.com/gshireesh/terraform-provider-shireesh/api

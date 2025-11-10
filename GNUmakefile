@@ -29,7 +29,7 @@ proto:
 	buf generate
 
 REGEN_OUT=internal/provider/generated
-COMPONENT_PROTO=internal/provider/generated/components.proto
+COMPONENT_PROTO=api/shireesh.com/component/component.proto
 SERVICE_NAME?=GrpcTerraformService
 PROTO_PKG?=component
 GO_PKG_PREFIX?=github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated
@@ -45,11 +45,11 @@ COMPONENTGEN=go run ./cmd/componentgen $(HTTP_FLAG) -service-name=$(SERVICE_NAME
 
 .PHONY: clean
 clean:
-	rm -rf docs generated gen $(REGEN_OUT) || true
+	rm -rf docs generated gen $(REGEN_OUT) api/shireesh.com || true
 
 .PHONY: proto-fmt
 proto-fmt:
-	buf format -w $(COMPONENT_PROTO)
+	cd api; buf format -w $(COMPONENT_PROTO)
 
 .PHONY: docs
 docs: gen-examples
@@ -64,7 +64,7 @@ gen-examples:
 .PHONY: generate regen
 generate: clean
 	$(COMPONENTGEN)
-	buf generate
+	cd api; buf generate
 	$(MAKE) proto-fmt
 	go mod tidy
 	$(MAKE) gen-examples

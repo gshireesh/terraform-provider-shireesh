@@ -29,6 +29,7 @@ func main() {
 		serviceName     string
 		protoPackage    string
 		goPackagePrefix string
+		protoOut        string // new: where to place proto + generated pb files (root api directory)
 		// auth override flags
 		authEnable     bool
 		authPackage    string
@@ -41,14 +42,16 @@ func main() {
 		authWriteScope string
 	)
 	flag.StringVar(&providerName, "provider-name", "shireesh", "provider name to use in combined proto")
-	flag.StringVar(&outDir, "out", "internal/provider/generated", "output directory for generated files")
+	flag.StringVar(&outDir, "out", "internal/provider/generated", "output directory for generated files (non-proto)")
 	flag.BoolVar(&includeHTTP, "http", true, "include grpc-gateway HTTP annotations in proto")
 	flag.StringVar(&serviceName, "service-name", "GrpcTerraformService", "service name to use in combined proto")
-	flag.StringVar(&protoPackage, "proto-package", "component", "protobuf package name")
-	flag.StringVar(&goPackagePrefix, "go-package-prefix", "github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated", "go package prefix for option go_package")
+	flag.StringVar(&protoPackage, "proto-package", "component", "protobuf package name (used when auth disabled)")
+	flag.StringVar(&goPackagePrefix, "go-package-prefix", "github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated", "go package prefix for option go_package (when auth disabled)")
+	flag.StringVar(&protoOut, "proto-out", "api/shireesh.com/api/config/v1", "output directory for protobuf schema + generated pb code (root-level for external import)")
 	flag.BoolVar(&authEnable, "auth", true, "enable carbon style auth swagger header override")
-	flag.StringVar(&authPackage, "auth-package", "shireesh.com.api.carbon.v1", "auth proto package")
-	flag.StringVar(&authGoPackage, "auth-go-package", "shireesh.com/api/carbon/v1", "auth go_package override")
+	flag.StringVar(&authPackage, "auth-package", "shireesh.com.api.config.v1", "auth proto package")
+	// Updated default to module path so external repos can import github.com/gshireesh/terraform-provider-shireesh/api
+	flag.StringVar(&authGoPackage, "auth-go-package", "github.com/gshireesh/terraform-provider-shireesh/api", "auth go_package override (module import path for generated pb)")
 	flag.StringVar(&authTitle, "auth-title", "Carbon API", "auth swagger title")
 	flag.StringVar(&authVersion, "auth-version", "1.0.0", "auth swagger version")
 	flag.StringVar(&authHost, "auth-host", "carbon.shireesh.com", "auth swagger host")
@@ -73,7 +76,7 @@ func main() {
 		authCfg = &generator.AuthConfig{Title: authTitle, Version: authVersion, Host: authHost, TokenURL: authTokenURL, ReadScope: authReadScope, WriteScope: authWriteScope, Package: authPackage, GoPackage: authGoPackage}
 	}
 
-	if err := generator.GenerateAllWithAuth(specs, outDir, filepath.Join("components", ".tags"), includeHTTP, serviceName, protoPackage, goPackagePrefix, authCfg); err != nil {
+	if err := generator.GenerateAllWithAuthProto(specs, outDir, filepath.Join("components", ".tags"), includeHTTP, serviceName, protoPackage, goPackagePrefix, protoOut, authCfg); err != nil {
 		log.Fatalf("generate: %v", err)
 	}
 
@@ -95,5 +98,5 @@ func main() {
 		log.Fatalf("write provider_name: %v", err)
 	}
 
-	fmt.Printf("generated %d components into %s (http=%v service=%s proto_pkg=%s go_pkg_prefix=%s provider=%s)\n", len(specs), outDir, includeHTTP, serviceName, protoPackage, goPackagePrefix, providerName)
+	fmt.Printf("generated %d components into %s (proto_out=%s http=%v service=%s proto_pkg=%s go_pkg_prefix=%s provider=%s)\n", len(specs), outDir, protoOut, includeHTTP, serviceName, protoPackage, goPackagePrefix, providerName)
 }

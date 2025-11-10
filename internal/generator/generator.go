@@ -15,11 +15,16 @@ import (
 // GenerateAll orchestrates tag loading, code generation, proto assembly and registry/defaults.
 // This file kept small (<500 lines) by delegating to other modules.
 func GenerateAll(specs []component.Spec, outDir string, tagFile string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string) error {
-	return GenerateAllWithAuth(specs, outDir, tagFile, includeHTTP, serviceName, protoPackage, goPackagePrefix, nil)
+	return GenerateAllWithAuthProto(specs, outDir, tagFile, includeHTTP, serviceName, protoPackage, goPackagePrefix, "api", nil)
 }
 
-// GenerateAllWithAuth same as GenerateAll but takes explicit AuthConfig override.
+// Original signature (without protoOut) retained for compatibility.
 func GenerateAllWithAuth(specs []component.Spec, outDir string, tagFile string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string, authOverride *AuthConfig) error {
+	return GenerateAllWithAuthProto(specs, outDir, tagFile, includeHTTP, serviceName, protoPackage, goPackagePrefix, "api", authOverride)
+}
+
+// New signature with protoOut explicit.
+func GenerateAllWithAuthProto(specs []component.Spec, outDir string, tagFile string, includeHTTP bool, serviceName string, protoPackage string, goPackagePrefix string, protoOut string, authOverride *AuthConfig) error {
 	// Load or initialize tags
 	ts := NewTagStore()
 	if b, err := os.ReadFile(tagFile); err == nil {
@@ -45,14 +50,19 @@ func GenerateAllWithAuth(specs []component.Spec, outDir string, tagFile string, 
 		}
 	}
 
-	// proto output dir
-	protoOutDir := outDir + "/api"
+	// proto output dir now root-level configurable
+	protoOutDir := protoOut
 	if err := os.MkdirAll(protoOutDir, 0o755); err != nil {
 		return fmt.Errorf("create proto out dir: %w", err)
 	}
 
 	// Clean legacy proto files
 	CleanLegacyProtoFiles(protoOutDir)
+	// Also remove old internal path if different
+	legacyInternalAPI := filepath.Join("internal", "provider", "generated", "api")
+	if protoOutDir != legacyInternalAPI {
+		_ = os.RemoveAll(legacyInternalAPI)
+	}
 	// Load optional auth OpenAPI config from spec directory or override
 	authCfg := authOverride
 	if authCfg == nil {

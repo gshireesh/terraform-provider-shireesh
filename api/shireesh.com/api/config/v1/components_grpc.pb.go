@@ -4,9 +4,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: internal/provider/generated/api/components.proto
+// source: shireesh.com/api/config/v1/components.proto
 
-package v1
+package api
 
 import (
 	context "context"
@@ -21,10 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GrpcTerraformService_SimpleCreate_FullMethodName = "/shireesh.com.api.carbon.v1.GrpcTerraformService/SimpleCreate"
-	GrpcTerraformService_SimpleRead_FullMethodName   = "/shireesh.com.api.carbon.v1.GrpcTerraformService/SimpleRead"
-	GrpcTerraformService_SimpleUpdate_FullMethodName = "/shireesh.com.api.carbon.v1.GrpcTerraformService/SimpleUpdate"
-	GrpcTerraformService_SimpleDelete_FullMethodName = "/shireesh.com.api.carbon.v1.GrpcTerraformService/SimpleDelete"
+	GrpcTerraformService_SimpleCreate_FullMethodName = "/shireesh.com.api.config.v1.GrpcTerraformService/SimpleCreate"
+	GrpcTerraformService_SimpleRead_FullMethodName   = "/shireesh.com.api.config.v1.GrpcTerraformService/SimpleRead"
+	GrpcTerraformService_SimpleUpdate_FullMethodName = "/shireesh.com.api.config.v1.GrpcTerraformService/SimpleUpdate"
+	GrpcTerraformService_SimpleDelete_FullMethodName = "/shireesh.com.api.config.v1.GrpcTerraformService/SimpleDelete"
 )
 
 // GrpcTerraformServiceClient is the client API for GrpcTerraformService service.
@@ -216,7 +216,7 @@ func _GrpcTerraformService_SimpleDelete_Handler(srv interface{}, ctx context.Con
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GrpcTerraformService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "shireesh.com.api.carbon.v1.GrpcTerraformService",
+	ServiceName: "shireesh.com.api.config.v1.GrpcTerraformService",
 	HandlerType: (*GrpcTerraformServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -237,5 +237,5 @@ var GrpcTerraformService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/provider/generated/api/components.proto",
+	Metadata: "shireesh.com/api/config/v1/components.proto",
 }

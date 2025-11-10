@@ -4,7 +4,7 @@ package generated
 import (
 	"context"
 	// grpc client imports
-	api "github.com/gshireesh/terraform-provider-shireesh/internal/provider/generated/api"
+	api "github.com/gshireesh/terraform-provider-shireesh/api/shireesh.com/api/config/v1"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"

@@ -986,7 +986,7 @@ var File_shireesh_com_config_v1_components_proto protoreflect.FileDescriptor
 
 const file_shireesh_com_config_v1_components_proto_rawDesc = "" +
 	"\n" +
-	"'shireesh.com/config/v1/components.proto\x12\x1ashireesh.com.api.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"m\n" +
+	"'shireesh.com/config/v1/components.proto\x12\x16shireesh.com.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"m\n" +
 	"\x11SimpleCreateInput\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value\x12\x14\n" +
 	"\x05flags\x18\x03 \x03(\bR\x05flags\x12\x16\n" +
@@ -1025,35 +1025,35 @@ const file_shireesh_com_config_v1_components_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value\x12\x14\n" +
 	"\x05flags\x18\x03 \x03(\bR\x05flags\x12\x16\n" +
 	"\x06counts\x18\x04 \x03(\x01R\x06counts\x12\x14\n" +
-	"\x05score\x18\x05 \x01(\x03R\x05score\"X\n" +
-	"\x13SimpleCreateRequest\x12A\n" +
-	"\x04item\x18\x01 \x01(\v2-.shireesh.com.api.config.v1.SimpleCreateInputR\x04item\"Z\n" +
-	"\x14SimpleCreateResponse\x12B\n" +
-	"\x04item\x18\x01 \x01(\v2..shireesh.com.api.config.v1.SimpleCreateOutputR\x04item\"#\n" +
+	"\x05score\x18\x05 \x01(\x03R\x05score\"T\n" +
+	"\x13SimpleCreateRequest\x12=\n" +
+	"\x04item\x18\x01 \x01(\v2).shireesh.com.config.v1.SimpleCreateInputR\x04item\"V\n" +
+	"\x14SimpleCreateResponse\x12>\n" +
+	"\x04item\x18\x01 \x01(\v2*.shireesh.com.config.v1.SimpleCreateOutputR\x04item\"#\n" +
 	"\x11SimpleReadRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"V\n" +
-	"\x12SimpleReadResponse\x12@\n" +
-	"\x04item\x18\x01 \x01(\v2,.shireesh.com.api.config.v1.SimpleReadOutputR\x04item\"h\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"R\n" +
+	"\x12SimpleReadResponse\x12<\n" +
+	"\x04item\x18\x01 \x01(\v2(.shireesh.com.config.v1.SimpleReadOutputR\x04item\"d\n" +
 	"\x13SimpleUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12A\n" +
-	"\x04item\x18\x02 \x01(\v2-.shireesh.com.api.config.v1.SimpleUpdateInputR\x04item\"Z\n" +
-	"\x14SimpleUpdateResponse\x12B\n" +
-	"\x04item\x18\x01 \x01(\v2..shireesh.com.api.config.v1.SimpleUpdateOutputR\x04item\"%\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12=\n" +
+	"\x04item\x18\x02 \x01(\v2).shireesh.com.config.v1.SimpleUpdateInputR\x04item\"V\n" +
+	"\x14SimpleUpdateResponse\x12>\n" +
+	"\x04item\x18\x01 \x01(\v2*.shireesh.com.config.v1.SimpleUpdateOutputR\x04item\"%\n" +
 	"\x13SimpleDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
 	"\x14SimpleDeleteResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"T\n" +
-	"\x11SimpleOpenRequest\x12?\n" +
-	"\x04item\x18\x01 \x01(\v2+.shireesh.com.api.config.v1.SimpleOpenInputR\x04item\"V\n" +
-	"\x12SimpleOpenResponse\x12@\n" +
-	"\x04item\x18\x01 \x01(\v2,.shireesh.com.api.config.v1.SimpleOpenOutputR\x04item2\xcb\x04\n" +
-	"\x14GrpcTerraformService\x12\x8b\x01\n" +
-	"\fSimpleCreate\x12/.shireesh.com.api.config.v1.SimpleCreateRequest\x1a0.shireesh.com.api.config.v1.SimpleCreateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x04item\"\n" +
-	"/v1/simple\x12\x84\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"P\n" +
+	"\x11SimpleOpenRequest\x12;\n" +
+	"\x04item\x18\x01 \x01(\v2'.shireesh.com.config.v1.SimpleOpenInputR\x04item\"R\n" +
+	"\x12SimpleOpenResponse\x12<\n" +
+	"\x04item\x18\x01 \x01(\v2(.shireesh.com.config.v1.SimpleOpenOutputR\x04item2\xaa\x04\n" +
+	"\x14GrpcTerraformService\x12\x83\x01\n" +
+	"\fSimpleCreate\x12+.shireesh.com.config.v1.SimpleCreateRequest\x1a,.shireesh.com.config.v1.SimpleCreateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x04item\"\n" +
+	"/v1/simple\x12|\n" +
 	"\n" +
-	"SimpleRead\x12-.shireesh.com.api.config.v1.SimpleReadRequest\x1a..shireesh.com.api.config.v1.SimpleReadResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/simple/{id}\x12\x90\x01\n" +
-	"\fSimpleUpdate\x12/.shireesh.com.api.config.v1.SimpleUpdateRequest\x1a0.shireesh.com.api.config.v1.SimpleUpdateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x04item\x1a\x0f/v1/simple/{id}\x12\x8a\x01\n" +
-	"\fSimpleDelete\x12/.shireesh.com.api.config.v1.SimpleDeleteRequest\x1a0.shireesh.com.api.config.v1.SimpleDeleteResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/simple/{id}B\xdb\x03\x92A\xe3\x01\x12\x13\n" +
+	"SimpleRead\x12).shireesh.com.config.v1.SimpleReadRequest\x1a*.shireesh.com.config.v1.SimpleReadResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/simple/{id}\x12\x88\x01\n" +
+	"\fSimpleUpdate\x12+.shireesh.com.config.v1.SimpleUpdateRequest\x1a,.shireesh.com.config.v1.SimpleUpdateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x04item\x1a\x0f/v1/simple/{id}\x12\x82\x01\n" +
+	"\fSimpleDelete\x12+.shireesh.com.config.v1.SimpleDeleteRequest\x1a,.shireesh.com.config.v1.SimpleDeleteResponse\"\x17\x82\xd3\xe4\x93\x02\x11*\x0f/v1/simple/{id}B\xc5\x03\x92A\xe3\x01\x12\x13\n" +
 	"\n" +
 	"Carbon API2\x051.0.0\x1a\x13carbon.shireesh.comZ\x8b\x01\n" +
 	"!\n" +
@@ -1072,7 +1072,7 @@ const file_shireesh_com_config_v1_components_proto_rawDesc = "" +
 	"\x06oauth2\x12\r\n" +
 	"\x04read\n" +
 	"\x05write\n" +
-	"\x1ecom.shireesh.com.api.config.v1B\x0fComponentsProtoP\x01Z4github.com/gshireesh/terraform-provider-shireesh/api\xa2\x02\x04SCAC\xaa\x02\x1aShireesh.Com.Api.Config.V1\xca\x02\x1aShireesh\\Com\\Api\\Config\\V1\xe2\x02&Shireesh\\Com\\Api\\Config\\V1\\GPBMetadata\xea\x02\x1eShireesh::Com::Api::Config::V1b\x06proto3"
+	"\x1acom.shireesh.com.config.v1B\x0fComponentsProtoP\x01Z4github.com/gshireesh/terraform-provider-shireesh/api\xa2\x02\x03SCC\xaa\x02\x16Shireesh.Com.Config.V1\xca\x02\x16Shireesh\\Com\\Config\\V1\xe2\x02\"Shireesh\\Com\\Config\\V1\\GPBMetadata\xea\x02\x19Shireesh::Com::Config::V1b\x06proto3"
 
 var (
 	file_shireesh_com_config_v1_components_proto_rawDescOnce sync.Once
@@ -1088,40 +1088,40 @@ func file_shireesh_com_config_v1_components_proto_rawDescGZIP() []byte {
 
 var file_shireesh_com_config_v1_components_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_shireesh_com_config_v1_components_proto_goTypes = []any{
-	(*SimpleCreateInput)(nil),    // 0: shireesh.com.api.config.v1.SimpleCreateInput
-	(*SimpleCreateOutput)(nil),   // 1: shireesh.com.api.config.v1.SimpleCreateOutput
-	(*SimpleReadOutput)(nil),     // 2: shireesh.com.api.config.v1.SimpleReadOutput
-	(*SimpleUpdateInput)(nil),    // 3: shireesh.com.api.config.v1.SimpleUpdateInput
-	(*SimpleUpdateOutput)(nil),   // 4: shireesh.com.api.config.v1.SimpleUpdateOutput
-	(*SimpleOpenInput)(nil),      // 5: shireesh.com.api.config.v1.SimpleOpenInput
-	(*SimpleOpenOutput)(nil),     // 6: shireesh.com.api.config.v1.SimpleOpenOutput
-	(*SimpleCreateRequest)(nil),  // 7: shireesh.com.api.config.v1.SimpleCreateRequest
-	(*SimpleCreateResponse)(nil), // 8: shireesh.com.api.config.v1.SimpleCreateResponse
-	(*SimpleReadRequest)(nil),    // 9: shireesh.com.api.config.v1.SimpleReadRequest
-	(*SimpleReadResponse)(nil),   // 10: shireesh.com.api.config.v1.SimpleReadResponse
-	(*SimpleUpdateRequest)(nil),  // 11: shireesh.com.api.config.v1.SimpleUpdateRequest
-	(*SimpleUpdateResponse)(nil), // 12: shireesh.com.api.config.v1.SimpleUpdateResponse
-	(*SimpleDeleteRequest)(nil),  // 13: shireesh.com.api.config.v1.SimpleDeleteRequest
-	(*SimpleDeleteResponse)(nil), // 14: shireesh.com.api.config.v1.SimpleDeleteResponse
-	(*SimpleOpenRequest)(nil),    // 15: shireesh.com.api.config.v1.SimpleOpenRequest
-	(*SimpleOpenResponse)(nil),   // 16: shireesh.com.api.config.v1.SimpleOpenResponse
+	(*SimpleCreateInput)(nil),    // 0: shireesh.com.config.v1.SimpleCreateInput
+	(*SimpleCreateOutput)(nil),   // 1: shireesh.com.config.v1.SimpleCreateOutput
+	(*SimpleReadOutput)(nil),     // 2: shireesh.com.config.v1.SimpleReadOutput
+	(*SimpleUpdateInput)(nil),    // 3: shireesh.com.config.v1.SimpleUpdateInput
+	(*SimpleUpdateOutput)(nil),   // 4: shireesh.com.config.v1.SimpleUpdateOutput
+	(*SimpleOpenInput)(nil),      // 5: shireesh.com.config.v1.SimpleOpenInput
+	(*SimpleOpenOutput)(nil),     // 6: shireesh.com.config.v1.SimpleOpenOutput
+	(*SimpleCreateRequest)(nil),  // 7: shireesh.com.config.v1.SimpleCreateRequest
+	(*SimpleCreateResponse)(nil), // 8: shireesh.com.config.v1.SimpleCreateResponse
+	(*SimpleReadRequest)(nil),    // 9: shireesh.com.config.v1.SimpleReadRequest
+	(*SimpleReadResponse)(nil),   // 10: shireesh.com.config.v1.SimpleReadResponse
+	(*SimpleUpdateRequest)(nil),  // 11: shireesh.com.config.v1.SimpleUpdateRequest
+	(*SimpleUpdateResponse)(nil), // 12: shireesh.com.config.v1.SimpleUpdateResponse
+	(*SimpleDeleteRequest)(nil),  // 13: shireesh.com.config.v1.SimpleDeleteRequest
+	(*SimpleDeleteResponse)(nil), // 14: shireesh.com.config.v1.SimpleDeleteResponse
+	(*SimpleOpenRequest)(nil),    // 15: shireesh.com.config.v1.SimpleOpenRequest
+	(*SimpleOpenResponse)(nil),   // 16: shireesh.com.config.v1.SimpleOpenResponse
 }
 var file_shireesh_com_config_v1_components_proto_depIdxs = []int32{
-	0,  // 0: shireesh.com.api.config.v1.SimpleCreateRequest.item:type_name -> shireesh.com.api.config.v1.SimpleCreateInput
-	1,  // 1: shireesh.com.api.config.v1.SimpleCreateResponse.item:type_name -> shireesh.com.api.config.v1.SimpleCreateOutput
-	2,  // 2: shireesh.com.api.config.v1.SimpleReadResponse.item:type_name -> shireesh.com.api.config.v1.SimpleReadOutput
-	3,  // 3: shireesh.com.api.config.v1.SimpleUpdateRequest.item:type_name -> shireesh.com.api.config.v1.SimpleUpdateInput
-	4,  // 4: shireesh.com.api.config.v1.SimpleUpdateResponse.item:type_name -> shireesh.com.api.config.v1.SimpleUpdateOutput
-	5,  // 5: shireesh.com.api.config.v1.SimpleOpenRequest.item:type_name -> shireesh.com.api.config.v1.SimpleOpenInput
-	6,  // 6: shireesh.com.api.config.v1.SimpleOpenResponse.item:type_name -> shireesh.com.api.config.v1.SimpleOpenOutput
-	7,  // 7: shireesh.com.api.config.v1.GrpcTerraformService.SimpleCreate:input_type -> shireesh.com.api.config.v1.SimpleCreateRequest
-	9,  // 8: shireesh.com.api.config.v1.GrpcTerraformService.SimpleRead:input_type -> shireesh.com.api.config.v1.SimpleReadRequest
-	11, // 9: shireesh.com.api.config.v1.GrpcTerraformService.SimpleUpdate:input_type -> shireesh.com.api.config.v1.SimpleUpdateRequest
-	13, // 10: shireesh.com.api.config.v1.GrpcTerraformService.SimpleDelete:input_type -> shireesh.com.api.config.v1.SimpleDeleteRequest
-	8,  // 11: shireesh.com.api.config.v1.GrpcTerraformService.SimpleCreate:output_type -> shireesh.com.api.config.v1.SimpleCreateResponse
-	10, // 12: shireesh.com.api.config.v1.GrpcTerraformService.SimpleRead:output_type -> shireesh.com.api.config.v1.SimpleReadResponse
-	12, // 13: shireesh.com.api.config.v1.GrpcTerraformService.SimpleUpdate:output_type -> shireesh.com.api.config.v1.SimpleUpdateResponse
-	14, // 14: shireesh.com.api.config.v1.GrpcTerraformService.SimpleDelete:output_type -> shireesh.com.api.config.v1.SimpleDeleteResponse
+	0,  // 0: shireesh.com.config.v1.SimpleCreateRequest.item:type_name -> shireesh.com.config.v1.SimpleCreateInput
+	1,  // 1: shireesh.com.config.v1.SimpleCreateResponse.item:type_name -> shireesh.com.config.v1.SimpleCreateOutput
+	2,  // 2: shireesh.com.config.v1.SimpleReadResponse.item:type_name -> shireesh.com.config.v1.SimpleReadOutput
+	3,  // 3: shireesh.com.config.v1.SimpleUpdateRequest.item:type_name -> shireesh.com.config.v1.SimpleUpdateInput
+	4,  // 4: shireesh.com.config.v1.SimpleUpdateResponse.item:type_name -> shireesh.com.config.v1.SimpleUpdateOutput
+	5,  // 5: shireesh.com.config.v1.SimpleOpenRequest.item:type_name -> shireesh.com.config.v1.SimpleOpenInput
+	6,  // 6: shireesh.com.config.v1.SimpleOpenResponse.item:type_name -> shireesh.com.config.v1.SimpleOpenOutput
+	7,  // 7: shireesh.com.config.v1.GrpcTerraformService.SimpleCreate:input_type -> shireesh.com.config.v1.SimpleCreateRequest
+	9,  // 8: shireesh.com.config.v1.GrpcTerraformService.SimpleRead:input_type -> shireesh.com.config.v1.SimpleReadRequest
+	11, // 9: shireesh.com.config.v1.GrpcTerraformService.SimpleUpdate:input_type -> shireesh.com.config.v1.SimpleUpdateRequest
+	13, // 10: shireesh.com.config.v1.GrpcTerraformService.SimpleDelete:input_type -> shireesh.com.config.v1.SimpleDeleteRequest
+	8,  // 11: shireesh.com.config.v1.GrpcTerraformService.SimpleCreate:output_type -> shireesh.com.config.v1.SimpleCreateResponse
+	10, // 12: shireesh.com.config.v1.GrpcTerraformService.SimpleRead:output_type -> shireesh.com.config.v1.SimpleReadResponse
+	12, // 13: shireesh.com.config.v1.GrpcTerraformService.SimpleUpdate:output_type -> shireesh.com.config.v1.SimpleUpdateResponse
+	14, // 14: shireesh.com.config.v1.GrpcTerraformService.SimpleDelete:output_type -> shireesh.com.config.v1.SimpleDeleteResponse
 	11, // [11:15] is the sub-list for method output_type
 	7,  // [7:11] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name

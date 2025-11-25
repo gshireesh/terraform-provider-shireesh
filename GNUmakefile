@@ -1,29 +1,37 @@
-default: fmt lint install generate
+default: generate fmt lint install
 
+# help: ## Show help for all targets.
+help:
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage: make [target]\n\nTargets:\n"} /^# [a-zA-Z_-]+:.*##/ { gsub(/^# /, "", $$1); printf "  %-24s %s\n", $$1, $$2 } /^##@/ { printf "\n%s\n", substr($$0,5)} ' $(MAKEFILE_LIST)
+
+# build: ## Build all Go packages.
 build:
 	go build -v ./...
 
+# install: ## Install the provider binary to your GOPATH/bin.
 install: build
 	go install -v ./...
 
+# lint: ## Run golangci-lint across the repo.
 lint:
 	golangci-lint run
 
-#generate:
-#	cd tools; go generate ./...
-
+# fmt: ## Format Go code using gofmt.
 fmt:
 	gofmt -s -w -e .
 
+# test: ## Run unit tests with coverage.
 test:
 	go test -v -cover -timeout=120s -parallel=10 ./...
 
+# testacc: ## Run acceptance tests (requires TF_ACC=1 and dependencies).
 testacc:
 	TF_ACC=1 go test -v -cover -timeout 120m ./...
 
 
 PROTO_DIR=internal/provider/generated
 
+# proto: ## Generate code via buf for all configured APIs.
 .PHONY: proto
 proto:
 	buf generate
@@ -43,24 +51,29 @@ endif
 
 COMPONENTGEN=go run ./cmd/componentgen $(HTTP_FLAG) -service-name=$(SERVICE_NAME) -proto-package=$(PROTO_PKG) -go-package-prefix=$(GO_PKG_PREFIX)
 
+# clean: ## Remove generated artifacts and build outputs.
 .PHONY: clean
 clean:
 	rm -rf docs generated gen $(REGEN_OUT) api/shireesh.com || true
 
+# proto-fmt: ## Format protobufs using buf format.
 .PHONY: proto-fmt
 proto-fmt:
 	cd api; buf format -w $(COMPONENT_PROTO)
 
+# docs: ## Generate docs (sections + site), depends on examples.
 .PHONY: docs
 docs: gen-examples
 	cd tools; go generate ./...
 	go run ./cmd/docsectioner
 
+# gen-examples: ## Generate Terraform examples.
 .PHONY: gen-examples
 gen-examples:
 	go run ./cmd/examplergen
 
-# Unified generate pipeline (previously 'regen').
+# generate: ## Unified code generation pipeline (component, buf, fmt, tidy, examples, docs).
+# regen: ## Backwards-compatible alias for `generate`.
 .PHONY: generate regen
 generate: clean
 	$(COMPONENTGEN)
@@ -70,12 +83,9 @@ generate: clean
 	$(MAKE) gen-examples
 	$(MAKE) docs
 
-# Backwards-compatible alias
 regen: generate
 
-.PHONY: fmt lint test testacc build install generate regen clean docs gen-examples proto proto-fmt tools
-
-
+.PHONY: fmt lint test testacc build install generate regen clean docs gen-examples proto proto-fmt tools help
 
 BINARY_NAME=terraform-provider-shireesh
 VERSION=0.0.1-pre
@@ -91,6 +101,7 @@ else ifeq ($(ARCH),aarch64)
 endif
 TF_PLUGIN_DIR = $(OS)_$(ARCH)
 
+# build-local: ## Build and install the provider binary into local Terraform plugin dir.
 .PHONY: build-local
 build-local:
 	# Create the appropriate directory and copy the built binary

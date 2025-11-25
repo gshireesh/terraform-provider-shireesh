@@ -53,36 +53,43 @@ option go_package = "{{ .GoPackage }}";
 {{ range .Messages }}
 message {{ .Name }} {
 {{ range .Fields }}	{{ if .Repeated }}repeated {{ end }}{{ .Type }} {{ .Name }} = {{ .Tag }}; // {{ .Comment }}
-{{ end }}
-}
+{{ end }}}
 {{ end }}
 {{ end }}
 
 // Combined Service
 service {{ .Service }} {
-{{ range .Specs }}
-{{ if .HasResource }}	rpc {{ .Spec.Name | Pascal }}Create({{ .Spec.Name | Pascal }}CreateRequest) returns ({{ .Spec.Name | Pascal }}CreateResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { post: "{{ HttpCreate .Spec.Name }}" body: "item" };
-	}{{ else }};{{ end }}
-	rpc {{ .Spec.Name | Pascal }}Read({{ .Spec.Name | Pascal }}ReadRequest) returns ({{ .Spec.Name | Pascal }}ReadResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { get: "{{ HttpRead .Spec.Name }}" };
-	}{{ else }};{{ end }}
-	rpc {{ .Spec.Name | Pascal }}Update({{ .Spec.Name | Pascal }}UpdateRequest) returns ({{ .Spec.Name | Pascal }}UpdateResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { put: "{{ HttpUpdate .Spec.Name }}" body: "item" };
-	}{{ else }};{{ end }}
-	rpc {{ .Spec.Name | Pascal }}Delete({{ .Spec.Name | Pascal }}DeleteRequest) returns ({{ .Spec.Name | Pascal }}DeleteResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { delete: "{{ HttpDelete .Spec.Name }}" };
-	}{{ else }};{{ end }}
-{{ end }}
-{{ if .HasDataSource }}	rpc {{ .Spec.Name | Pascal }}DataSourceRead({{ .Spec.Name | Pascal }}DataSourceReadRequest) returns ({{ .Spec.Name | Pascal }}DataSourceReadResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { get: "{{ HttpDsRead .Spec.Name }}" };
-	}{{ else }};{{ end }}
-{{ end }}
-{{ if .HasEphemeral }}	rpc {{ .Spec.Name | Pascal }}Open({{ .Spec.Name | Pascal }}OpenRequest) returns ({{ .Spec.Name | Pascal }}OpenResponse) {{ if and $.HTTP .Spec.Gateway }}{
-		option (google.api.http) = { post: "{{ HttpOpen .Spec.Name }}" body: "item" };
-	}{{ else }};{{ end }}
-{{ end }}
-{{ end }}
+{{- range .Specs }}
+{{- if .HasResource }}
+    rpc {{ .Spec.Name | Pascal }}Create({{ .Spec.Name | Pascal }}CreateRequest) returns ({{ .Spec.Name | Pascal }}CreateResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { post: "{{ HttpCreate .Spec.Name }}" body: "item" };
+    }{{ else }};{{ end }}
+
+    rpc {{ .Spec.Name | Pascal }}Read({{ .Spec.Name | Pascal }}ReadRequest) returns ({{ .Spec.Name | Pascal }}ReadResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { get: "{{ HttpRead .Spec.Name }}" };
+    }{{ else }};{{ end }}
+
+    rpc {{ .Spec.Name | Pascal }}Update({{ .Spec.Name | Pascal }}UpdateRequest) returns ({{ .Spec.Name | Pascal }}UpdateResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { put: "{{ HttpUpdate .Spec.Name }}" body: "item" };
+    }{{ else }};{{ end }}
+
+    rpc {{ .Spec.Name | Pascal }}Delete({{ .Spec.Name | Pascal }}DeleteRequest) returns ({{ .Spec.Name | Pascal }}DeleteResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { delete: "{{ HttpDelete .Spec.Name }}" };
+    }{{ else }};{{ end }}
+{{- end }}
+
+{{- if .HasDataSource }}
+    rpc {{ .Spec.Name | Pascal }}DataSourceRead({{ .Spec.Name | Pascal }}DataSourceReadRequest) returns ({{ .Spec.Name | Pascal }}DataSourceReadResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { get: "{{ HttpDsRead .Spec.Name }}" };
+    }{{ else }};{{ end }}
+{{- end }}
+
+{{- if .HasEphemeral }}
+    rpc {{ .Spec.Name | Pascal }}Open({{ .Spec.Name | Pascal }}OpenRequest) returns ({{ .Spec.Name | Pascal }}OpenResponse){{ if and $.HTTP .Spec.Gateway }} {
+        option (google.api.http) = { post: "{{ HttpOpen .Spec.Name }}" body: "item" };
+    }{{ else }};{{ end }}
+{{- end }}
+{{- end }}
 }
 `
 

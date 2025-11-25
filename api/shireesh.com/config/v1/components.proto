@@ -26,7 +26,6 @@ message SimpleCreateInput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleCreateOutput {
@@ -35,7 +34,6 @@ message SimpleCreateOutput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleReadOutput {
@@ -44,7 +42,6 @@ message SimpleReadOutput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleUpdateInput {
@@ -52,7 +49,6 @@ message SimpleUpdateInput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleUpdateOutput {
@@ -61,7 +57,6 @@ message SimpleUpdateOutput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleOpenInput {
@@ -69,7 +64,6 @@ message SimpleOpenInput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleOpenOutput {
@@ -78,79 +72,66 @@ message SimpleOpenOutput {
 	repeated bool flags = 3; // Boolean flags
 	repeated double counts = 4; // Numeric counts
 	int64 score = 5; // Numeric counts
-
 }
 
 message SimpleCreateRequest {
 	SimpleCreateInput item = 1; // 
-
 }
 
 message SimpleCreateResponse {
 	SimpleCreateOutput item = 1; // 
-
 }
 
 message SimpleReadRequest {
 	string id = 1; // 
-
 }
 
 message SimpleReadResponse {
 	SimpleReadOutput item = 1; // 
-
 }
 
 message SimpleUpdateRequest {
 	string id = 1; // 
 	SimpleUpdateInput item = 2; // 
-
 }
 
 message SimpleUpdateResponse {
 	SimpleUpdateOutput item = 1; // 
-
 }
 
 message SimpleDeleteRequest {
 	string id = 1; // 
-
 }
 
 message SimpleDeleteResponse {
 	bool success = 1; // 
-
 }
 
 message SimpleOpenRequest {
 	SimpleOpenInput item = 1; // 
-
 }
 
 message SimpleOpenResponse {
 	SimpleOpenOutput item = 1; // 
-
 }
 
 
 
 // Combined Service
 service GrpcTerraformService {
+    rpc SimpleCreate(SimpleCreateRequest) returns (SimpleCreateResponse) {
+        option (google.api.http) = { post: "/v1/simple" body: "item" };
+    }
 
-	rpc SimpleCreate(SimpleCreateRequest) returns (SimpleCreateResponse) {
-		option (google.api.http) = { post: "/v1/simple" body: "item" };
-	}
-	rpc SimpleRead(SimpleReadRequest) returns (SimpleReadResponse) {
-		option (google.api.http) = { get: "/v1/simple/{id}" };
-	}
-	rpc SimpleUpdate(SimpleUpdateRequest) returns (SimpleUpdateResponse) {
-		option (google.api.http) = { put: "/v1/simple/{id}" body: "item" };
-	}
-	rpc SimpleDelete(SimpleDeleteRequest) returns (SimpleDeleteResponse) {
-		option (google.api.http) = { delete: "/v1/simple/{id}" };
-	}
+    rpc SimpleRead(SimpleReadRequest) returns (SimpleReadResponse) {
+        option (google.api.http) = { get: "/v1/simple/{id}" };
+    }
 
+    rpc SimpleUpdate(SimpleUpdateRequest) returns (SimpleUpdateResponse) {
+        option (google.api.http) = { put: "/v1/simple/{id}" body: "item" };
+    }
 
-
-
+    rpc SimpleDelete(SimpleDeleteRequest) returns (SimpleDeleteResponse) {
+        option (google.api.http) = { delete: "/v1/simple/{id}" };
+    }
 }
